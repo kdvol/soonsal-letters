@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>순살크립토 | 2026년 2월 27일 (금)</title>
+  <style>
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', Arial, sans-serif;
+      background-color: #f5f5f0;
+      margin: 0; padding: 0;
+      color: #222;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    .wrapper {
+      max-width: 680px;
+      margin: 32px auto;
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .header {
+      background: #111;
+      color: #fff;
+      padding: 28px 36px 20px;
+    }
+    .header .brand {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+    .header .date {
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+    .header .tagline {
+      font-size: 13px;
+      color: #888;
+      margin-top: 8px;
+    }
+    .market-table {
+      background: #f9f9f7;
+      border-bottom: 1px solid #e8e8e0;
+      padding: 20px 36px;
+    }
+    .market-table table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .market-table td {
+      padding: 5px 8px 5px 0;
+      border-bottom: 1px solid #eee;
+      color: #444;
+    }
+    .market-table td:first-child { font-weight: 600; color: #222; width: 42%; }
+    .market-table .up { color: #c0392b; font-weight: 600; }
+    .market-table .down { color: #2471a3; font-weight: 600; }
+    .market-table .neutral { color: #555; }
+    .market-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .market-note {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 8px;
+    }
+    .content {
+      padding: 30px 36px;
+    }
+    .story {
+      margin-bottom: 40px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid #f0f0e8;
+    }
+    .story:last-child {
+      border-bottom: none;
+    }
+    .story-label {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #888;
+      background: #f0f0e8;
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+    .story-title {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      color: #111;
+      letter-spacing: -0.3px;
+    }
+    .story-body p {
+      margin: 0 0 10px;
+      color: #333;
+      font-size: 15px;
+    }
+    .story-body .bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .story-body .bullet .dot {
+      color: #111;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .story-body .note {
+      display: inline;
+      color: #777;
+      font-size: 14px;
+    }
+    .tradfi-box {
+      background: #f0f4ff;
+      border-left: 3px solid #4a6cf7;
+      padding: 12px 16px;
+      margin: 14px 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 14px;
+      color: #334;
+    }
+    .tradfi-box .tradfi-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #4a6cf7;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .headline-section {
+      background: #f9f9f7;
+      border-top: 1px solid #e8e8e0;
+      padding: 24px 36px;
+    }
+    .headline-section .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 16px;
+    }
+    .headline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #333;
+    }
+    .headline-item a {
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+    }
+    .headline-item a:hover { border-color: #333; }
+    .headline-dot { color: #888; flex-shrink: 0; margin-top: 2px; }
+    .word-section {
+      background: #f9f9f7;
+      border-top: 2px solid #111;
+      padding: 28px 36px 36px;
+    }
+    .word-section .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    .word-item {
+      margin-bottom: 22px;
+    }
+    .word-en {
+      font-size: 17px;
+      font-weight: 800;
+      color: #111;
+      font-style: italic;
+    }
+    .word-ko {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .word-example {
+      font-size: 13.5px;
+      color: #444;
+      line-height: 1.65;
+      border-left: 3px solid #ddd;
+      padding-left: 12px;
+    }
+    .footer {
+      background: #111;
+      color: #666;
+      font-size: 12px;
+      padding: 20px 36px;
+      text-align: center;
+    }
+    .footer a { color: #888; }
+    strong { color: #111; }
+    em { color: #555; font-style: normal; font-weight: 600; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">🥩 순살크립토</div>
+    <div class="date">2026년 2월 27일 (금)</div>
+    <div class="tagline">모건스탠리 홍콩 출신 금융인의 크립토 시장 살코기 — 전통 금융의 눈으로 읽는 Web3</div>
+  </div>
+
+  <!-- MARKET DATA -->
+  <div class="market-table">
+    <div class="market-title">📊 Crypto Markets — 2/26 기준</div>
+    <table>
+      <tr><td>Bitcoin (BTC)</td><td>$67,354</td><td class="down">▼ -2.39% (고점 $70K 터치 후 되돌림)</td></tr>
+      <tr><td>Ethereum (ETH)</td><td>$2,004</td><td class="down">▼ -3.00% ($2K 턱걸이 사수)</td></tr>
+      <tr><td>Solana (SOL)</td><td>$142</td><td class="down">▼ -3.50%</td></tr>
+      <tr><td>XRP</td><td>$2.31</td><td class="down">▼ -5.00% 😅</td></tr>
+      <tr><td>BNB</td><td>$598</td><td class="down">▼ -1.50%</td></tr>
+      <tr><td>전체 시총 (Total Market Cap)</td><td>$2.39T</td><td class="down">▼ -2.00%</td></tr>
+      <tr><td>BTC ETF 순유입</td><td>$506M</td><td class="up">▲ 3주 최고치 🔥</td></tr>
+    </table>
+    <div class="market-note">UTC 기준 전일 종가 / BTC ETF는 미국 거래일 기준</div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- STORY 1: Morgan Stanley Crypto -->
+    <div class="story">
+      <div class="story-label">기관·전통금융</div>
+      <div class="story-title">🏦 모건스탠리, 드디어 크립토 시장에 전면 진입한다</div>
+      <div class="story-body">
+        <div class="bullet"><span class="dot">◾</span><span><strong>모건스탠리 (Morgan Stanley)</strong>가 고객 대상 비트코인 수탁 (Custody), 현물 거래 (Spot Trading), 이자 수익 서비스 (Yield Lending)를 공식 출시한다고 발표. 월가 대형 IB가 크립토 풀서비스에 직접 뛰어드는 건 이번이 사실상 처음. (<a href="https://decrypt.co/359312/morgan-stanley-offer-bitcoin-custody-trading-yield-lending-exec">원문</a>)</span></div>
+        <div class="bullet"><span class="dot">◾</span><span>모건스탠리는 글로벌 자산운용 규모 약 <strong>$1.5T(약 2,000조 원)</strong>의 IB. 그동안 "크립토는 투기"라며 거리를 뒀던 회사가 고객들이 원하니까 어쩔 수 없이 들어오는 모양새. <span class="note">(마지못해 들어오는 척하지만 사실 누구보다 빨리 자리 잡으려는 거 다 알아요)</span></span></div>
+        <div class="bullet"><span class="dot">◾</span><span><strong>인물 서사 — 테드 픽 (Ted Pick), 모건스탠리 CEO:</strong> 2024년 초 제임스 고먼의 뒤를 이어 CEO로 취임. 전임 고먼은 크립토에 공개적으로 회의적이었던 반면, 픽은 취임 직후부터 "고객이 원하는 걸 제공하는 것이 우리 역할"이라며 기조를 180도 바꿨음. 30년 모건스탠리 장기 근무자, 트레이딩 출신답게 시장 흐름 읽는 속도가 빠름. <span class="note">(뱅커들이 "우리는 리스크 관리한다"고 할 때는 이미 다 들어온 거라는 걸 알 수 있음)</span></span></div>
+
+        <div class="tradfi-box">
+          <div class="tradfi-label">📐 전통 금융 대비 현재 위치</div>
+          전통 금융에서 수탁(Custody)은 BNY멜론, 스테이트스트리트 같은 전문 커스토디언이 담당하고, 대출(Lending)은 은행이, 트레이딩은 브로커딜러가 맡는 식으로 역할이 철저히 분리됨. 크립토에서 모건스탠리가 이 세 가지를 한 번에 하겠다는 건 "크립토 원스톱 프라이빗 뱅킹"의 시작. 아직 기관 투자자 중심이지만, 이 인프라가 깔리면 리테일로 내려오는 건 시간 문제.
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 2: Jack Dorsey Block Layoffs -->
+    <div class="story">
+      <div class="story-label">테크·크립토 기업</div>
+      <div class="story-title">🤖 잭 도시, 4,000명 자르고 "AI가 했습니다" — Block의 대규모 구조조정</div>
+      <div class="story-body">
+        <div class="bullet"><span class="dot">◾</span><span><strong>Block (구 Square)</strong>이 전체 직원의 40%가 넘는 <strong>4,000명 이상을 해고</strong>. 1만 명 이상 → 6,000명 미만으로 축소. 퇴직금은 기본급 20주치, 1Q에 $450M~$500M 비용 반영. (<a href="https://decrypt.co/359349/block-stock-pops-jack-dorseys-bitcoin-company-dumps-4000-jobs">원문</a>)</span></div>
+        <div class="bullet"><span class="dot">◾</span><span>발표 후 <strong>Block 주가 시간외 +24%</strong>. 이게 크립토 회사인지 일반 테크 회사인지 헷갈리지만, 해고=주가상승 공식은 여기서도 똑같이 작동함.</span></div>
+        <div class="bullet"><span class="dot">◾</span><span><strong>인물 서사 — 잭 도시 (Jack Dorsey):</strong> 트위터 공동 창업자, 두 번이나 CEO를 했다가 쫓겨난 사람. Block(Square) 창업 후엔 완전히 비트코인 원주의자(Bitcoin Maximalist)로 전향. "비트코인만이 진짜 돈이고, 나머지 코인은 전부 쓰레기"라는 입장을 공개적으로 견지. Cash App에 비트코인 기능을 심은 것도 그의 작품. 작년엔 트위터(X) 이사회에서 일론 머스크와 결별하며 "분산화된 SNS"인 Bluesky를 지원하기 시작. <span class="note">(본인이 만든 트위터를 본인이 탈출해서 경쟁자 만드는 거, 잭 도시 아니면 못 함)</span></span></div>
+        <div class="bullet"><span class="dot">◾</span><span>잭 도시: <em>"앞으로 1년 안에 대부분의 회사가 같은 결론에 도달할 것"</em>. 크립토+AI 기업이 인력 구조 전면 재편하는 첫 번째 공개 사례로 업계 파장 클 것.</span></div>
+      </div>
+    </div>
+
+    <!-- STORY 3: MetaMask Debit Card -->
+    <div class="story">
+      <div class="story-label">인프라·결제</div>
+      <div class="story-title">💳 MetaMask 크립토 직불카드, 미국 전역 출시 — 지갑에서 결제까지</div>
+      <div class="story-body">
+        <div class="bullet"><span class="dot">◾</span><span><strong>MetaMask</strong>가 미국 전역에서 사용 가능한 <strong>크립토 직불카드(Debit Card)</strong>를 공식 출시. Mastercard 네트워크 기반으로 지갑 안의 크립토를 실시간 환전해서 일반 가맹점에서 결제 가능. (<a href="https://decrypt.co/359145/metamask-crypto-debit-mastercard-launches-united-states">원문</a>)</span></div>
+        <div class="bullet"><span class="dot">◾</span><span>MetaMask는 월간 활성 사용자 3,000만 명 이상의 세계 최대 크립토 지갑. Consensys(이더리움 개발사 조셉 루빈의 회사)가 운영. 이번 카드는 이더리움 기반 자산 우선 지원.</span></div>
+
+        <div class="tradfi-box">
+          <div class="tradfi-label">📐 전통 금융 대비 현재 위치</div>
+          전통 금융의 직불카드는 은행 계좌 잔액을 쓰는 것. 크립토 직불카드는 "지갑 잔액 = 은행 계좌"로 치환하는 시도. 비자/마스터카드 네트워크를 그대로 쓰기 때문에 가맹점 입장에서는 차이가 없음. 문제는 환전 수수료와 세금 처리인데, 미국에서 크립토로 결제할 때마다 과세 이벤트(Taxable Event)가 발생함. 이 허들이 해소될 때 진짜 대중화 가능. 현재는 "쓸 수는 있는데 번거롭다" 단계.
+        </div>
+
+        <div class="bullet"><span class="dot">◾</span><span>비슷한 시도: Coinbase Card, Crypto.com Visa Card 등 이미 선례가 있음. 다만 MetaMask는 자체 거래소가 없는 순수 지갑이라는 점이 차이. 탈중앙화 지향점이 있는 만큼 사용자 데이터 처리 방식이 기존 카드사와 어떻게 다를지가 관전 포인트.</span></div>
+      </div>
+    </div>
+
+    <!-- STORY 4: Stablecoin Regulation -->
+    <div class="story">
+      <div class="story-label">규제·정책</div>
+      <div class="story-title">🏛️ 미 연방 규제당국 "스테이블코인에 이자 주지 마라" — 은행 로비의 반격</div>
+      <div class="story-body">
+        <div class="bullet"><span class="dot">◾</span><span>미국 연방 은행 감독당국 (OCC 등)이 스테이블코인 발행사가 보유자에게 <strong>이자 또는 리워드를 지급하는 행위를 제한</strong>하는 방향으로 움직이고 있음. 스테이블코인이 "무이자 요구불 예금"처럼 작동해야 한다는 논리. (<a href="https://www.bloomberg.com/news/articles/2026-02-26/federal-bank-regulator-moves-to-restrict-us-stablecoin-rewards">원문</a>)</span></div>
+        <div class="bullet"><span class="dot">◾</span><span>현재 USDC, USDT 등 주요 스테이블코인 발행사들은 준비금(Reserve)을 국채 등에 투자해 수익을 내지만, 이를 보유자에게 나눠주지 않음. 반면 DeFi 프로토콜에서는 스테이블코인 예치 시 연 3~8% 이자를 지급 중. 규제당국은 바로 이 부분을 겨냥.</span></div>
+
+        <div class="tradfi-box">
+          <div class="tradfi-label">📐 전통 금융 대비 현재 위치</div>
+          전통 금융에서 "이자 없는 요구불 예금"은 당연한 것 — 은행은 예금자 돈으로 대출해서 수익을 냄. 스테이블코인의 이자 지급은 이 구조를 우회해서 "은행 없이 예금 이자 받기"를 가능하게 하는 모델. 은행 입장에선 당연히 막고 싶은 것. 이 규제가 통과되면 크립토 내 달러 예금 경쟁력이 크게 떨어지고, 결국 사용자들이 다시 은행으로 돌아가는 효과. 전통 금융의 로비가 규제를 무기로 쓰는 교과서적 사례.
+        </div>
+
+        <div class="bullet"><span class="dot">◾</span><span>아이러니한 점: 동시에 JPMorgan은 "크립토 시장구조 법안이 통과되면 크립토 시장이 부양될 것"이라고 분석 발표. 한 손으론 막고 한 손으론 들어오려는 게 월가의 현재 포지션. <span class="note">(이중성의 끝판왕)</span></span></div>
+      </div>
+    </div>
+
+    <!-- STORY 5: Goliath Ponzi + SBF -->
+    <div class="story">
+      <div class="story-label">사기·보안</div>
+      <div class="story-title">🚨 $328M 크립토 폰지, CEO 체포 — SBF의 그림자는 아직</div>
+      <div class="story-body">
+        <div class="bullet"><span class="dot">◾</span><span><strong>Goliath Ventures</strong> CEO가 <strong>$328M(약 4,300억 원) 규모의 크립토 폰지 사기</strong> 혐의로 체포. 투자자들에게 AI 트레이딩으로 고수익을 약속하며 자금을 모집한 뒤 신규 투자자 돈으로 기존 투자자에게 수익을 지급하는 전형적인 폰지 구조. (<a href="https://decrypt.co/359211/goliath-ventures-ceo-arrested-over-328m-crypto-ponzi-scheme">원문</a>)</span></div>
+        <div class="bullet"><span class="dot">◾</span><span>같은 날, 미국 상원의원들이 <strong>샘 뱅크먼-프리드 (SBF)</strong>가 감옥에서 크립토 법안 통과를 지지하는 로비를 시도했다는 의혹을 제기하며 강하게 반박. "수감 중인 사기꾼이 크립토 입법에 영향력을 행사하려 한다"는 것. (<a href="https://decrypt.co/359331/someones-looking-pardon-senators-rebuke-sbf-crypto-bill-support">원문</a>)</span></div>
+        <div class="bullet"><span class="dot">◾</span><span><strong>인물 서사 — 샘 뱅크먼-프리드 (SBF):</strong> FTX 창업자. 2022년까지만 해도 "크립토의 워런 버핏"으로 불리며 한때 순자산 $26B(34조). 이펙티브 얼트루이즘(Effective Altruism)을 앞세우며 정치권에 막대한 로비 자금을 뿌렸음. 결국 2022년 FTX 붕괴로 고객 자산 수십억 달러 증발, 2024년 사기 등 혐의로 25년 징역 선고. 지금도 옥중에서 영향력 유지를 시도하는 것으로 보임. <span class="note">(본인이 저지른 걸 생각하면 참으로 뻔뻔한 행보지만, 그게 SBF 캐릭터의 본질이기도 함)</span></span></div>
+        <div class="bullet"><span class="dot">◾</span><span>크립토 사기 피해액은 2025년 한 해 랜섬웨어 피해만 $800M 이상. 업계 전반의 신뢰 구축 없이는 기관 자금의 본격 유입은 요원하다는 걸 매번 이 뉴스들이 상기시켜 줌.</span></div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- HEADLINE ROUNDUP -->
+  <div class="headline-section">
+    <div class="section-title">📋 헤드라인 라운드업</div>
+    <div class="headline-item"><span class="headline-dot">·</span><span><a href="https://www.bloomberg.com/news/articles/2026-02-26/jpmorgan-sees-crypto-boost-if-market-structure-bill-passes">JPMorgan "시장구조 법안 통과 시 크립토 시장 부양 효과"</a> — BBG</span></div>
+    <div class="headline-item"><span class="headline-dot">·</span><span><a href="https://cointelegraph.com/news/aave-reaches-1-trillion-lending-volume">Aave, 누적 대출 볼륨 $1T 돌파</a> — 크립토 DeFi 최초 — CT</span></div>
+    <div class="headline-item"><span class="headline-dot">·</span><span><a href="https://www.coindesk.com/business/2026/02/26/grant-cardone-plans-to-tokenize-his-firm-s-usd5-billion-real-estate-portfolio">그랜트 카돈, $5B 부동산 포트폴리오 토큰화 추진</a> — CD</span></div>
+    <div class="headline-item"><span class="headline-dot">·</span><span><a href="https://www.theblock.co/post/391391/vitalik-buterin-eth-sales-hit-35-million">비탈릭 부테린 ETH 매도액 $35M 달해</a> — 창업자 지갑 동향 주시 — TB</span></div>
+    <div class="headline-item"><span class="headline-dot">·</span><span><a href="https://www.coindesk.com/tech/2026/02/26/vitalik-buterin-unveils-ethereum-roadmap-to-counter-quantum-computing-threat">비탈릭, 양자컴퓨팅 대응 이더리움 로드맵 공개</a> — CD</span></div>
+    <div class="headline-item"><span class="headline-dot">·</span><span><a href="https://www.theblock.co/post/391338/telegram-crypto-wallet-yield-bitcoin-ethereum-usdt-holdings">텔레그램 내장 지갑, BTC·ETH·USDT 보유자 이자 지급 시작</a> — TB</span></div>
+    <div class="headline-item"><span class="headline-dot">·</span><span><a href="https://www.bloomberg.com/news/articles/2026-02-26/bitcoin-miner-mara-starwood-partner-to-develop-ai-data-centers">비트코인 채굴사 MARA, Starwood와 AI 데이터센터 개발 파트너십</a> — BBG</span></div>
+    <div class="headline-item"><span class="headline-dot">·</span><span><a href="https://www.coindesk.com/markets/2026/02/25/solo-bitcoin-miner-turns-usd75-of-rented-hashrate-into-a-usd200-000-block-reward">솔로 비트코인 채굴자, $75 투자로 $200K 블록 보상 획득</a> — 로또 레전드 — CD</span></div>
+  </div>
+
+  <!-- WORD SECTION -->
+  <div class="word-section">
+    <div class="section-title">📚 오늘의 크립토 용어</div>
+
+    <div class="word-item">
+      <div class="word-en">Yield Lending</div>
+      <div class="word-ko">이자 수익 대출 — 보유 자산을 빌려주고 이자를 받는 서비스</div>
+      <div class="word-example">
+        Morgan Stanley plans to offer bitcoin <em>yield lending</em>, allowing institutional clients to earn returns on idle crypto holdings.<br>
+        <span style="color:#888;">모건스탠리는 기관 고객이 유휴 크립토 자산을 빌려주고 수익을 얻을 수 있는 비트코인 이자 수익 대출 서비스를 제공할 예정이다.</span><br>
+        <span style="color:#aaa; font-size:12px;">※ 전통 금융의 증권 대차(Securities Lending)와 동일한 구조. 기관 투자자들에게는 낯설지 않은 개념.</span>
+      </div>
+    </div>
+
+    <div class="word-item">
+      <div class="word-en">Taxable Event</div>
+      <div class="word-ko">과세 이벤트 — 세금 납부 의무가 발생하는 거래 행위</div>
+      <div class="word-example">
+        In the US, using crypto to pay for goods is a <em>taxable event</em> — you owe capital gains tax on any appreciation since you acquired the asset.<br>
+        <span style="color:#888;">미국에서 크립토로 물건 값을 지불하는 것은 과세 이벤트에 해당하며, 취득 이후 가격 상승분에 대해 자본이득세를 납부해야 한다.</span><br>
+        <span style="color:#aaa; font-size:12px;">※ 크립토 직불카드 대중화의 가장 큰 장애물. 커피 한 잔 살 때마다 세금 계산하는 나라에서 누가 쓰겠나.</span>
+      </div>
+    </div>
+
+    <div class="word-item">
+      <div class="word-en">Bitcoin Maximalist</div>
+      <div class="word-ko">비트코인 원주의자 — 비트코인만이 유일한 진짜 암호화폐라고 믿는 사람</div>
+      <div class="word-example">
+        Jack Dorsey, a known <em>Bitcoin maximalist</em>, has repeatedly dismissed all other cryptocurrencies as distractions from BTC's mission as decentralized money.<br>
+        <span style="color:#888;">잭 도시는 공인된 비트코인 원주의자로, 다른 모든 암호화폐를 비트코인의 탈중앙화 화폐 사명을 방해하는 잡음이라고 반복적으로 일축해 왔다.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Copyright © 2026 Soonsal 순살크립토. All rights reserved.</p>
+    <p style="margin-top:4px;"><a href="https://soonsal.com">soonsal.com</a> · <a href="https://page.stibee.com/subscriptions/51845">구독하기</a></p>
+  </div>
+
+</div>
+</body>
+</html>

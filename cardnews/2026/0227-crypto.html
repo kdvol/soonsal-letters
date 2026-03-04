@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>순살크립토 카드뉴스 — 모건스탠리가 크립토에 들어왔다</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
@@ -182,7 +183,20 @@
     .card {
       width: 100% !important;
       max-width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      aspect-ratio: 1 / 1;
       border-radius: 0 !important;
+      padding: 20px 16px 16px !important;
+    }
+    .card .top-zone {
+      font-size: 22px !important;
+    }
+    .card .mid-zone {
+      font-size: 13px !important;
+    }
+    .card .bot-zone {
+      font-size: 11px !important;
     }
   }
 

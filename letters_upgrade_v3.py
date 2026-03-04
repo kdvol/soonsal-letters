@@ -27,7 +27,7 @@ DRY_RUN = '--dry-run' in sys.argv
 SOONSAL_ORANGE = '#E55A00'
 SOONSAL_ORANGE_HOVER = '#CC4E00'
 
-SUBSCRIBE_URL = 'https://page.stibee.com/subscriptions/51845'
+SUBSCRIBE_URL = 'https://subscribe.soonsal.com/subscribe'
 
 # ─── 구독하기 버튼 HTML (인라인 스타일만, CSS 추가 없음) ───
 # .nav a 스타일 오버라이드를 위해 모든 속성에 !important

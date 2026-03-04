@@ -92,19 +92,31 @@ def extract_date(filename):
 
 
 def extract_keywords(html, ctype):
-    """Extract keywords from HTML content for index entry.
+    """Extract display title from HTML content for index entry.
 
     Priority:
-      1. <meta name="soonsal-keywords" content="..."> (all types)
-      2. <h2 class="story-title"> extraction (briefing, crypto)
-      3. <title> tag fallback (cardnews, english)
+      1. <title> tag — strip " — 순살X YYYY.MM.DD" suffix (v16)
+      2. <meta name="soonsal-keywords"> fallback (SEO keywords)
+      3. <h2 class="story-title"> extraction (briefing, crypto)
     """
-    # ── Priority 1: explicit meta tag ──
+    # ── Priority 1: <title> tag (v16 — meme title for index) ──
+    m = re.search(r"<title>(.*?)</title>", html)
+    if m:
+        t = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+        # "밈 제목 — 순살브리핑 2026.03.04" → "밈 제목"
+        # rsplit: 마지막 " — " 기준으로만 분리 (제목 안의 — 는 보존)
+        parts = t.rsplit(" — ", 1)
+        if len(parts) == 2 and ("순살" in parts[1] or "Soonsal" in parts[1]):
+            return parts[0].strip()
+        # 카드뉴스 등 " — " 없는 경우 전체 반환
+        return t
+
+    # ── Priority 2: soonsal-keywords fallback (SEO) ──
     m = re.search(r'<meta\s+name="soonsal-keywords"\s+content="([^"]+)"', html)
     if m:
         return m.group(1).strip()
 
-    # ── Priority 2: story-title extraction (briefing / crypto) ──
+    # ── Priority 3: story-title extraction (briefing / crypto) ──
     titles = re.findall(r'<h2 class="story-title">(.*?)</h2>', html)
     if titles:
         kws = []
@@ -118,17 +130,6 @@ def extract_keywords(html, ctype):
                 clean = clean[:40].strip()
             kws.append(clean)
         return ", ".join(kws)
-
-    # ── Priority 3: <title> tag fallback ──
-    m = re.search(r"<title>(.*?)</title>", html)
-    if m:
-        t = re.sub(r"<[^>]+>", "", m.group(1)).strip()
-        # Remove brand prefix (e.g. "순살카드뉴스 — " or "순살크립토 | ")
-        for sep in [" — ", " | ", "—", "|"]:
-            if sep in t:
-                t = t.split(sep, 1)[-1].strip()
-                break
-        return t
 
     return "Untitled"
 

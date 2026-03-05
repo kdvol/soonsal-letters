@@ -16,7 +16,7 @@
     display:flex; justify-content:center;
   }
   .logo-link {
-    display:flex; align-items:center; gap:10px;
+    display:flex; align-items:center; gap:10px; flex-wrap:nowrap;
     text-decoration:none; color:#fff;
   }
   .logo-icon { height:36px; width:auto; }
@@ -68,7 +68,7 @@
     transition: border-color .2s, color .2s;
   }
   .today-grid a:hover { border-color:#F07040; color:#F07040; }
-  .today-grid a .tag {
+  .today-grid a .tag { white-space:nowrap; flex-shrink:0;
     display:inline-block; font-size:10px; padding:2px 6px;
     border-radius:3px; margin-right:6px; vertical-align:middle;
   }
@@ -182,48 +182,48 @@
   <div class="today">
     <div class="today-title">2026.03.05</div>
     <div class="today-grid" style="grid-template-columns:1fr; gap:10px;">
-      <a href="/newsletters/2026/0305.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · 🐟 전쟁이 돈 되는 나라 — 달러도 오르고 S&P도 오르는 미국의 "특권"</a>
-      <a href="/newsletters/2026/0305-crypto.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-crypto">Crypto</span>순살크립토 · 🐟 BTC ETF $4.58억 유입인데 가격은 하락 — 기관은 알고 있나?</a>
+      <a href="/newsletters/2026/0305.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · 🐟 전쟁이 돈 되는 나라 — 달러도 오르고 S&P도 오르는 미국의 "특권"</a>
+      <a href="/newsletters/2026/0305-crypto.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-crypto">Crypto</span>순살크립토 · 🐟 BTC ETF $4.58억 유입인데 가격은 하락 — 기관은 알고 있나?</a>
     </div>
   </div>
 
   <div class="today">
     <div class="today-title">2026.03.04</div>
     <div class="today-grid" style="grid-template-columns:1fr; gap:10px;">
-      <a href="/newsletters/2026/0304.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · 전쟁이고 뭐고 바이더딥 — 다우 1,200pt 폭락 후 400pt 손실로 마감한 날</a>
-      <a href="/newsletters/2026/0304-crypto.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-crypto">Crypto</span>순살크립토 · 어-느-새-부터 디지털 금 안 멋져 (feat. 이란 전쟁)</a>
+      <a href="/newsletters/2026/0304.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · 전쟁이고 뭐고 바이더딥 — 다우 1,200pt 폭락 후 400pt 손실로 마감한 날</a>
+      <a href="/newsletters/2026/0304-crypto.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-crypto">Crypto</span>순살크립토 · 어-느-새-부터 디지털 금 안 멋져 (feat. 이란 전쟁)</a>
     </div>
   </div>
 
   <div class="today">
     <div class="today-title">2026.03.03</div>
     <div class="today-grid" style="grid-template-columns:1fr; gap:10px;">
-      <a href="/newsletters/2026/0303.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · 이란 전쟁 Buy the Dip, OpenAI $1100억 펀딩, Anthropic vs 펜타곤, Berkshire Abel 첫 서한, Live Nation 반독점</a>
-      <a href="/newsletters/2026/0303-crypto.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-crypto">Crypto</span>순살크립토 · BTC $65K 이란 변동성, ETF 유입 반전, 모건스탠리 크립토, Polymarket 이란 $5.29억, Vitalik ETH 오버홀</a>
+      <a href="/newsletters/2026/0303.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · 이란 전쟁 Buy the Dip, OpenAI $1100억 펀딩, Anthropic vs 펜타곤, Berkshire Abel 첫 서한, Live Nation 반독점</a>
+      <a href="/newsletters/2026/0303-crypto.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-crypto">Crypto</span>순살크립토 · BTC $65K 이란 변동성, ETF 유입 반전, 모건스탠리 크립토, Polymarket 이란 $5.29억, Vitalik ETH 오버홀</a>
     </div>
   </div>
 
   <div class="today">
     <div class="today-title">2026.03.02</div>
     <div class="today-grid" style="grid-template-columns:1fr; gap:10px;">
-      <a href="/newsletters/2026/0302.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · 이란 공습 하메네이 사망, SpaceX $1.75조 IPO, Apollo xAI, 미국 주택시장</a>
-      <a href="/newsletters/2026/0302-crypto.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-crypto">Crypto</span>순살크립토 · 이란 공습과 BTC, ETF $38억 유출, DeFi 청산, Apollo xAI</a>
+      <a href="/newsletters/2026/0302.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · 이란 공습 하메네이 사망, SpaceX $1.75조 IPO, Apollo xAI, 미국 주택시장</a>
+      <a href="/newsletters/2026/0302-crypto.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-crypto">Crypto</span>순살크립토 · 이란 공습과 BTC, ETF $38억 유출, DeFi 청산, Apollo xAI</a>
     </div>
   </div>
 
   <div class="today">
     <div class="today-title">2026.02.28</div>
     <div class="today-grid" style="grid-template-columns:1fr; gap:10px;">
-      <a href="/newsletters/2026/0228.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · Anthropic vs 펜타곤, OpenAI $1,100억 펀딩, Block 40% 해고</a>
-      <a href="/newsletters/2026/0228-crypto.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-crypto">Crypto</span>순살크립토 · BTC ETF $38억 유출, 이란 리스크</a>
+      <a href="/newsletters/2026/0228.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · Anthropic vs 펜타곤, OpenAI $1,100억 펀딩, Block 40% 해고</a>
+      <a href="/newsletters/2026/0228-crypto.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-crypto">Crypto</span>순살크립토 · BTC ETF $38억 유출, 이란 리스크</a>
     </div>
   </div>
 
   <div class="today">
     <div class="today-title">2026.02.27</div>
     <div class="today-grid" style="grid-template-columns:1fr; gap:10px;">
-      <a href="/newsletters/2026/0227.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · WBD 인수전, Block 40% 해고, Anthropic vs 국방부, KOSPI YTD +46%</a>
-      <a href="/newsletters/2026/0227-crypto.html" style="display:flex; align-items:center; gap:10px;"><span class="tag tag-crypto">Crypto</span>순살크립토 · 모건스탠리 크립토 전면 진입, MetaMask 직불카드, 스테이블코인 이자 규제</a>
+      <a href="/newsletters/2026/0227.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-briefing">브리핑</span>순살브리핑 · WBD 인수전, Block 40% 해고, Anthropic vs 국방부, KOSPI YTD +46%</a>
+      <a href="/newsletters/2026/0227-crypto.html" style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap;"><span class="tag tag-crypto">Crypto</span>순살크립토 · 모건스탠리 크립토 전면 진입, MetaMask 직불카드, 스테이블코인 이자 규제</a>
     </div>
   </div>
 

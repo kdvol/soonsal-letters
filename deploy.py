@@ -111,6 +111,38 @@ ORDER = {"briefing": 0, "crypto": 1, "card": 2, "crypto-card": 3, "english": 4}
 
 
 # ═══════════════════════════════════════════
+# Cloudflare Web Analytics
+# ═══════════════════════════════════════════
+
+CF_ANALYTICS_TOKEN = "d6a07341c2bf438d8ef7f9209a0e9a81"
+CF_ANALYTICS_SNIPPET = (
+    '<!-- Cloudflare Web Analytics -->'
+    '<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
+    f'data-cf-beacon=\'{{"token": "{CF_ANALYTICS_TOKEN}"}}\'></script>'
+    '<!-- End Cloudflare Web Analytics -->'
+)
+
+
+def inject_analytics_beacon(filepath):
+    """Inject Cloudflare Web Analytics beacon into HTML file if not already present."""
+    with open(filepath, "r", encoding="utf-8") as f:
+        html = f.read()
+
+    if "cloudflareinsights" in html:
+        return  # Already has beacon
+
+    if "</body>" in html:
+        html = html.replace("</body>", f"{CF_ANALYTICS_SNIPPET}\n</body>")
+    elif "</html>" in html:
+        html = html.replace("</html>", f"{CF_ANALYTICS_SNIPPET}\n</html>")
+    else:
+        return  # No closing tag to inject before
+
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(html)
+
+
+# ═══════════════════════════════════════════
 # Helpers
 # ═══════════════════════════════════════════
 
@@ -588,6 +620,10 @@ def main():
         dest = REPO / deploy_path
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(filepath, dest)
+
+        # Inject Cloudflare Web Analytics beacon
+        inject_analytics_beacon(dest)
+
         print(f"📄 {filename} → {deploy_path}")
 
         # Generate PNG for cardnews

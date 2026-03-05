@@ -276,5 +276,44 @@
     </div>
 
 <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "d6a07341c2bf438d8ef7f9209a0e9a81"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- ═══ Soonsal Live Ticker ═══ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+<div id="soonsal-live-ticker" style="display:none;"></div>
+<style>
+#soonsal-live-ticker{position:fixed;top:0;left:0;right:0;width:100%;background:#0a0a0a;border-bottom:1px solid #1a1a1a;overflow:hidden;z-index:99999;user-select:none;-webkit-user-select:none}
+#soonsal-live-ticker::before,#soonsal-live-ticker::after{content:'';position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none}
+#soonsal-live-ticker::before{left:0;background:linear-gradient(to right,#0a0a0a,transparent)}
+#soonsal-live-ticker::after{right:0;background:linear-gradient(to left,#0a0a0a,transparent)}
+#soonsal-live-ticker .stk-track{display:flex;width:max-content;animation:stk-scroll 90s linear infinite;padding:8px 0}
+#soonsal-live-ticker .stk-track:hover{animation-play-state:paused}
+@keyframes stk-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+#soonsal-live-ticker .stk-item{display:inline-flex;align-items:center;gap:7px;padding:0 16px;border-right:1px solid #1a1a1a;white-space:nowrap;flex-shrink:0}
+#soonsal-live-ticker .stk-lbl{font-family:'DM Sans',-apple-system,sans-serif;font-size:11px;font-weight:600;color:#555;letter-spacing:0.3px;text-transform:uppercase}
+#soonsal-live-ticker .stk-lbl.crypto{color:#F07040}
+#soonsal-live-ticker .stk-prc{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:#e0ddd8;letter-spacing:-0.3px}
+#soonsal-live-ticker .stk-chg{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;display:inline-flex;align-items:center;gap:3px;padding:1px 5px;border-radius:3px}
+#soonsal-live-ticker .stk-chg.up{color:#4ade80;background:rgba(74,222,128,0.08)}
+#soonsal-live-ticker .stk-chg.down{color:#f87171;background:rgba(248,113,113,0.08)}
+#soonsal-live-ticker .stk-chg.zero{color:#777}
+#soonsal-live-ticker .au{display:inline-block;width:0;height:0;border-style:solid;border-width:0 3px 5px;border-color:transparent transparent #4ade80}
+#soonsal-live-ticker .ad{display:inline-block;width:0;height:0;border-style:solid;border-width:5px 3px 0;border-color:#f87171 transparent transparent}
+#soonsal-live-ticker .stk-div{display:inline-flex;align-items:center;padding:0 12px;flex-shrink:0}
+#soonsal-live-ticker .stk-div span{width:3px;height:3px;border-radius:50%;background:#F07040}
+#soonsal-live-ticker .stk-ts{display:inline-flex;align-items:center;gap:5px;padding:0 16px;flex-shrink:0}
+#soonsal-live-ticker .stk-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;animation:stk-pulse 2s ease-in-out infinite}
+@keyframes stk-pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+#soonsal-live-ticker .stk-time{font-family:'JetBrains Mono',monospace;font-size:10px;color:#555;letter-spacing:0.5px}
+#soonsal-live-ticker .stk-loading{display:flex;align-items:center;justify-content:center;padding:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;gap:8px}
+#soonsal-live-ticker .stk-spin{width:10px;height:10px;border:2px solid #222;border-top-color:#F07040;border-radius:50%;animation:stk-sp 0.8s linear infinite}
+@keyframes stk-sp{to{transform:rotate(360deg)}}
+.site-header{margin-top:34px}
+@media(max-width:768px){#soonsal-live-ticker .stk-item{padding:0 12px}#soonsal-live-ticker .stk-lbl{font-size:10px}#soonsal-live-ticker .stk-prc{font-size:11px}#soonsal-live-ticker .stk-chg{font-size:10px}.site-header{margin-top:30px}}
+</style>
+<script>
+(function(){'use strict';var WORKER_URL='https://soonsal-data.kd-d0a.workers.dev/';var COINGECKO_URL='https://api.coingecko.com/api/v3';var TRADFI_ORDER=['S&P 500','NASDAQ','Dow Jones','KOSPI','US 10Y','WTI Oil','Gold','DXY','EUR/USD','USD/JPY','USD/KRW'];var CRYPTO_ORDER=['Bitcoin','Ethereum','Solana','XRP','BNB','Crypto Total'];var CRYPTO_IDS={'Bitcoin':'bitcoin','Ethereum':'ethereum','Solana':'solana','XRP':'ripple','BNB':'binancecoin'};var REFRESH=60000;var container,timer,lastTradfi,lastCrypto;function init(){container=document.getElementById('soonsal-live-ticker');if(!container)return;container.style.display='block';container.innerHTML='<div class="stk-loading"><div class="stk-spin"></div>Loading market data...</div>';fetchAll();timer=setInterval(fetchAll,REFRESH)}function fetchAll(){var p1=fetchTradFi();var p2=fetchCrypto();Promise.allSettled?Promise.allSettled([p1,p2]).then(render):Promise.all([p1.catch(function(){return null}),p2.catch(function(){return null})]).then(render)}function fetchTradFi(){return fetch(WORKER_URL).then(function(r){return r.json()}).then(function(data){if(data.tradfi)lastTradfi=data;return data}).catch(function(e){console.warn('[Ticker] TradFi error:',e.message);return null})}function fetchCrypto(){var ids=Object.values(CRYPTO_IDS).join(',');var url=COINGECKO_URL+'/simple/price?ids='+ids+'&vs_currencies=usd&include_24hr_change=true&include_market_cap=true';var globalUrl=COINGECKO_URL+'/global';return Promise.all([fetch(url).then(function(r){return r.json()}),fetch(globalUrl).then(function(r){return r.json()}).catch(function(){return null})]).then(function(results){var prices=results[0];var global=results[1];var crypto={};for(var name in CRYPTO_IDS){var id=CRYPTO_IDS[name];var d=prices[id];if(!d)continue;var p=d.usd;var ch=d.usd_24h_change||0;crypto[name]={price:'$'+formatNum(p),change:(ch>=0?'+':'')+ch.toFixed(2)+'%',direction:ch>0.01?'up':ch<-0.01?'down':'zero'}}if(global&&global.data){var mc=global.data.total_market_cap&&global.data.total_market_cap.usd;var mch=global.data.market_cap_change_percentage_24h_usd;if(mc){crypto['Crypto Total']={price:'$'+(mc/1e12).toFixed(2)+'T',change:(mch>=0?'+':'')+(mch||0).toFixed(2)+'%',direction:mch>0?'up':mch<0?'down':'zero'}}}lastCrypto=crypto;return crypto}).catch(function(e){console.warn('[Ticker] Crypto error:',e.message);return null})}function render(){var tradfi=lastTradfi?lastTradfi.tradfi:{};var crypto=lastCrypto||{};var kst=lastTradfi?lastTradfi.kst:new Date().toLocaleString('ko-KR',{timeZone:'Asia/Seoul'});var html=[];html.push('<div class="stk-ts"><span class="stk-dot"></span><span class="stk-time">'+esc(kst)+' KST</span></div>');for(var i=0;i<TRADFI_ORDER.length;i++){var name=TRADFI_ORDER[i];var d=tradfi[name];if(d)html.push(makeItem(name,d,false))}html.push('<div class="stk-div"><span></span></div>');for(var j=0;j<CRYPTO_ORDER.length;j++){var cname=CRYPTO_ORDER[j];var cd=crypto[cname];if(cd)html.push(makeItem(cname,cd,true))}var track=html.join('');container.innerHTML='<div class="stk-track">'+track+track+'</div>'}function makeItem(name,d,isCrypto){var dir=d.direction||'zero';var arrow=dir==='up'?'<span class="au"></span>':dir==='down'?'<span class="ad"></span>':'';return'<div class="stk-item"><span class="stk-lbl'+(isCrypto?' crypto':'')+'">'+esc(name)+'</span><span class="stk-prc">'+esc(d.price)+'</span><span class="stk-chg '+dir+'">'+arrow+' '+esc(d.change)+'</span></div>'}function formatNum(n){if(n>=10000)return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(n>=100)return n.toFixed(2);if(n>=1)return n.toFixed(2);return n.toFixed(4)}function esc(s){if(!s)return'';var d=document.createElement('span');d.textContent=String(s);return d.innerHTML}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init)}else{init()}})();
+</script>
+<!-- ═══ End Soonsal Live Ticker ═══ -->
 </body>
 </html>

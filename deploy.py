@@ -752,9 +752,13 @@ def publish_cardnews_to_instagram(png_paths, ctype, yyyy, mmdd, date_fmt, keywor
 # ═══════════════════════════════════════════
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: python3 deploy.py <file1> [file2] ...")
-        print("Example: python3 deploy.py ~/Downloads/순살브리핑_20260302.html ~/Downloads/순살크립토_20260302.html")
+    # --no-instagram 플래그 처리
+    no_instagram = "--no-instagram" in sys.argv
+    file_args = [a for a in sys.argv[1:] if not a.startswith("--")]
+
+    if not file_args:
+        print("Usage: python3 deploy.py <file1> [file2] ... [--no-instagram]")
+        print("Example: python3 deploy.py ~/Downloads/순살카드뉴스_20260306.html --no-instagram")
         sys.exit(1)
 
     os.chdir(REPO)
@@ -763,7 +767,7 @@ def main():
 
     # ── Parse and copy files ──
     items = []
-    for filepath in sys.argv[1:]:
+    for filepath in file_args:
         filepath = Path(filepath).expanduser().resolve()
         filename = filepath.name
 
@@ -846,11 +850,13 @@ def main():
         print(f"\n⚠️  변경사항 없음 (already committed) — Instagram 발행은 계속 진행")
 
     # ── Instagram publish for cardnews ──
-    # 브리핑(card) 먼저, 크립토(crypto-card) 나중에 정렬
-    cardnews_items = [i for i in items if i["type"] in CARDNEWS_TYPES and i.get("png_paths")]
-    cardnews_items.sort(key=lambda x: 0 if x["type"] == "card" else 1)
+    if no_instagram:
+        print("\n⏭️  Instagram 발행 스킵 (--no-instagram)")
+    else:
+        cardnews_items = [i for i in items if i["type"] in CARDNEWS_TYPES and i.get("png_paths")]
+        cardnews_items.sort(key=lambda x: 0 if x["type"] == "card" else 1)
 
-    if cardnews_items:
+    if not no_instagram and cardnews_items:
         print(f"\n{'='*60}")
         print(f"📱 Instagram 발행 ({len(cardnews_items)}건)")
         print(f"{'='*60}")

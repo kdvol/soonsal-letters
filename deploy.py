@@ -716,9 +716,12 @@ def main():
     mmdd = items[0]["mmdd"]
     msg = f"Add {' & '.join(names)} {mmdd}"
 
-    subprocess.run(["git", "commit", "-m", msg], check=True)
-    subprocess.run(["git", "push", "origin", "main"], check=True)
-    print(f"\n✨ Site deployed! {msg}")
+    result = subprocess.run(["git", "commit", "-m", msg])
+    if result.returncode == 0:
+        subprocess.run(["git", "push", "origin", "main"], check=True)
+        print(f"\n✨ Site deployed! {msg}")
+    else:
+        print(f"\n⚠️  변경사항 없음 (already committed) — Instagram 발행은 계속 진행")
 
     # ── Instagram publish for cardnews ──
     # 브리핑(card) 먼저, 크립토(crypto-card) 나중에 정렬

@@ -543,15 +543,120 @@ R2_PUBLIC_URL = "https://pub-cb0321b52a854a95af8d6bb1688b2ecd.r2.dev"
 IG_CAPTIONS = {
     "card": (
         "순살브리핑 카드뉴스 {date_fmt}\n\n"
+        "{summary}\n\n"
         "#순살브리핑 #금융 #경제 #투자 #주식 #시장분석 "
         "#글로벌경제 #매크로 #금융뉴스 #경제공부"
     ),
     "crypto-card": (
         "순살크립토 카드뉴스 {date_fmt}\n\n"
+        "{summary}\n\n"
         "#순살크립토 #비트코인 #크립토 #블록체인 #Web3 "
         "#금융 #투자 #BTC #ETF #암호화폐"
     ),
 }
+
+
+def parse_cardnews_content(html: str) -> list[dict]:
+    """카드뉴스 HTML에서 각 카드의 제목 + 핵심 본문 추출."""
+    import re as _re
+    results = []
+    card_blocks = _re.findall(
+        r'<div[^>]*class="[^"]*\bcard\b[^"]*"[^>]*>(.*?)(?=<div[^>]*class="[^"]*\bcard\b|</body|$)',
+        html, _re.DOTALL
+    )
+    for block in card_blocks:
+        title_m = _re.search(r'<(?:h[1-4])[^>]*>(.*?)</(?:h[1-4])>', block, _re.DOTALL)
+        title = _re.sub(r"<[^>]+>", "", title_m.group(1)).strip() if title_m else ""
+        paras = _re.findall(r'<p[^>]*>(.*?)</p>', block, _re.DOTALL)
+        body = " ".join(
+            _re.sub(r"\s+", " ", _re.sub(r"<[^>]+>", "", p)).strip()
+            for p in paras if p.strip()
+        )[:150]
+        if title or body:
+            results.append({"title": title[:60], "body": body})
+    return results[:10]
+
+
+def generate_ig_caption_ai(html: str, ctype: str, date_fmt: str) -> str:
+    """Claude Haiku API로 Instagram 캡션 2~3문장 생성.
+    ANTHROPIC_API_KEY 없으면 빈 문자열 반환.
+    """
+    import urllib.request, json as _json
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if not api_key:
+        return ""
+    cards = parse_cardnews_content(html)
+    if not cards:
+        return ""
+    brand = "순살크립토" if ctype == "crypto-card" else "순살브리핑"
+    card_text = "\n".join(
+        f"- {c['title']}: {c['body']}" if c["body"] else f"- {c['title']}"
+        for c in cards
+    )
+    prompt = (
+        f"{brand} 카드뉴스 ({date_fmt}) 구성:\n{card_text}\n\n"
+        "위 내용을 Instagram 본문으로 2~3문장 요약해줘.\n"
+        "조건: 총 100자 이내, 독자가 클릭하고 싶게 임팩트 있게, "
+        "광고 말투 금지, 뉴스레터 독자에게 말하듯 자연스럽게, "
+        "해시태그 없이 본문만, 이모지 1~2개 허용"
+    )
+    payload = _json.dumps({
+        "model": "claude-haiku-4-5-20251001",
+        "max_tokens": 200,
+        "messages": [{"role": "user", "content": prompt}]
+    }).encode()
+    req = urllib.request.Request(
+        "https://api.anthropic.com/v1/messages",
+        data=payload,
+        headers={
+            "x-api-key": api_key,
+            "anthropic-version": "2023-06-01",
+            "content-type": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = _json.loads(resp.read())
+            return data["content"][0]["text"].strip()
+    except Exception as e:
+        print(f"  ⚠️  Claude API 캡션 생성 실패: {e}")
+        return ""
+
+
+def build_ig_summary(keywords: str, ctype: str, html: str = "", date_fmt: str = "") -> str:
+    """Instagram 본문 요약 생성.
+
+    우선순위:
+    1. HTML 내 <meta name="soonsal-ig-caption"> 태그 (카드뉴스 제작 시 미리 작성)
+    2. Claude Haiku API 생성 (ANTHROPIC_API_KEY 있을 때)
+    3. keywords fallback
+    """
+    import re as _re
+
+    # 1순위: 미리 작성된 ig-caption 메타 태그
+    if html:
+        m = _re.search(r'<meta[^>]+name="soonsal-ig-caption"[^>]+content="([^"]+)"', html)
+        if not m:
+            m = _re.search(r'<meta[^>]+content="([^"]+)"[^>]+name="soonsal-ig-caption"', html)
+        if m:
+            caption = m.group(1).strip()
+            print(f"  📋 ig-caption 메타 태그 사용")
+            return caption
+
+    # 2순위: Claude Haiku API
+    if html and date_fmt:
+        ai_text = generate_ig_caption_ai(html, ctype, date_fmt)
+        if ai_text:
+            print(f"  ✨ AI 캡션 생성 완료")
+            return ai_text
+
+    # 3순위: keywords fallback
+    if not keywords or keywords == "Untitled":
+        return ""
+    items = [k.strip() for k in _re.split(r"[,\n]+", keywords) if k.strip()]
+    emoji = "📊" if ctype == "crypto-card" else "📌"
+    return "\n".join(f"{emoji} {item}" for item in items[:3])
 
 
 def derive_r2_prefix(ctype, yyyy, mmdd):
@@ -596,7 +701,7 @@ def upload_to_r2(png_paths, r2_prefix):
         return urls
 
 
-def post_to_instagram(image_urls, ctype, date_fmt):
+def post_to_instagram(image_urls, ctype, date_fmt, keywords="", html=""):
     """Post carousel to Instagram via ~/instagram_pipeline/ modules.
     
     Returns: carousel ID string, or None on failure.
@@ -608,9 +713,10 @@ def post_to_instagram(image_urls, ctype, date_fmt):
         print("  ⚠️  Instagram 게시 스킵 (~/instagram_pipeline/post_instagram.py 미발견)")
         return None
 
-    caption = IG_CAPTIONS.get(ctype, "").format(date_fmt=date_fmt)
+    summary = build_ig_summary(keywords, ctype, html=html, date_fmt=date_fmt)
+    caption = IG_CAPTIONS.get(ctype, "").format(date_fmt=date_fmt, summary=summary)
     print(f"\n📱 Instagram 캐러셀 게시")
-    print(f"  캡션: {caption[:60]}...")
+    print(f"  캡션: {caption[:80]}...")
 
     try:
         carousel_id = post_carousel(image_urls, caption)
@@ -622,7 +728,7 @@ def post_to_instagram(image_urls, ctype, date_fmt):
         return None
 
 
-def publish_cardnews_to_instagram(png_paths, ctype, yyyy, mmdd, date_fmt):
+def publish_cardnews_to_instagram(png_paths, ctype, yyyy, mmdd, date_fmt, keywords="", html=""):
     """Full pipeline: R2 upload → Instagram carousel post.
     
     Gracefully skips if modules are not available.
@@ -635,7 +741,7 @@ def publish_cardnews_to_instagram(png_paths, ctype, yyyy, mmdd, date_fmt):
     image_urls = upload_to_r2(png_paths, r2_prefix)
 
     if image_urls:
-        carousel_id = post_to_instagram(image_urls, ctype, date_fmt)
+        carousel_id = post_to_instagram(image_urls, ctype, date_fmt, keywords=keywords, html=html)
         if carousel_id:
             # Dashboard: instagram step done
             pipeline = "crypto" if ctype == "crypto-card" else "briefing"
@@ -702,6 +808,7 @@ def main():
                 "keywords": keywords,
                 "deploy_path": deploy_path,
                 "png_paths": png_paths,
+                "html": html if ctype in CARDNEWS_TYPES else "",
             }
         )
 
@@ -757,6 +864,8 @@ def main():
             first["yyyy"],
             first["mmdd"],
             first["date_formatted"],
+            keywords=first.get("keywords", ""),
+            html=first.get("html", ""),
         )
 
         # 나머지는 1시간 간격으로 백그라운드 게시
@@ -776,6 +885,8 @@ def main():
                         item["yyyy"],
                         item["mmdd"],
                         item["date_formatted"],
+                        keywords=item.get("keywords", ""),
+                        html=item.get("html", ""),
                     )
 
             t = threading.Thread(target=_delayed_publish, args=(remaining,), daemon=False)

@@ -498,11 +498,11 @@ def generate_cardnews_png(filepath, ctype):
     if "fonts.googleapis.com" not in html:
         html = html.replace("</head>", f"{GOOGLE_FONT_LINK}\n</head>")
 
-    # html_cover: SVG CSS 없는 버전 + 모든 카드 overflow 해제
-    # (cover html은 card_01만 캡처하므로 전체 적용해도 무방)
-    # :first-of-type은 series-title div가 앞에 있어 매칭 안 됨 → .card 전체 적용
+    # html_cover: 커버 카드 캡처용
+    # overflow:hidden이 로고를 잘라내므로 → overflow:visible + height:auto
+    # 단, 캡처는 element.screenshot()이 아닌 page.screenshot(clip=...)으로 정확히 540×540 잘라냄
     cover_override = """<style>
-  .card { height: auto !important; overflow: visible !important; min-height: 540px; }
+  .card { overflow: visible !important; }
 </style>"""
     html_cover = html.replace("</head>", cover_override + "\n</head>")
 
@@ -545,9 +545,24 @@ def generate_cardnews_png(filepath, ctype):
             if cover_cards:
                 tmp_png   = out_dir / "tmp_01.png"
                 final_png = out_dir / "card_01.png"
-                cover_cards[0].screenshot(path=str(tmp_png))
+                # 커버: 카드의 위치/크기를 가져와서 정확히 540×540 clip으로 페이지 스크린샷
+                # (overflow:visible이므로 로고가 카드 밖으로 나와도 잘리지 않음)
+                box = cover_cards[0].bounding_box()
+                if box:
+                    page_cover.screenshot(
+                        path=str(tmp_png),
+                        clip={
+                            "x": box["x"],
+                            "y": box["y"],
+                            "width": 540,
+                            "height": 540,
+                        },
+                    )
+                else:
+                    cover_cards[0].screenshot(path=str(tmp_png))
                 img = Image.open(tmp_png)
-                img.resize((1080, 1080), Image.LANCZOS).save(str(final_png), "PNG", optimize=True)
+                img = img.resize((1080, 1080), Image.LANCZOS)
+                img.save(str(final_png), "PNG", optimize=True)
                 tmp_png.unlink()
                 png_paths.append(final_png)
                 print(f"     ✅ card_01.png ({final_png.stat().st_size:,} bytes)")

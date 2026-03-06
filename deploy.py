@@ -585,7 +585,15 @@ def upload_to_r2(png_paths, r2_prefix):
         return image_urls
     except Exception as e:
         print(f"  ❌ R2 업로드 실패: {e}")
-        return [f"{R2_PUBLIC_URL}/{r2_prefix}/{p.name}" for p in png_paths]
+        # fallback: upload_r2.py와 동일한 파일명 규칙 적용 (card_01.png → 01.png)
+        import re
+        public_url = os.environ.get("R2_PUBLIC_URL", "https://pub-cb0321b52a854a95af8d6bb1688b2ecd.r2.dev").rstrip("/")
+        urls = []
+        for p in png_paths:
+            m = re.search(r"_(\d{2})\.png$", p.name)
+            fname = f"{m.group(1)}.png" if m else p.name
+            urls.append(f"{public_url}/{r2_prefix}/{fname}")
+        return urls
 
 
 def post_to_instagram(image_urls, ctype, date_fmt):

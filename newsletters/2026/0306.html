@@ -352,11 +352,78 @@
     color: #aaa;
     font-weight: 700;
   }
+
+  /* === MOBILE RESPONSIVE === */
+  @media (max-width: 680px) {
+    .wrapper {
+      max-width: 100% !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+    .header {
+      padding: 20px 16px 16px !important;
+    }
+    .header .brand {
+      font-size: 19px !important;
+    }
+    .market-table {
+      padding: 16px 14px !important;
+    }
+    .market-table table {
+      font-size: 12px !important;
+    }
+    .content {
+      padding: 20px 16px !important;
+    }
+    .story {
+      margin-bottom: 28px !important;
+      padding-bottom: 24px !important;
+    }
+    .story-title {
+      font-size: 17px !important;
+    }
+    .story-body p {
+      font-size: 14px !important;
+    }
+    .headline-section {
+      padding: 20px 16px !important;
+    }
+    .word-section {
+      padding: 20px 16px 24px !important;
+    }
+    .quote-section {
+      padding: 24px 16px 20px !important;
+    }
+    .footer {
+      padding: 24px 16px !important;
+    }
+    .footer-inner {
+      max-width: 100% !important;
+    }
+    /* 카드뉴스 대응 */
+    .card {
+      width: 100% !important;
+      max-width: 100% !important;
+      border-radius: 0 !important;
+    }
+  }
+
 </style>
 
 
 </head>
 <body>
+<!-- BACK TO LETTERS -->
+<div style="max-width:680px;margin:0 auto;padding:10px 16px 0;" id="back-to-letters">
+  <a href="https://letters.soonsal.com" style="display:inline-flex;align-items:center;gap:6px;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:13px;font-weight:600;color:#888;text-decoration:none;padding:6px 0;" onmouseover="this.style.color='#111'" onmouseout="this.style.color='#888'">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    letters.soonsal.com
+  </a>
+</div>
+<script>if(window.self!==window.top)document.getElementById('back-to-letters').style.display='none'</script>
+<!-- /BACK TO LETTERS -->
+
   <!-- PREHEADER -->
   <div style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
     이란 전쟁 5일차, NATO 영역까지 불똥 — 증시는 종전 희망에 반등. Apple $599 MacBook Neo 공개

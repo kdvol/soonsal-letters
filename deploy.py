@@ -369,9 +369,14 @@ def update_main_index(items, date_fmt, has_briefing, yyyy, mmdd):
             if item["type"] == "briefing":
                 continue
             # Remove existing link for same deploy_path (dedup)
-            old_link_pattern = f'    <a href="/{item["deploy_path"]}"'
+            # ⚠️ 줄 단위 삭제 시 nav 등 관계없는 줄이 삭제되지 않도록
+            # today-grid 내부(들여쓰기 4칸+)의 링크만 제거
+            href_match = f'<a href="/{item["deploy_path"]}"'
             lines = c.split('\n')
-            c = '\n'.join(line for line in lines if not line.strip().startswith(f'<a href="/{item["deploy_path"]}"'))
+            c = '\n'.join(
+                line for line in lines
+                if not (line.strip().startswith(href_match) and line.startswith('    '))
+            )
             # Build fresh link
             link = build_link(
                 "/" + item["deploy_path"],
@@ -421,8 +426,13 @@ def update_archive_index(item):
 
     if date_exists:
         # Clean existing link for same deploy_path, then insert fresh (dedup)
+        # ⚠️ nav 등 관계없는 줄이 삭제되지 않도록 들여쓰기(6칸+)된 줄만 제거
+        href_match = f'<a href="/{item["deploy_path"]}"'
         lines = c.split('\n')
-        c = '\n'.join(line for line in lines if not line.strip().startswith(f'<a href="/{item["deploy_path"]}"'))
+        c = '\n'.join(
+            line for line in lines
+            if not (line.strip().startswith(href_match) and line.startswith('      '))
+        )
         pos = c.find(f'<div class="today-title">{date_str}</div>')
         if pos >= 0:
             # Find the today-grid opening after this date marker
@@ -532,8 +542,12 @@ def generate_cardnews_png(filepath, ctype):
                     device_scale_factor=4,
                 )
 
-            # ── 커버 카드(card_01): SVG CSS 없이 캡처 ──
-            page_cover = make_page()
+            # ── 커버 카드(card_01): MacBook Chrome 최소 폭(500px) 시뮬레이션 ──
+            # 540px 카드가 500px viewport에서 좌우 잘려 콘텐츠가 꽉 차 보이는 효과
+            page_cover = browser.new_page(
+                viewport={"width": 500, "height": 4000},
+                device_scale_factor=4,
+            )
             page_cover.goto(f"file://{tmp_html_cover}")
             page_cover.wait_for_load_state("networkidle")
             page_cover.evaluate("document.fonts.ready")
@@ -545,17 +559,18 @@ def generate_cardnews_png(filepath, ctype):
             if cover_cards:
                 tmp_png   = out_dir / "tmp_01.png"
                 final_png = out_dir / "card_01.png"
-                # 커버: 카드의 위치/크기를 가져와서 정확히 540×540 clip으로 페이지 스크린샷
-                # (overflow:visible이므로 로고가 카드 밖으로 나와도 잘리지 않음)
                 box = cover_cards[0].bounding_box()
                 if box:
+                    # 카드 중앙에서 500×500 영역 캡처 (좌우 여백 잘라냄)
+                    clip_size = min(box["width"], 500)
+                    clip_x = box["x"] + (box["width"] - clip_size) / 2
                     page_cover.screenshot(
                         path=str(tmp_png),
                         clip={
-                            "x": box["x"],
+                            "x": clip_x,
                             "y": box["y"],
-                            "width": 540,
-                            "height": 540,
+                            "width": clip_size,
+                            "height": clip_size,
                         },
                     )
                 else:
@@ -871,10 +886,10 @@ def main():
 
         print(f"📄 {filename} → {deploy_path}")
 
-        # Generate PNG for cardnews
+        # Generate PNG for cardnews (from repo copy — ensures Google Fonts load from local)
         png_paths = []
         if ctype in CARDNEWS_TYPES:
-            png_paths = generate_cardnews_png(filepath, ctype)
+            png_paths = generate_cardnews_png(dest, ctype)
 
         items.append(
             {

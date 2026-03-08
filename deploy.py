@@ -159,16 +159,30 @@ BACK_LINK_NEW = (
 
 
 def fix_back_link(filepath):
-    """Replace back-to-letters link with ← 순살 홈 (orange style)."""
+    """Replace or inject back-to-letters link with ← 순살 홈 (orange style)."""
     import re as _re
 
     with open(filepath, "r", encoding="utf-8") as f:
         html = f.read()
 
+    BACK_BLOCK = (
+        '<!-- BACK TO LETTERS -->\n'
+        '<div style="max-width:680px;margin:0 auto;padding:10px 16px 0;" id="back-to-letters">\n'
+        f'  {BACK_LINK_NEW}\n'
+        '</div>\n'
+        "<script>if(window.self!==window.top)document.getElementById('back-to-letters').style.display='none'</script>\n"
+        '<!-- /BACK TO LETTERS -->\n'
+    )
+
     if "<!-- BACK TO LETTERS -->" not in html:
+        # No marker — inject after <body> (covers cardnews and any file missing it)
+        if "<body>" in html:
+            html = html.replace("<body>", "<body>\n" + BACK_BLOCK, 1)
+            with open(filepath, "w", encoding="utf-8") as f:
+                f.write(html)
         return
 
-    # Match the entire <a>...</a> inside the back-to-letters div
+    # Marker exists — replace the <a> inside with orange style
     new_html = _re.sub(
         r'(<div[^>]*id="back-to-letters"[^>]*>\s*)<a[^>]*>.*?</a>',
         r'\1' + BACK_LINK_NEW,

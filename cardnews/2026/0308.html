@@ -40,6 +40,7 @@
     .card { width: 100%; max-width: 540px; height: auto; aspect-ratio: 1/1; padding: 20px 22px 16px; gap: 8px; }
     .top-text { font-size: 28px !important; line-height: 1.35; }
     .top-text.large { font-size: 34px !important; }
+    .top-text.cover-title { font-size: clamp(44px, 9.6vw, 52px) !important; line-height: 1.15; }
     .bottom-text { font-size: 21px !important; line-height: 1.35; }
     .illust svg { max-width: 100%; max-height: 100%; }
     .logo-row { padding-top: 6px; }
@@ -55,27 +56,30 @@
 
 <!-- ===== CARD 1: COVER ===== -->
 <div class="card" style="background:#1a1a2e;">
-  <div class="top-text" style="font-size:46px; font-weight:900; color:#fff; margin-top:4px;">
+  <div class="top-text cover-title" style="font-size:52px; font-weight:900; color:#fff; margin-top:6px; line-height:1.15;">
     전쟁 뉴스보다<br><span style="color:#F07040;">'확전 확률'을</span><br>거래하는 시장
   </div>
   <div class="illust">
-    <svg viewBox="0 0 460 160" xmlns="http://www.w3.org/2000/svg">
-      <!-- probability meter -->
-      <rect x="40" y="30" width="380" height="50" rx="8" fill="#2a2a4a"/>
-      <!-- scale fill: escalation low -->
-      <rect x="44" y="34" width="150" height="42" rx="6" fill="#e53935" opacity="0.85"/>
-      <text x="119" y="62" text-anchor="middle" font-size="18" font-weight="900" fill="#fff" font-family="Noto Sans KR, sans-serif">확전</text>
-      <!-- scale fill: negotiation high -->
-      <rect x="260" y="34" width="156" height="42" rx="6" fill="#2e7d32" opacity="0.85"/>
-      <text x="338" y="62" text-anchor="middle" font-size="18" font-weight="900" fill="#fff" font-family="Noto Sans KR, sans-serif">협상</text>
-      <!-- divider label -->
-      <text x="230" y="62" text-anchor="middle" font-size="22" font-weight="900" fill="#F07040" font-family="Noto Sans KR, sans-serif">↕</text>
-      <!-- bottom labels -->
-      <text x="119" y="108" text-anchor="middle" font-size="20" font-weight="700" fill="#e53935" font-family="Noto Sans KR, sans-serif">📉 리스크 자산 매도</text>
-      <text x="338" y="108" text-anchor="middle" font-size="20" font-weight="700" fill="#2e7d32" font-family="Noto Sans KR, sans-serif">📈 리스크 자산 매수</text>
-      <!-- arrow -->
-      <text x="230" y="108" text-anchor="middle" font-size="20" fill="#aaa" font-family="Noto Sans KR, sans-serif">⇄</text>
-      <text x="230" y="148" text-anchor="middle" font-size="17" fill="#888" font-family="Noto Sans KR, sans-serif">뉴스 한 줄에 방향이 바뀜</text>
+    <svg viewBox="0 0 480 175" xmlns="http://www.w3.org/2000/svg">
+      <!-- probability meter bar -->
+      <rect x="10" y="10" width="460" height="60" rx="10" fill="#2a2a4a"/>
+      <!-- escalation fill -->
+      <rect x="14" y="14" width="182" height="52" rx="8" fill="#e53935" opacity="0.9"/>
+      <text x="105" y="47" text-anchor="middle" font-size="22" font-weight="900" fill="#fff" font-family="Noto Sans KR, sans-serif">확전 ↑</text>
+      <!-- negotiation fill -->
+      <rect x="284" y="14" width="182" height="52" rx="8" fill="#2e7d32" opacity="0.9"/>
+      <text x="375" y="47" text-anchor="middle" font-size="22" font-weight="900" fill="#fff" font-family="Noto Sans KR, sans-serif">협상 ↑</text>
+      <!-- center divider -->
+      <text x="240" y="48" text-anchor="middle" font-size="26" font-weight="900" fill="#F07040" font-family="Noto Sans KR, sans-serif">⇄</text>
+
+      <!-- bottom reaction labels -->
+      <text x="105" y="105" text-anchor="middle" font-size="22" font-weight="700" fill="#e53935" font-family="Noto Sans KR, sans-serif">📉 매도</text>
+      <text x="375" y="105" text-anchor="middle" font-size="22" font-weight="700" fill="#2e7d32" font-family="Noto Sans KR, sans-serif">📈 매수</text>
+      <text x="240" y="105" text-anchor="middle" font-size="18" fill="#666" font-family="Noto Sans KR, sans-serif">⇄</text>
+
+      <!-- subtitle -->
+      <rect x="10" y="120" width="460" height="44" rx="8" fill="#111133"/>
+      <text x="240" y="148" text-anchor="middle" font-size="21" font-weight="700" fill="#F07040" font-family="Noto Sans KR, sans-serif">뉴스 한 줄에 시장 방향이 바뀜</text>
     </svg>
   </div>
   <div class="logo-row" style="border-top:1px solid #333;">

@@ -426,7 +426,7 @@ def update_archive_index(item):
 
     if date_exists:
         # Clean existing link for same deploy_path, then insert fresh (dedup)
-        # ⚠️ nav 등 관계없는 줄이 삭제되지 않도록 들여쓰기(6칸+)된 줄만 제거
+        # ⚠️ nav 등 관계없는 줄이 삭제되지 않도록 today-grid 내 링크만 제거
         href_match = f'<a href="/{item["deploy_path"]}"'
         lines = c.split('\n')
         c = '\n'.join(
@@ -438,21 +438,35 @@ def update_archive_index(item):
             # Find the today-grid opening after this date marker
             grid_open = c.find('today-grid', pos)
             if grid_open >= 0:
-                # Find the first </div> that closes the today-grid (archive uses 4-space indent)
-                grid_end = c.find("    </div>", grid_open)
+                # Find the closing </div> of today-grid (indented with spaces)
+                search_pos = grid_open
+                grid_end = -1
+                while True:
+                    candidate = c.find("</div>", search_pos)
+                    if candidate < 0:
+                        break
+                    # Accept any </div> that is indented (not at column 0, not nav)
+                    line_start = c.rfind('\n', 0, candidate) + 1
+                    prefix = c[line_start:candidate]
+                    if prefix.strip() == '' and len(prefix) >= 2:
+                        grid_end = line_start
+                        break
+                    search_pos = candidate + 6
                 if grid_end >= 0:
                     c = c[:grid_end] + f"      {link}\n" + c[grid_end:]
     else:
         # New date section → insert before first <div class="today">
-        first_today = c.find('  <div class="today">')
-        if first_today >= 0:
+        import re as _re
+        m = _re.search(r'<div class="today">', c)
+        if m:
+            first_today = m.start()
             new_section = (
-                f'  <div class="today">\n'
+                f'<div class="today">\n'
                 f'    <div class="today-title">{date_str}</div>\n'
                 f'    <div class="today-grid" style="grid-template-columns:1fr; gap:10px;">\n'
                 f"      {link}\n"
                 f"    </div>\n"
-                f"  </div>\n\n"
+                f"  </div>\n\n\n"
             )
             c = c[:first_today] + new_section + c[first_today:]
 

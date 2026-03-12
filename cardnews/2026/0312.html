@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI가 짠 코드, 인간보다 1.7배 고장남</title>
+<meta name="soonsal-keywords" content="아마존 AI 코드 버그 Vibe Coding 장애 엔지니어"/>
+<meta name="soonsal-ig-caption" content="아마존이 긴급 전체회의를 소집할 정도로 AI 코드 버그가 심각해짐 🤖 빠르게 코딩하고 느리게 디버깅하는 시대, 순살만 발라냈습니다."/>
+<style> 블록을 카드뉴스 HTML <head> 안에 그대로 삽입 -->
+<!-- 브리핑/크립토 공통 사용. 테두리 색상(#F07040)만 공유, 내용 카드 색상은 인라인으로 덮어씀 -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e8e8e8;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 40px 20px; gap: 32px;
+    font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  }
+  .series-title { font-size: 13px; color: #888; letter-spacing: 1px; }
+
+  /* ── 카드 기본 ── */
+  .card {
+    width: 540px; height: 540px; background: #fff;
+    box-shadow: inset 0 0 0 5px #F07040;   /* 테두리 — border 대신 inset shadow (Playwright 캡처 시 잘림 방지) */
+    border-radius: 6px;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 14px; position: relative; overflow: hidden;
+  }
+
+  /* ── 상단 제목 (top-text) ── */
+  .top-text { text-align: center; font-size: 44px; font-weight: 900; line-height: 1.4; color: #111; width: 100%; }
+  .top-text.large { font-size: 52px; }   /* 강조 제목 */
+  .top-text.small { font-size: 32px; }   /* 보조 제목 / 긴 텍스트 */
+
+  /* ── 일러스트 영역 (illust) ── */
+  .illust { flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; overflow: hidden; }
+
+  /* ── 하단 설명 (bottom-text) ── */
+  /* ⚠️ 인라인 font-size 지정 금지 — 클래스로만 제어 (rule_cardnews.md 14-24) */
+  .bottom-text { text-align: center; font-size: 28px; font-weight: 700; line-height: 1.4; color: #111; width: 100%; padding-top: 6px; }
+  .bottom-text.small { font-size: 23px; }
+
+  /* ── 로고 행 (logo-row) ── */
+  .logo-row { display: flex; align-items: center; justify-content: center; gap: 6px; padding-top: 8px; border-top: 1px solid #f0f0f0; }
+  .logo-icon { width: 22px; height: 22px; }
+  .logo-text { font-size: 15px; font-weight: 900; color: #555; letter-spacing: -0.5px; }
+
+  /* ── 색상 유틸리티 ── */
+  .red    { color: #e53935; }
+  .orange { color: #F07040; }
+  .blue   { color: #1565C0; }
+  .green  { color: #2e7d32; }
+  .sub    { font-size: 0.75em; color: #888; }
+
+  /* ── 모바일 반응형 ──
+     breakpoint 539px: Playwright viewport=560px 캡처 시 미발동 → 데스크톱 CSS 그대로 적용
+     실제 모바일(375~430px) 브라우저에서만 발동                                              */
+  @media (max-width: 539px) {
+    body { padding: 16px 8px; gap: 20px; }
+    .card {
+      width: 100%; max-width: 540px;
+      height: auto; aspect-ratio: 1 / 1;
+      padding: 20px 22px 16px; gap: 8px;
+    }
+    .top-text        { font-size: 28px !important; line-height: 1.35; }
+    .top-text.large  { font-size: 34px !important; }
+    .top-text.cover-title { font-size: clamp(44px, 9.6vw, 52px) !important; line-height: 1.15; }
+    .bottom-text     { font-size: 21px !important; line-height: 1.35; }
+    .illust svg      { max-width: 100%; max-height: 100%; }
+    .logo-row        { padding-top: 6px; }
+    .logo-text       { font-size: 13px; }
+    .logo-row img    { height: 18px !important; }
+    .series-title    { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<!-- BACK TO LETTERS -->
+<div style="max-width:680px;margin:0 auto;padding:10px 16px 0;" id="back-to-letters">
+  <a href="https://soonsal.com" style="display:inline-flex;align-items:center;gap:6px;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:14px;font-weight:700;color:#E55A00;text-decoration:none;padding:6px 0;" onmouseover="this.style.color='#CC4E00'" onmouseout="this.style.color='#E55A00'">← 순살 홈</a>
+</div>
+<script>if(window.self!==window.top)document.getElementById('back-to-letters').style.display='none'</script>
+<!-- /BACK TO LETTERS -->
+
+
+<div class="series-title">순살브리핑 카드뉴스 · 2026.03.12</div>
+
+<!-- CARD 1: COVER -->
+<div class="card" style="background:#111; box-shadow: inset 0 0 0 5px #F07040;">
+  <div style="flex-shrink:0; text-align:center; padding-top:16px;">
+    <div class="top-text cover-title" style="color:#fff; font-size:44px; line-height:1.15;">
+      AI 믿었다가,<br>폭탄 요금 때려맞은 사례
+    </div>
+    <div style="font-size:16px; color:#888; margin-top:8px;">빠르게 코딩하고 느리게 디버깅한다</div>
+  </div>
+  <div class="illust">
+    <svg viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="460" height="220" fill="#111"/>
+      <!-- Clean centered layout -->
+      <rect x="80" y="30" width="300" height="80" rx="12" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+      <text x="230" y="65" text-anchor="middle" font-size="44" fill="#e53935" font-weight="900" font-family="sans-serif">1.7×</text>
+      <text x="230" y="92" text-anchor="middle" font-size="14" fill="#888" font-family="sans-serif">AI 코드 이슈 발생률 vs 인간 코드</text>
+      <!-- Bottom stat -->
+      <rect x="80" y="130" width="140" height="60" rx="10" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+      <text x="150" y="158" text-anchor="middle" font-size="24" fill="#F07040" font-weight="900" font-family="sans-serif">$25</text>
+      <text x="150" y="178" text-anchor="middle" font-size="11" fill="#888" font-family="sans-serif">리뷰 비용 / PR</text>
+      <rect x="240" y="130" width="140" height="60" rx="10" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+      <text x="310" y="158" text-anchor="middle" font-size="24" fill="#e53935" font-weight="900" font-family="sans-serif">13h</text>
+      <text x="310" y="178" text-anchor="middle" font-size="11" fill="#888" font-family="sans-serif">최대 다운타임</text>
+    </svg>
+  </div>
+  <div class="logo-row">
+        <img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" alt="순살"/>
+        <span class="logo-text" style="color:#ccc;">Soonsal</span>
+      </div>
+</div>
+
+<!-- CARD 2 -->
+<div class="card">
+  <div class="top-text">아마존에<br>무슨 일이</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="15" width="400" height="230" rx="12" fill="#f5f5f0"/>
+      <rect x="60" y="30" width="340" height="50" rx="8" fill="#e53935"/>
+      <text x="230" y="60" text-anchor="middle" font-size="16" fill="#fff" font-weight="700" font-family="sans-serif">🚨 이커머스팀 엔지니어 전원 긴급 소집</text>
+      <text x="230" y="110" text-anchor="middle" font-size="14" fill="#555" font-family="sans-serif">수석부사장 직접 소집 — 선택 아닌 필수 참석</text>
+      <line x1="100" y1="130" x2="360" y2="130" stroke="#ddd" stroke-width="1"/>
+      <text x="230" y="158" text-anchor="middle" font-size="15" fill="#111" font-weight="700" font-family="sans-serif">"사이트와 인프라 가용성이</text>
+      <text x="230" y="178" text-anchor="middle" font-size="15" fill="#111" font-weight="700" font-family="sans-serif">최근 좋지 않았다"</text>
+      <text x="230" y="215" text-anchor="middle" font-size="14" fill="#e53935" font-weight="700" font-family="sans-serif">원인: AI가 생성한 코드의 장애 급증</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">아마존 규모에서 긴급 전체 소집이면<br>심각하다는 뜻</div>
+  <div class="logo-row">
+        <img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/>
+        <span class="logo-text" style="">Soonsal</span>
+      </div>
+</div>
+
+<!-- CARD 3 -->
+<div class="card">
+  <div class="top-text">실제 사고 사례</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="15" width="400" height="230" rx="12" fill="#f5f5f0"/>
+      <text x="230" y="40" text-anchor="middle" font-size="13" fill="#888" font-weight="700" font-family="sans-serif">사고 #1: 2025년 12월</text>
+      <rect x="60" y="50" width="340" height="60" rx="6" fill="#f0f0e8"/>
+      <text x="230" y="72" text-anchor="middle" font-size="13" fill="#555" font-family="sans-serif">AI 코딩 툴 Kiro가 비용 계산기를 "수정"하다</text>
+      <text x="230" y="92" text-anchor="middle" font-size="14" fill="#e53935" font-weight="700" font-family="sans-serif">시스템 전체를 삭제 후 재생성 시도 → 13시간 다운</text>
+      <text x="230" y="130" text-anchor="middle" font-size="13" fill="#888" font-weight="700" font-family="sans-serif">사고 #2: 2026년 3월</text>
+      <rect x="60" y="140" width="340" height="50" rx="6" fill="#f0f0e8"/>
+      <text x="230" y="162" text-anchor="middle" font-size="13" fill="#555" font-family="sans-serif">아마존 스토어 수 시간 먹통</text>
+      <text x="230" y="180" text-anchor="middle" font-size="13" fill="#555" font-family="sans-serif">회사는 "코드 배포" 탓이라 해명</text>
+      <text x="230" y="220" text-anchor="middle" font-size="14" fill="#F07040" font-weight="700" font-family="sans-serif">FT: AI 코딩 관련 대형 장애 최근 2건 이상</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">수정하려다 삭제하고,<br>삭제하고 나서 재생성 시도</div>
+  <div class="logo-row">
+        <img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/>
+        <span class="logo-text" style="">Soonsal</span>
+      </div>
+</div>
+
+<!-- CARD 4 -->
+<div class="card">
+  <div class="top-text">1.7배의 의미</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="15" width="400" height="230" rx="12" fill="#f5f5f0"/>
+      <text x="230" y="45" text-anchor="middle" font-size="13" fill="#888" font-weight="700" font-family="sans-serif">CodeRabbit 보고서 · 470건 분석</text>
+      <rect x="80" y="60" width="130" height="120" rx="8" fill="#2e7d32" opacity="0.15"/>
+      <text x="145" y="95" text-anchor="middle" font-size="14" fill="#2e7d32" font-weight="700" font-family="sans-serif">인간 코드</text>
+      <rect x="105" y="110" width="80" height="60" rx="4" fill="#2e7d32"/>
+      <text x="145" y="145" text-anchor="middle" font-size="13" fill="#fff" font-weight="700" font-family="sans-serif">이슈 1x</text>
+      <rect x="250" y="60" width="130" height="120" rx="8" fill="#e53935" opacity="0.15"/>
+      <text x="315" y="95" text-anchor="middle" font-size="14" fill="#e53935" font-weight="700" font-family="sans-serif">AI 코드</text>
+      <rect x="270" y="80" width="90" height="90" rx="4" fill="#e53935"/>
+      <text x="315" y="130" text-anchor="middle" font-size="13" fill="#fff" font-weight="700" font-family="sans-serif">이슈 1.7x</text>
+      <text x="230" y="215" text-anchor="middle" font-size="15" fill="#111" font-weight="700" font-family="sans-serif">빠르기만 하고 정확도는 떨어짐</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">속도의 이점이 품질 문제로 상쇄</div>
+  <div class="logo-row">
+        <img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/>
+        <span class="logo-text" style="">Soonsal</span>
+      </div>
+</div>
+
+<!-- CARD 5 -->
+<div class="card">
+  <div class="top-text">Vibe Coding이란</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="15" width="400" height="230" rx="12" fill="#f5f5f0"/>
+      <text x="230" y="50" text-anchor="middle" font-size="15" fill="#111" font-weight="700" font-family="sans-serif">"이거 만들어줘" → AI가 코드를 짬</text>
+      <text x="230" y="80" text-anchor="middle" font-size="13" fill="#888" font-family="sans-serif">개발자는 지시만 하고 앉아 있는 방식</text>
+      <line x1="100" y1="100" x2="360" y2="100" stroke="#ddd" stroke-width="1"/>
+      <text x="145" y="130" text-anchor="middle" font-size="13" fill="#2e7d32" font-weight="700" font-family="sans-serif">✅ 장점</text>
+      <text x="145" y="152" text-anchor="middle" font-size="12" fill="#555" font-family="sans-serif">속도 10배 향상</text>
+      <text x="145" y="172" text-anchor="middle" font-size="12" fill="#555" font-family="sans-serif">비개발자도 코딩 가능</text>
+      <text x="315" y="130" text-anchor="middle" font-size="13" fill="#e53935" font-weight="700" font-family="sans-serif">❌ 단점</text>
+      <text x="315" y="152" text-anchor="middle" font-size="12" fill="#555" font-family="sans-serif">버그 1.7배</text>
+      <text x="315" y="172" text-anchor="middle" font-size="12" fill="#555" font-family="sans-serif">보안 취약점 증가</text>
+      <text x="230" y="215" text-anchor="middle" font-size="15" fill="#F07040" font-weight="700" font-family="sans-serif">2025년부터 급속 확산 중</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">Anthropic Claude Code만<br>출시 9개월에 ARR $1B 돌파</div>
+  <div class="logo-row">
+        <img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/>
+        <span class="logo-text" style="">Soonsal</span>
+      </div>
+</div>
+
+<!-- CARD 6 -->
+<div class="card">
+  <div class="top-text">아마존의 대응</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="15" width="400" height="230" rx="12" fill="#f5f5f0"/>
+      <rect x="60" y="30" width="340" height="70" rx="8" fill="#1565C0" opacity="0.1"/>
+      <text x="230" y="55" text-anchor="middle" font-size="14" fill="#1565C0" font-weight="700" font-family="sans-serif">새로운 규칙</text>
+      <text x="230" y="80" text-anchor="middle" font-size="13" fill="#555" font-family="sans-serif">시니어 엔지니어가 AI 코드 변경을 반드시 승인</text>
+      <text x="230" y="125" text-anchor="middle" font-size="24" fill="#e53935" font-weight="900" font-family="sans-serif">⚡ 충돌 ⚡</text>
+      <rect x="60" y="145" width="340" height="70" rx="8" fill="#F07040" opacity="0.1"/>
+      <text x="230" y="170" text-anchor="middle" font-size="14" fill="#F07040" font-weight="700" font-family="sans-serif">Vibe Coding의 약속</text>
+      <text x="230" y="195" text-anchor="middle" font-size="13" fill="#555" font-family="sans-serif">"AI에 맡기면 사람이 안 봐도 됨"</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">"사람이 검토해야 한다"는 결론이<br>AI 코딩의 전제를 부정하는 역설</div>
+  <div class="logo-row">
+        <img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/>
+        <span class="logo-text" style="">Soonsal</span>
+      </div>
+</div>
+
+<!-- CARD 7 -->
+<div class="card">
+  <div class="top-text">리뷰 비용 문제</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="15" width="400" height="230" rx="12" fill="#f5f5f0"/>
+      <text x="230" y="50" text-anchor="middle" font-size="13" fill="#888" font-weight="700" font-family="sans-serif">Anthropic Claude Code 리뷰 도구</text>
+      <text x="230" y="95" text-anchor="middle" font-size="48" fill="#e53935" font-weight="900" font-family="sans-serif">$25</text>
+      <text x="230" y="120" text-anchor="middle" font-size="14" fill="#555" font-family="sans-serif">풀 리퀘스트 1건당 최대 비용</text>
+      <line x1="100" y1="140" x2="360" y2="140" stroke="#ddd" stroke-width="1"/>
+      <text x="230" y="168" text-anchor="middle" font-size="14" fill="#111" font-weight="700" font-family="sans-serif">대규모 코드베이스에선</text>
+      <text x="230" y="190" text-anchor="middle" font-size="14" fill="#111" font-weight="700" font-family="sans-serif">비용이 기하급수적으로 증가</text>
+      <text x="230" y="225" text-anchor="middle" font-size="14" fill="#F07040" font-weight="700" font-family="sans-serif">빠르게 짜고 비싸게 고치는 구조</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">AI 코딩의 속도 이점이<br>리뷰 비용으로 상쇄되는 역설</div>
+  <div class="logo-row">
+        <img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/>
+        <span class="logo-text" style="">Soonsal</span>
+      </div>
+</div>
+
+<!-- CARD 8 -->
+<div class="card">
+  <div class="top-text">AI 코딩 산업의 균열</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="15" width="400" height="230" rx="12" fill="#f5f5f0"/>
+      <text x="230" y="45" text-anchor="middle" font-size="14" fill="#111" font-weight="700" font-family="sans-serif">성장 내러티브</text>
+      <rect x="80" y="55" width="300" height="35" rx="6" fill="#2e7d32" opacity="0.15"/>
+      <text x="230" y="78" text-anchor="middle" font-size="13" fill="#2e7d32" font-family="sans-serif">Claude Code ARR $1B · 경쟁사 쏟아짐</text>
+      <text x="230" y="110" text-anchor="middle" font-size="16" fill="#e53935" font-weight="900" font-family="sans-serif">vs</text>
+      <text x="230" y="135" text-anchor="middle" font-size="14" fill="#111" font-weight="700" font-family="sans-serif">현실의 피드백</text>
+      <rect x="80" y="145" width="300" height="35" rx="6" fill="#e53935" opacity="0.15"/>
+      <text x="230" y="168" text-anchor="middle" font-size="13" fill="#e53935" font-family="sans-serif">"이거 쓰면 오히려 장애가 늘어난다"</text>
+      <text x="230" y="215" text-anchor="middle" font-size="15" fill="#F07040" font-weight="700" font-family="sans-serif">아마존급 고객의 경고 = 첫 번째 균열</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">성장 내러티브에 현실이<br>처음으로 브레이크를 건 순간</div>
+  <div class="logo-row">
+        <img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/>
+        <span class="logo-text" style="">Soonsal</span>
+      </div>
+</div>
+
+<!-- CARD 9 -->
+<div class="card">
+  <div class="top-text">정리하면</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="15" width="400" height="230" rx="12" fill="#f5f5f0"/>
+      <rect x="60" y="30" width="340" height="30" rx="4" fill="#F07040" opacity="0.1"/>
+      <text x="230" y="50" text-anchor="middle" font-size="13" fill="#F07040" font-weight="700" font-family="sans-serif">1. AI 코드는 빠르지만 1.7배 더 고장남</text>
+      <rect x="60" y="70" width="340" height="30" rx="4" fill="#F07040" opacity="0.1"/>
+      <text x="230" y="90" text-anchor="middle" font-size="13" fill="#F07040" font-weight="700" font-family="sans-serif">2. 아마존이 긴급회의 소집할 정도로 심각</text>
+      <rect x="60" y="110" width="340" height="30" rx="4" fill="#F07040" opacity="0.1"/>
+      <text x="230" y="130" text-anchor="middle" font-size="13" fill="#F07040" font-weight="700" font-family="sans-serif">3. "시니어가 반드시 검토" = Vibe Coding의 반대</text>
+      <rect x="60" y="150" width="340" height="30" rx="4" fill="#F07040" opacity="0.1"/>
+      <text x="230" y="170" text-anchor="middle" font-size="13" fill="#F07040" font-weight="700" font-family="sans-serif">4. 리뷰 비용 PR당 $25 — 빠르게 짜고 비싸게 고침</text>
+      <rect x="60" y="190" width="340" height="30" rx="4" fill="#F07040" opacity="0.1"/>
+      <text x="230" y="210" text-anchor="middle" font-size="13" fill="#F07040" font-weight="700" font-family="sans-serif">5. AI 코딩 산업 성장 내러티브에 첫 균열</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">빠르게 코딩하고 느리게 디버깅한다<br>— 이 역설이 현실이 됨</div>
+  <div class="logo-row">
+        <img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/>
+        <span class="logo-text" style="">Soonsal</span>
+      </div>
+</div>
+
+<!-- CARD 10: CLOSING -->
+<div class="card" style="background:#111; box-shadow: inset 0 0 0 5px #F07040;">
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:0 20px;">
+    <div style="font-size:26px; font-weight:900; color:#fff; text-align:center; line-height:1.3;">
+      속도? 정확성?<br>뭣이 중헌디
+    </div>
+    
+    <div style="font-size:14px; color:#ddd; text-align:center; line-height:1.6; font-style:italic; margin-top:8px;">
+      "Move fast and break things. Unless you are already broken."
+    </div>
+    <div style="font-size:13px; color:#aaa; margin-top:4px;">
+      — <span style="color:#F07040; font-weight:700;">아마존 이커머스팀의 교훈</span>
+    </div>
+  </div>
+  <div class="logo-row">
+        <img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" alt="순살"/>
+        <span class="logo-text" style="color:#ccc;">Soonsal</span>
+      </div>
+</div>
+
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "d6a07341c2bf438d8ef7f9209a0e9a81"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

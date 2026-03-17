@@ -210,10 +210,11 @@ def detect_type(filename):
 
 def extract_date(filename):
     """Extract date components and optional suffix from filename.
-    '순살브리핑_20260302.html'   → ('2026', '0302', '2026.03.02', '')
-    '순살카드뉴스_20260313_2.html' → ('2026', '0313', '2026.03.13', '-2')
+    '순살브리핑_20260302.html'      → ('2026', '0302', '2026.03.02', '')
+    '순살카드뉴스_20260313_2.html'  → ('2026', '0313', '2026.03.13', '-2')
+    '순살카드뉴스_20260317-2.html'  → ('2026', '0317', '2026.03.17', '-2')
     """
-    m = re.search(r"(\d{4})(\d{2})(\d{2})(?:_(\d+))?", filename)
+    m = re.search(r"(\d{4})(\d{2})(\d{2})(?:[_\-](\d+))?", filename)
     if m:
         yyyy, mm, dd = m.group(1), m.group(2), m.group(3)
         num_suffix = m.group(4)

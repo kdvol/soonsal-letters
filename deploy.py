@@ -282,9 +282,9 @@ def get_hero_info(content):
 
 
 def get_first_today_date(content):
-    """Get date of the first (non-padded) today section."""
+    """Get date of the first today section (padded or not)."""
     m = re.search(
-        r'<div class="today">\n  <div class="today-title">'
+        r'<div class="today"(?:\s+style="padding-top:0;")?>\n  <div class="today-title">'
         r"(\d{4}\.\d{2}\.\d{2}) 전체 콘텐츠</div>",
         content,
     )
@@ -368,15 +368,17 @@ def update_main_index(items, date_fmt, has_briefing, yyyy, mmdd):
         # Demote current first today → padding-top:0
         current_date = get_first_today_date(c)
         if current_date:
-            old_hdr = (
+            non_padded = (
                 f'<div class="today">\n'
                 f'  <div class="today-title">{current_date} 전체 콘텐츠</div>'
             )
-            new_hdr = (
+            padded = (
                 f'<div class="today" style="padding-top:0;">\n'
                 f'  <div class="today-title">{current_date} 전체 콘텐츠</div>'
             )
-            c = c.replace(old_hdr, new_hdr)
+            if non_padded in c:
+                c = c.replace(non_padded, padded)
+            new_hdr = padded
 
             # Insert new today before demoted section
             if new_today:

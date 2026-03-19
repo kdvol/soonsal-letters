@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oil Rises. Oil Dies Faster.</title>
+<meta name="soonsal-keywords" content="oil price battery energy transition Hormuz paradox">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700;800;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e8e8e8;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 40px 20px; gap: 32px;
+    font-family: 'DM Sans', 'Inter', sans-serif;
+  }
+  .series-title { font-size: 13px; color: #888; letter-spacing: 1px; }
+  .card {
+    width: 540px; height: 540px; background: #fff;
+    box-shadow: inset 0 0 0 5px #F07040;
+    border-radius: 6px;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 14px; position: relative; overflow: hidden;
+  }
+  .top-text { text-align: center; font-size: 44px; font-weight: 900; line-height: 1.3; color: #111; width: 100%; }
+  .top-text.large { font-size: 52px; }
+  .top-text.small { font-size: 32px; }
+  .illust { flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; overflow: hidden; }
+  .bottom-text { text-align: center; font-size: 28px; font-weight: 700; line-height: 1.4; color: #111; width: 100%; padding-top: 6px; }
+  .bottom-text.small { font-size: 23px; }
+  .logo-row { display: flex; align-items: center; justify-content: center; gap: 6px; padding-top: 8px; border-top: 1px solid #f0f0f0; }
+  .logo-icon { width: 22px; height: 22px; object-fit: contain; }
+  .logo-text { font-size: 15px; font-weight: 900; color: #555; letter-spacing: -0.5px; }
+  .red    { color: #e53935; }
+  .orange { color: #F07040; }
+  .blue   { color: #1565C0; }
+  .green  { color: #2e7d32; }
+  .sub    { font-size: 0.75em; color: #888; }
+  @media (max-width: 539px) {
+    body { padding: 16px 8px; gap: 20px; }
+    .card {
+      width: 100%; max-width: 540px;
+      height: auto; aspect-ratio: 1 / 1;
+      padding: 20px 22px 16px; gap: 8px;
+    }
+    .top-text        { font-size: 28px !important; line-height: 1.35; }
+    .top-text.large  { font-size: 34px !important; }
+    .top-text.cover-title { font-size: clamp(44px, 9.6vw, 52px) !important; line-height: 1.15; }
+    .bottom-text     { font-size: 21px !important; line-height: 1.35; }
+    .illust svg      { max-width: 100%; max-height: 100%; }
+    .logo-row        { padding-top: 6px; }
+    .logo-text       { font-size: 13px; }
+    .logo-row img    { height: 18px !important; }
+    .series-title    { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<!-- BACK TO LETTERS -->
+<div style="max-width:680px;margin:0 auto;padding:10px 16px 0;" id="back-to-letters">
+  <a href="https://soonsal.com" style="display:inline-flex;align-items:center;gap:6px;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:14px;font-weight:700;color:#E55A00;text-decoration:none;padding:6px 0;" onmouseover="this.style.color='#CC4E00'" onmouseout="this.style.color='#E55A00'">← 순살 홈</a>
+</div>
+<script>if(window.self!==window.top)document.getElementById('back-to-letters').style.display='none'</script>
+<!-- /BACK TO LETTERS -->
+
+
+<!-- CARD 1: COVER -->
+<div class="series-title">Soonsal Briefing &middot; Card News &middot; 2026.03.18</div>
+<div class="card" style="background:#111;">
+  <div style="padding-top:36px;">
+    <div class="top-text large cover-title" style="color:#fff; font-size:52px; line-height:1.15;">Oil Rises.<br>Oil Dies Faster.</div>
+  </div>
+  <div class="illust">
+    <svg viewBox="0 0 460 180" xmlns="http://www.w3.org/2000/svg">
+      <text x="230" y="55" text-anchor="middle" font-size="72" fill="#e53935" font-weight="900">$103</text>
+      <text x="230" y="78" text-anchor="middle" font-size="18" fill="#888">oil per barrel</text>
+      <line x1="120" y1="95" x2="340" y2="95" stroke="#444" stroke-width="1"/>
+      <text x="230" y="145" text-anchor="middle" font-size="72" fill="#2e7d32" font-weight="900">$78</text>
+      <text x="230" y="170" text-anchor="middle" font-size="18" fill="#888">battery per MWh</text>
+    </svg>
+  </div>
+  <div class="logo-row" style="border-top:1px solid #333;">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" alt="Soonsal" class="logo-icon"/>
+    <span class="logo-text" style="color:#888;">Soonsal</span>
+  </div>
+</div>
+
+<!-- CARD 2: FACT BOMB -->
+<div class="card">
+  <div class="top-text" style="font-weight:900; letter-spacing:-1px; color:#000;">Oil: 30% Efficient<br>Batteries: 80%</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="30" width="180" height="160" rx="8" fill="#fff3f0" stroke="#e53935" stroke-width="1.5"/>
+      <text x="120" y="70" text-anchor="middle" font-size="16" fill="#111" font-weight="800">OIL</text>
+      <text x="120" y="110" text-anchor="middle" font-size="48" fill="#e53935" font-weight="900">30%</text>
+      <text x="120" y="140" text-anchor="middle" font-size="14" fill="#888">efficiency</text>
+      <text x="120" y="170" text-anchor="middle" font-size="13" fill="#aaa">70% lost as heat</text>
+      <rect x="250" y="30" width="180" height="160" rx="8" fill="#f0fff0" stroke="#2e7d32" stroke-width="1.5"/>
+      <text x="340" y="70" text-anchor="middle" font-size="16" fill="#111" font-weight="800">BATTERY</text>
+      <text x="340" y="110" text-anchor="middle" font-size="48" fill="#2e7d32" font-weight="900">80%</text>
+      <text x="340" y="140" text-anchor="middle" font-size="14" fill="#888">efficiency</text>
+      <text x="340" y="170" text-anchor="middle" font-size="13" fill="#aaa">20% lost in cycle</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">Batteries deliver 80%.<br>Adjust for efficiency — batteries already win</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="Soonsal" class="logo-icon"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- CARD 3: CONTEXT — Hormuz -->
+<div class="card">
+  <div class="top-text" style="font-weight:900; letter-spacing:-1px; color:#000;">Hormuz Is Blocked</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg">
+      <text x="230" y="40" text-anchor="middle" font-size="14" fill="#888" font-weight="700">TANKERS THROUGH HORMUZ / DAY</text>
+      <rect x="60" y="60" width="150" height="80" rx="6" fill="#f9f9f7" stroke="#ddd" stroke-width="1"/>
+      <text x="135" y="95" text-anchor="middle" font-size="40" fill="#111" font-weight="900">130+</text>
+      <text x="135" y="125" text-anchor="middle" font-size="14" fill="#888">before war</text>
+      <text x="230" y="105" text-anchor="middle" font-size="28" fill="#F07040" font-weight="800">&rarr;</text>
+      <rect x="260" y="60" width="150" height="80" rx="6" fill="#fff3f0" stroke="#e53935" stroke-width="1.5"/>
+      <text x="335" y="95" text-anchor="middle" font-size="40" fill="#e53935" font-weight="900">&lt;5</text>
+      <text x="335" y="125" text-anchor="middle" font-size="14" fill="#888">after war</text>
+      <text x="230" y="175" text-anchor="middle" font-size="15" fill="#555" font-weight="700">20% of global oil passes through this strait</text>
+      <text x="230" y="205" text-anchor="middle" font-size="13" fill="#888">IEA: "largest supply disruption in history"</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">Oil went from $67 to $103<br>in three weeks</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="Soonsal" class="logo-icon"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- CARD 4: WHY HOOK -->
+<div class="card">
+  <div class="top-text" style="font-weight:900; letter-spacing:-1px; color:#000;">Why Does Expensive<br>Oil Kill Oil?</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 240" xmlns="http://www.w3.org/2000/svg">
+      <text x="230" y="35" text-anchor="middle" font-size="14" fill="#888" font-weight="700">THE MATH</text>
+      <text x="230" y="68" text-anchor="middle" font-size="16" fill="#555">1 barrel of oil = ~1.6 MWh of energy</text>
+      <text x="230" y="96" text-anchor="middle" font-size="16" fill="#555">But only 30% becomes electricity</text>
+      <text x="230" y="124" text-anchor="middle" font-size="16" fill="#555">So 1 barrel = 0.48 MWh of usable power</text>
+      <line x1="100" y1="145" x2="360" y2="145" stroke="#eee" stroke-width="1"/>
+      <text x="230" y="175" text-anchor="middle" font-size="18" fill="#F07040" font-weight="800">$103 / 0.48 MWh = $215 per usable MWh</text>
+      <text x="230" y="205" text-anchor="middle" font-size="18" fill="#2e7d32" font-weight="800">Battery: $78 per MWh at 80% = $98</text>
+    </svg>
+  </div>
+  <div class="bottom-text small"><strong style="color:#F07040;">Oil is 2.2x more expensive</strong><br>than batteries for usable energy</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="Soonsal" class="logo-icon"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- CARD 5: BATTERY COSTS DROPPING -->
+<div class="card">
+  <div class="top-text" style="font-weight:900; letter-spacing:-1px; color:#000;">Batteries Keep<br>Getting Cheaper</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 240" xmlns="http://www.w3.org/2000/svg">
+      <text x="230" y="22" text-anchor="middle" font-size="13" fill="#888" font-weight="700">4-HOUR GRID BATTERY COST ($/MWh)</text>
+      <rect x="115" y="70" width="80" height="100" rx="4" fill="#2e7d32" opacity="0.3"/>
+      <text x="155" y="63" text-anchor="middle" font-size="16" fill="#2e7d32" font-weight="700">$107</text>
+      <text x="155" y="188" text-anchor="middle" font-size="14" fill="#555">2024</text>
+      <rect x="265" y="98" width="80" height="72" rx="4" fill="#2e7d32" opacity="0.6"/>
+      <text x="305" y="91" text-anchor="middle" font-size="16" fill="#2e7d32" font-weight="700">$78</text>
+      <text x="305" y="188" text-anchor="middle" font-size="14" fill="#555">2025</text>
+      <text x="230" y="130" text-anchor="middle" font-size="24" fill="#F07040" font-weight="800">&darr;27%</text>
+      <line x1="80" y1="205" x2="380" y2="205" stroke="#eee" stroke-width="1"/>
+      <text x="230" y="225" text-anchor="middle" font-size="15" fill="#555" font-weight="700">EV cell costs: $40/kWh in China</text>
+      <text x="230" y="240" text-anchor="middle" font-size="13" fill="#888">Overcapacity from EV boom flooding grid storage</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">All-time low. And still falling</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="Soonsal" class="logo-icon"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- CARD 6: EV ACCELERATION -->
+<div class="card">
+  <div class="top-text" style="font-weight:900; letter-spacing:-1px; color:#000;">Oil Goes Up.<br>EVs Win Faster.</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg">
+      <text x="230" y="30" text-anchor="middle" font-size="14" fill="#888" font-weight="700">2025 GLOBAL EV SALES</text>
+      <text x="230" y="70" text-anchor="middle" font-size="44" fill="#111" font-weight="900">20.7M</text>
+      <text x="230" y="95" text-anchor="middle" font-size="16" fill="#555">1 in 4 new cars sold is electric</text>
+      <line x1="80" y1="115" x2="380" y2="115" stroke="#eee" stroke-width="1"/>
+      <rect x="40" y="130" width="185" height="70" rx="6" fill="#fff3f0" stroke="#e53935" stroke-width="1"/>
+      <text x="132" y="155" text-anchor="middle" font-size="15" fill="#111" font-weight="700">Gas car fuel cost</text>
+      <text x="132" y="182" text-anchor="middle" font-size="22" fill="#e53935" font-weight="800">$4.20/gal</text>
+      <rect x="240" y="130" width="185" height="70" rx="6" fill="#f0fff0" stroke="#2e7d32" stroke-width="1"/>
+      <text x="332" y="155" text-anchor="middle" font-size="15" fill="#111" font-weight="700">EV charging cost</text>
+      <text x="332" y="182" text-anchor="middle" font-size="22" fill="#2e7d32" font-weight="800">~50% less</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">Chinese EV SUVs start at $27K.<br>Charging costs half of gas</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="Soonsal" class="logo-icon"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- CARD 7: SOLAR + BATTERY -->
+<div class="card">
+  <div class="top-text" style="font-weight:900; letter-spacing:-1px; color:#000;">Solar + Battery<br>Beats New Gas Plants</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg">
+      <text x="230" y="30" text-anchor="middle" font-size="14" fill="#888" font-weight="700">COST TO GENERATE ELECTRICITY ($/MWh)</text>
+      <rect x="50" y="55" width="160" height="120" rx="8" fill="#f0fff0" stroke="#2e7d32" stroke-width="1.5"/>
+      <text x="130" y="85" text-anchor="middle" font-size="15" fill="#111" font-weight="800">Solar + Battery</text>
+      <text x="130" y="130" text-anchor="middle" font-size="42" fill="#2e7d32" font-weight="900">$57</text>
+      <text x="130" y="160" text-anchor="middle" font-size="13" fill="#888">per MWh</text>
+      <rect x="250" y="55" width="160" height="120" rx="8" fill="#f9f9f7" stroke="#ddd" stroke-width="1"/>
+      <text x="330" y="85" text-anchor="middle" font-size="15" fill="#111" font-weight="800">New Gas Plant</text>
+      <text x="330" y="130" text-anchor="middle" font-size="42" fill="#e53935" font-weight="900">$73</text>
+      <text x="330" y="160" text-anchor="middle" font-size="13" fill="#888">per MWh</text>
+      <text x="230" y="205" text-anchor="middle" font-size="16" fill="#F07040" font-weight="700">It no longer makes financial sense to build gas</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">Even without subsidies,<br>renewables win on pure cost</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="Soonsal" class="logo-icon"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- CARD 8: IEA PARADOX -->
+<div class="card">
+  <div class="top-text" style="font-weight:900; letter-spacing:-1px; color:#000;">IEA Dumps Record<br>400M Barrels</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 200" xmlns="http://www.w3.org/2000/svg">
+      <text x="230" y="35" text-anchor="middle" font-size="14" fill="#888" font-weight="700">THE IRONY</text>
+      <rect x="40" y="55" width="380" height="55" rx="6" fill="#f9f9f7" stroke="#ddd" stroke-width="1"/>
+      <text x="230" y="80" text-anchor="middle" font-size="16" fill="#111" font-weight="700">IEA is releasing the painkiller</text>
+      <text x="230" y="100" text-anchor="middle" font-size="14" fill="#888">400M barrels — largest strategic release ever</text>
+      <text x="230" y="130" text-anchor="middle" font-size="24" fill="#F07040" font-weight="800">&darr;</text>
+      <rect x="40" y="140" width="380" height="55" rx="6" fill="#f0fff0" stroke="#2e7d32" stroke-width="1.5"/>
+      <text x="230" y="165" text-anchor="middle" font-size="16" fill="#111" font-weight="700">Batteries are writing the prescription</text>
+      <text x="230" y="185" text-anchor="middle" font-size="14" fill="#2e7d32">Every $1 oil rises, $1 flows into batteries + EVs</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">The war was meant to secure oil.<br>It's accelerating oil's replacement</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="Soonsal" class="logo-icon"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- CARD 9: SUMMARY -->
+<div class="card">
+  <div class="top-text" style="font-weight:900; letter-spacing:-1px; color:#000;">The Paradox<br>in One Chart</div>
+  <div class="illust">
+    <svg viewBox="0 0 460 240" xmlns="http://www.w3.org/2000/svg">
+      <text x="230" y="25" text-anchor="middle" font-size="13" fill="#888" font-weight="700">OIL PRICE vs BATTERY COMPETITIVENESS</text>
+      <!-- Oil line going up -->
+      <polyline points="60,180 130,160 200,130 270,100 340,80 410,50" stroke="#e53935" stroke-width="3" fill="none"/>
+      <text x="415" y="45" font-size="13" fill="#e53935" font-weight="700">Oil $</text>
+      <!-- Battery cost going down -->
+      <polyline points="60,100 130,110 200,125 270,145 340,160 410,175" stroke="#2e7d32" stroke-width="3" fill="none"/>
+      <text x="415" y="180" font-size="13" fill="#2e7d32" font-weight="700">Battery</text>
+      <!-- Crossover point — calculated intersection of the two polylines at x≈207 -->
+      <circle cx="207" cy="127" r="8" fill="#F07040" opacity="0.3"/>
+      <circle cx="207" cy="127" r="4" fill="#F07040"/>
+      <text x="230" y="210" text-anchor="middle" font-size="14" fill="#F07040" font-weight="700">We passed the crossover point</text>
+      <text x="230" y="232" text-anchor="middle" font-size="15" fill="#111" font-weight="800">Higher oil = faster transition. Permanently.</text>
+      <!-- Axis labels -->
+      <text x="60" y="200" font-size="11" fill="#aaa">2023</text>
+      <text x="410" y="200" font-size="11" fill="#aaa" text-anchor="end">2026</text>
+    </svg>
+  </div>
+  <div class="bottom-text small"><strong>Oil's worst enemy isn't policy.<br>It's a $78 battery.</strong></div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="Soonsal" class="logo-icon"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- CARD 10: CLOSING -->
+<div class="card" style="background:#111;">
+  <div style="flex:1;"></div>
+  <div style="text-align:center; padding:0 20px;">
+    <div style="font-size:26px; font-weight:700; color:#fff; line-height:1.45; font-style:italic;">"The Stone Age didn't end because<br>we ran out of stones."</div>
+    <div style="margin-top:18px; font-size:17px; color:#888;">— <span style="color:#F07040; font-weight:700;">Ahmed Zaki Yamani</span></div>
+    <div style="font-size:14px; color:#666; margin-top:4px;">Former Saudi Oil Minister</div>
+  </div>
+  <div style="flex:1;"></div>
+  <div style="text-align:center; margin-bottom:8px;">
+    <div style="font-size:18px; color:#666; font-weight:600;">The war started over oil.<br>Oil might not survive it.</div>
+  </div>
+  <div class="logo-row" style="border-top:1px solid #333;">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" alt="Soonsal" class="logo-icon"/>
+    <span class="logo-text" style="color:#888;">Soonsal</span>
+  </div>
+</div>
+
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "d6a07341c2bf438d8ef7f9209a0e9a81"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

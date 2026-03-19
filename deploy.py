@@ -62,6 +62,7 @@ DASHBOARD_MAP = {
     "card":        [("briefing", "cardnews"),   ("briefing", "publish_site")],
     "crypto-card": [("crypto",   "cardnews"),   ("crypto",   "publish_site")],
     "english":     [("english",  "article"),    ("english",  "publish_site")],
+    "english-card":[("english",  "cardnews"),   ("english",  "publish_site")],
 }
 
 # ═══════════════════════════════════════════
@@ -76,6 +77,7 @@ TYPES = [
     ("순살카드뉴스",       "card",        "cardnews",    ""),
     ("순살크립토",         "crypto",      "newsletters", "-crypto"),
     ("순살브리핑",         "briefing",    "newsletters", ""),
+    ("SoonsalCardnews",   "english-card","english",     ""),
     ("SoonsalCrypto",     "english",     "english",     ""),
 ]
 
@@ -86,6 +88,7 @@ MAIN_TAGS = {
     "card":        '<span class="tag tag-card">Card</span>',
     "crypto-card": '<span class="tag tag-card">Card</span>',
     "english":     '<span class="tag tag-en">EN</span>',
+    "english-card":'<span class="tag tag-en">EN Card</span>',
 }
 
 # Tags for archive indexes
@@ -95,6 +98,7 @@ ARCHIVE_TAGS = {
     "card":        '<span class="tag tag-card">Card</span>',
     "crypto-card": '<span class="tag tag-card tag-crypto">Card · Crypto</span>',
     "english":     '<span class="tag tag-en">EN</span>',
+    "english-card":'<span class="tag tag-en">EN Card</span>',
 }
 
 # Content type labels
@@ -104,10 +108,11 @@ LABELS = {
     "card":        "순살카드뉴스",
     "crypto-card": "순살크립토카드뉴스",
     "english":     "",
+    "english-card":"",
 }
 
 # Display order within today-grid
-ORDER = {"briefing": 0, "crypto": 1, "card": 2, "crypto-card": 3, "english": 4}
+ORDER = {"briefing": 0, "crypto": 1, "card": 2, "crypto-card": 3, "english": 4, "english-card": 5}
 
 
 # ═══════════════════════════════════════════
@@ -282,9 +287,9 @@ def get_hero_info(content):
 
 
 def get_first_today_date(content):
-    """Get date of the first today section (padded or not)."""
+    """Get date of the first (non-padded) today section."""
     m = re.search(
-        r'<div class="today"(?:\s+style="padding-top:0;")?>\n  <div class="today-title">'
+        r'<div class="today">\n  <div class="today-title">'
         r"(\d{4}\.\d{2}\.\d{2}) 전체 콘텐츠</div>",
         content,
     )
@@ -368,17 +373,15 @@ def update_main_index(items, date_fmt, has_briefing, yyyy, mmdd):
         # Demote current first today → padding-top:0
         current_date = get_first_today_date(c)
         if current_date:
-            non_padded = (
+            old_hdr = (
                 f'<div class="today">\n'
                 f'  <div class="today-title">{current_date} 전체 콘텐츠</div>'
             )
-            padded = (
+            new_hdr = (
                 f'<div class="today" style="padding-top:0;">\n'
                 f'  <div class="today-title">{current_date} 전체 콘텐츠</div>'
             )
-            if non_padded in c:
-                c = c.replace(non_padded, padded)
-            new_hdr = padded
+            c = c.replace(old_hdr, new_hdr)
 
             # Insert new today before demoted section
             if new_today:
@@ -499,9 +502,10 @@ def update_archive_index(item):
 # Cardnews PNG generation
 # ═══════════════════════════════════════════
 
-CARDNEWS_TYPES = {"card", "crypto-card"}
+CARDNEWS_TYPES = {"card", "crypto-card", "english-card"}
 
 GOOGLE_FONT_LINK = '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">'
+GOOGLE_FONT_LINK_EN = '<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700;800;900&display=swap" rel="stylesheet">'
 
 
 def generate_cardnews_png(filepath, ctype):
@@ -540,7 +544,8 @@ def generate_cardnews_png(filepath, ctype):
         html = f.read()
 
     if "fonts.googleapis.com" not in html:
-        html = html.replace("</head>", f"{GOOGLE_FONT_LINK}\n</head>")
+        font_link = GOOGLE_FONT_LINK_EN if ctype == "english-card" else GOOGLE_FONT_LINK
+        html = html.replace("</head>", f"{font_link}\n</head>")
 
     # html_cover: 커버 카드 캡처용
     # overflow:hidden이 로고를 잘라내므로 → overflow:visible + height:auto
@@ -669,6 +674,11 @@ IG_CAPTIONS = {
         "#순살크립토 #비트코인 #크립토 #블록체인 #Web3 "
         "#금융 #투자 #BTC #ETF #암호화폐"
     ),
+    "english-card": (
+        "{summary}\n\n"
+        "#finance #macro #investing #economics #globalmarkets "
+        "#stockmarket #financeexplained #energytransition"
+    ),
 }
 
 
@@ -777,6 +787,8 @@ def build_ig_summary(keywords: str, ctype: str, html: str = "", date_fmt: str = 
 
 def derive_r2_prefix(ctype, yyyy, mmdd):
     """Derive R2 storage path from content type."""
+    if ctype == "english-card":
+        return f"english-cardnews/{yyyy}/{mmdd}"
     suffix = "-crypto" if ctype == "crypto-card" else ""
     return f"cardnews/{yyyy}/{mmdd}{suffix}"
 
@@ -817,9 +829,11 @@ def upload_to_r2(png_paths, r2_prefix):
         return urls
 
 
-def post_to_instagram(image_urls, ctype, date_fmt, keywords="", html=""):
+def post_to_instagram(image_urls, ctype, date_fmt, keywords="", html="", target_override=None):
     """Post carousel to Instagram via ~/instagram_pipeline/ modules.
     
+    Routes english-card to @soonsal.global, crypto-card to @soonsal.crypto,
+    others to @soonsal.brief. --target flag overrides this routing.
     Returns: carousel ID string, or None on failure.
     """
     try:
@@ -834,8 +848,30 @@ def post_to_instagram(image_urls, ctype, date_fmt, keywords="", html=""):
     print(f"\n📱 Instagram 캐러셀 게시")
     print(f"  캡션: {caption[:80]}...")
 
+    # Route to correct Instagram account
+    # --target= flag overrides automatic routing
+    TARGET_MAP = {
+        "brief":  None,                  # @soonsal.brief (env default)
+        "crypto": "17841452792245949",   # @soonsal.crypto
+        "global": "17841442721220991",   # @soonsal.global
+    }
+
+    ig_account = None
+    if target_override and target_override in TARGET_MAP:
+        ig_account = TARGET_MAP[target_override]
+        print(f"  🎯 Target override: @soonsal.{target_override}")
+    elif ctype == "english-card":
+        ig_account = TARGET_MAP["global"]
+        print(f"  🌍 Target: @soonsal.global")
+    elif ctype == "crypto-card":
+        ig_account = TARGET_MAP["crypto"]
+        print(f"  🪙 Target: @soonsal.crypto")
+
     try:
-        carousel_id = post_carousel(image_urls, caption)
+        if ig_account:
+            carousel_id = post_carousel(image_urls, caption, ig_account_id=ig_account)
+        else:
+            carousel_id = post_carousel(image_urls, caption)
         print(f"  ✅ 게시 완료 — ID: {carousel_id}")
         return carousel_id
     except Exception as e:
@@ -844,7 +880,7 @@ def post_to_instagram(image_urls, ctype, date_fmt, keywords="", html=""):
         return None
 
 
-def publish_cardnews_to_instagram(png_paths, ctype, yyyy, mmdd, date_fmt, keywords="", html=""):
+def publish_cardnews_to_instagram(png_paths, ctype, yyyy, mmdd, date_fmt, keywords="", html="", target_override=None):
     """Full pipeline: R2 upload → Instagram carousel post.
     
     Gracefully skips if modules are not available.
@@ -857,10 +893,10 @@ def publish_cardnews_to_instagram(png_paths, ctype, yyyy, mmdd, date_fmt, keywor
     image_urls = upload_to_r2(png_paths, r2_prefix)
 
     if image_urls:
-        carousel_id = post_to_instagram(image_urls, ctype, date_fmt, keywords=keywords, html=html)
+        carousel_id = post_to_instagram(image_urls, ctype, date_fmt, keywords=keywords, html=html, target_override=target_override)
         if carousel_id:
             # Dashboard: instagram step done
-            pipeline = "crypto" if ctype == "crypto-card" else "briefing"
+            pipeline = "crypto" if ctype == "crypto-card" else ("english" if ctype == "english-card" else "briefing")
             notify_dashboard(pipeline, "instagram", "done", count=1)
             print(f"  📡 Dashboard: {pipeline}.instagram → done")
             return True
@@ -871,6 +907,14 @@ def main():
     # 플래그 처리
     no_instagram   = "--no-instagram"    in sys.argv  # 웹 발행만, Instagram 스킵
     instagram_only = "--instagram-only"  in sys.argv  # Instagram 발행만, 웹 발행 스킵
+
+    # --target=brief|crypto|global : Instagram 발행 대상 계정 오버라이드
+    target_override = None
+    for arg in sys.argv:
+        if arg.startswith("--target="):
+            target_override = arg.split("=", 1)[1]
+            break
+
     file_args = [a for a in sys.argv[1:] if not a.startswith("--")]
 
     if not file_args:
@@ -878,6 +922,9 @@ def main():
         print("  기본:               웹 발행 + Instagram 발행")
         print("  --no-instagram:     웹 발행만 (Instagram 스킵)")
         print("  --instagram-only:   Instagram 발행만 (웹 발행 스킵)")
+        print("  --target=brief:     Instagram 대상 → @soonsal.brief")
+        print("  --target=crypto:    Instagram 대상 → @soonsal.crypto")
+        print("  --target=global:    Instagram 대상 → @soonsal.global")
         sys.exit(1)
 
     os.chdir(REPO)
@@ -999,6 +1046,7 @@ def main():
             first["date_formatted"],
             keywords=first.get("keywords", ""),
             html=first.get("html", ""),
+            target_override=target_override,
         )
 
         # 나머지는 1시간 간격으로 백그라운드 게시
@@ -1020,6 +1068,7 @@ def main():
                         item["date_formatted"],
                         keywords=item.get("keywords", ""),
                         html=item.get("html", ""),
+                        target_override=target_override,
                     )
 
             t = threading.Thread(target=_delayed_publish, args=(remaining,), daemon=False)

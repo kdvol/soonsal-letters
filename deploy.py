@@ -373,19 +373,20 @@ def update_main_index(items, date_fmt, has_briefing, yyyy, mmdd):
         # Demote current first today → padding-top:0
         current_date = get_first_today_date(c)
         if current_date:
-            old_hdr = (
+            non_padded = (
                 f'<div class="today">\n'
                 f'  <div class="today-title">{current_date} 전체 콘텐츠</div>'
             )
-            new_hdr = (
+            padded = (
                 f'<div class="today" style="padding-top:0;">\n'
                 f'  <div class="today-title">{current_date} 전체 콘텐츠</div>'
             )
-            c = c.replace(old_hdr, new_hdr)
-
-            # Insert new today before demoted section
-            if new_today:
-                c = c.replace(new_hdr, f"{new_today}\n\n{new_hdr}")
+            # Demote to padded if not already
+            if non_padded in c:
+                c = c.replace(non_padded, padded)
+            # Insert new today before the (now padded) first section
+            if new_today and padded in c:
+                c = c.replace(padded, f"{new_today}\n\n{padded}", 1)
     else:
         # Date exists → clean existing links of same type, then insert fresh
         for item in sorted(items, key=lambda x: ORDER[x["type"]]):

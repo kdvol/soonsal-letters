@@ -75,6 +75,7 @@ REPO = Path.home() / "kdvol.github.io"
 TYPES = [
     ("순살크립토카드뉴스", "crypto-card", "cardnews",    "-crypto"),
     ("순살카드뉴스",       "card",        "cardnews",    ""),
+    ("순살짤",             "zzal",        "zzal",        ""),
     ("순살크립토",         "crypto",      "newsletters", "-crypto"),
     ("순살브리핑",         "briefing",    "newsletters", ""),
     ("SoonsalCardnews",   "english-card","english",     ""),
@@ -109,6 +110,7 @@ LABELS = {
     "crypto-card": "순살크립토카드뉴스",
     "english":     "",
     "english-card":"",
+    "zzal":        "순살짤",
 }
 
 # Display order within today-grid
@@ -506,6 +508,7 @@ def update_archive_index(item):
 # ═══════════════════════════════════════════
 
 CARDNEWS_TYPES = {"card", "crypto-card", "english-card"}
+ZZAL_TYPES = {"zzal"}  # Instagram-only, 4:5 ratio (540×675 → 1080×1350)
 
 GOOGLE_FONT_LINK = '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">'
 GOOGLE_FONT_LINK_EN = '<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700;800;900&display=swap" rel="stylesheet">'
@@ -655,6 +658,101 @@ def generate_cardnews_png(filepath, ctype):
 
 
 # ═══════════════════════════════════════════
+# Zzal PNG Generation (4:5 ratio — 1080×1350)
+# ═══════════════════════════════════════════
+
+def generate_zzal_png(filepath, ctype):
+    """순살짤 전용 캡쳐: 4:5 비율 (540×675 → 1080×1350).
+
+    기존 cardnews 캡쳐(1:1)와 완전 분리.
+    Returns: list of Path objects for generated PNGs, or empty list on failure.
+    """
+    if ctype not in ZZAL_TYPES:
+        return []
+
+    try:
+        from playwright.sync_api import sync_playwright
+        from PIL import Image
+    except ImportError:
+        print("  ⚠️  PNG 생성 스킵 (playwright 또는 Pillow 미설치)")
+        return []
+
+    filepath = Path(filepath).resolve()
+    stem = filepath.stem
+    out_dir = filepath.parent / f"{stem}_png"
+
+    # 이미 PNG 폴더 있으면 재생성 스킵
+    existing = sorted(out_dir.glob("card_*.png")) if out_dir.exists() else []
+    if existing:
+        print(f"  ♻️  기존 PNG 재활용 ({len(existing)}장) → {out_dir}")
+        return existing
+
+    out_dir.mkdir(exist_ok=True)
+
+    with open(filepath, "r", encoding="utf-8") as f:
+        html = f.read()
+
+    if "fonts.googleapis.com" not in html:
+        html = html.replace("</head>", f"{GOOGLE_FONT_LINK}\n</head>")
+
+    tmp_html = filepath.parent / f"_tmp_zzal_{filepath.name}"
+    with open(tmp_html, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    png_paths = []
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch()
+            page = browser.new_page(
+                viewport={"width": 560, "height": 8000},
+                device_scale_factor=4,
+            )
+            page.goto(f"file://{tmp_html}")
+            page.wait_for_load_state("networkidle")
+            page.evaluate("document.fonts.ready")
+            page.wait_for_timeout(2000)
+
+            # Resize viewport to actual content height
+            content_h = page.evaluate("document.body.scrollHeight")
+            page.set_viewport_size({"width": 560, "height": content_h + 200})
+
+            cards = page.query_selector_all(".card")
+            print(f"  📸 {len(cards)} zzal cards → 4:5 PNG")
+
+            for i, card in enumerate(cards, start=1):
+                tmp_png   = out_dir / f"tmp_{i:02d}.png"
+                final_png = out_dir / f"card_{i:02d}.png"
+                box = card.bounding_box()
+                if box:
+                    # Clip exactly 540×675 from card position
+                    page.screenshot(
+                        path=str(tmp_png),
+                        clip={
+                            "x": box["x"],
+                            "y": box["y"],
+                            "width": 540,
+                            "height": 675,
+                        },
+                    )
+                else:
+                    card.screenshot(path=str(tmp_png))
+                img = Image.open(tmp_png)
+                img = img.resize((1080, 1350), Image.LANCZOS)
+                img.save(str(final_png), "PNG", optimize=True)
+                tmp_png.unlink()
+                png_paths.append(final_png)
+                print(f"     ✅ card_{i:02d}.png ({final_png.stat().st_size:,} bytes)")
+
+            page.close()
+            browser.close()
+    finally:
+        tmp_html.unlink(missing_ok=True)
+
+    print(f"  📁 PNGs → {out_dir}")
+    return png_paths
+
+
+# ═══════════════════════════════════════════
 # Instagram Publishing (R2 + Instagram API)
 # ═══════════════════════════════════════════
 
@@ -681,6 +779,11 @@ IG_CAPTIONS = {
         "{summary}\n\n"
         "#finance #macro #investing #economics #globalmarkets "
         "#stockmarket #financeexplained #energytransition"
+    ),
+    "zzal": (
+        "{summary}\n\n"
+        "#순살짤 #금융 #경제 #투자 #주식 #시장분석 "
+        "#금융인 #금융짤 #경제짤 #주식짤"
     ),
 }
 
@@ -788,10 +891,16 @@ def build_ig_summary(keywords: str, ctype: str, html: str = "", date_fmt: str = 
     return "\n".join(f"{emoji} {item}" for item in items[:3])
 
 
-def derive_r2_prefix(ctype, yyyy, mmdd):
+def derive_r2_prefix(ctype, yyyy, mmdd, deploy_path=""):
     """Derive R2 storage path from content type."""
     if ctype == "english-card":
         return f"english-cardnews/{yyyy}/{mmdd}"
+    if ctype == "zzal":
+        # Extract suffix from deploy_path: zzal/2026/0321-2.html → 0321-2
+        if deploy_path:
+            stem = Path(deploy_path).stem  # e.g. "0321-2"
+            return f"zzal/{yyyy}/{stem}"
+        return f"zzal/{yyyy}/{mmdd}"
     suffix = "-crypto" if ctype == "crypto-card" else ""
     return f"cardnews/{yyyy}/{mmdd}{suffix}"
 
@@ -836,9 +945,21 @@ def post_to_instagram(image_urls, ctype, date_fmt, keywords="", html="", target_
     """Post carousel to Instagram via ~/instagram_pipeline/ modules.
     
     Routes english-card to @soonsal.global, crypto-card to @soonsal.crypto,
-    others to @soonsal.brief. --target flag overrides this routing.
+    zzal to @soonsal.zzal, others to @soonsal.brief.
+    Token: unified INSTAGRAM_ACCESS_TOKEN for all accounts.
+    --target flag overrides account routing.
     Returns: carousel ID string, or None on failure.
     """
+    # Load config.env to ensure all token env vars are available
+    config_env = INSTAGRAM_PIPELINE / "config.env"
+    if config_env.exists():
+        with open(config_env) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    key, val = line.split("=", 1)
+                    os.environ[key.strip()] = val.strip()
+
     try:
         sys.path.insert(0, str(INSTAGRAM_PIPELINE))
         from post_instagram import post_carousel
@@ -857,6 +978,7 @@ def post_to_instagram(image_urls, ctype, date_fmt, keywords="", html="", target_
         "brief":  None,                  # @soonsal.brief (env default)
         "crypto": "17841452792245949",   # @soonsal.crypto
         "global": "17841442721220991",   # @soonsal.global
+        "zzal":   "17841452650743738",   # @soonsal.zzal
     }
 
     ig_account = None
@@ -869,6 +991,12 @@ def post_to_instagram(image_urls, ctype, date_fmt, keywords="", html="", target_
     elif ctype == "crypto-card":
         ig_account = TARGET_MAP["crypto"]
         print(f"  🪙 Target: @soonsal.crypto")
+    elif ctype == "zzal":
+        ig_account = TARGET_MAP["zzal"]
+        print(f"  🎴 Target: @soonsal.zzal")
+
+    # ── Token: 통합 토큰 사용 (config.env INSTAGRAM_ACCESS_TOKEN) ──
+    # All accounts (brief/crypto/global/zzal) share the same token.
 
     try:
         if ig_account:
@@ -883,7 +1011,7 @@ def post_to_instagram(image_urls, ctype, date_fmt, keywords="", html="", target_
         return None
 
 
-def publish_cardnews_to_instagram(png_paths, ctype, yyyy, mmdd, date_fmt, keywords="", html="", target_override=None):
+def publish_cardnews_to_instagram(png_paths, ctype, yyyy, mmdd, date_fmt, keywords="", html="", target_override=None, deploy_path=""):
     """Full pipeline: R2 upload → Instagram carousel post.
     
     Gracefully skips if modules are not available.
@@ -892,7 +1020,7 @@ def publish_cardnews_to_instagram(png_paths, ctype, yyyy, mmdd, date_fmt, keywor
     if not png_paths:
         return False
 
-    r2_prefix = derive_r2_prefix(ctype, yyyy, mmdd)
+    r2_prefix = derive_r2_prefix(ctype, yyyy, mmdd, deploy_path=deploy_path)
     image_urls = upload_to_r2(png_paths, r2_prefix)
 
     if image_urls:
@@ -928,6 +1056,7 @@ def main():
         print("  --target=brief:     Instagram 대상 → @soonsal.brief")
         print("  --target=crypto:    Instagram 대상 → @soonsal.crypto")
         print("  --target=global:    Instagram 대상 → @soonsal.global")
+        print("  --target=zzal:      Instagram 대상 → @soonsal.zzal")
         sys.exit(1)
 
     os.chdir(REPO)
@@ -957,6 +1086,56 @@ def main():
         keywords = extract_keywords(html, ctype)
         deploy_path = f"{directory}/{yyyy}/{mmdd}{suffix}{file_suffix}.html"
 
+        # ── Zzal: copy to repo/zzal/ + PNG 생성 + Instagram (웹 인덱스는 스킵) ──
+        if ctype in ZZAL_TYPES:
+            # Auto-increment: 0321.html → 0321-2.html → 0321-3.html
+            base_path = REPO / f"{directory}/{yyyy}/{mmdd}{suffix}.html"
+            if base_path.exists() and filepath.resolve() != base_path.resolve():
+                n = 2
+                while (REPO / f"{directory}/{yyyy}/{mmdd}{suffix}-{n}.html").exists():
+                    n += 1
+                deploy_path = f"{directory}/{yyyy}/{mmdd}{suffix}-{n}.html"
+            elif file_suffix:
+                deploy_path = f"{directory}/{yyyy}/{mmdd}{suffix}{file_suffix}.html"
+
+            dest = REPO / deploy_path
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(filepath, dest)
+            print(f"🎴 {filename} → {deploy_path}")
+
+            # Auto-pack: run pack_zzal.py on the source file before PNG capture
+            pack_script = REPO / "pack_zzal.py"
+            if pack_script.exists():
+                print(f"  📦 Auto-packing...")
+                import subprocess as _sp
+                result = _sp.run(
+                    [sys.executable, str(pack_script), str(filepath)],
+                    capture_output=True, text=True, cwd=str(REPO)
+                )
+                if result.returncode == 0:
+                    # pack_zzal.py overwrites the input file — re-copy to dest
+                    shutil.copy2(filepath, dest)
+                    # Re-read html (pack changed it)
+                    with open(filepath) as f:
+                        html = f.read()
+                    for line in result.stdout.strip().split('\n'):
+                        print(f"  {line}")
+                else:
+                    print(f"  ⚠️ pack_zzal.py 실패 — 원본 그대로 진행")
+                    for line in result.stderr.strip().split('\n')[-5:]:
+                        print(f"  {line}")
+
+            png_paths = generate_zzal_png(dest, ctype)
+            items.append({
+                "type": ctype, "directory": directory,
+                "yyyy": yyyy, "mmdd": mmdd,
+                "date_formatted": date_fmt, "keywords": keywords,
+                "deploy_path": deploy_path, "png_paths": png_paths,
+                "html": html,
+            })
+            continue
+
+        # ── 기존 콘텐츠: 웹사이트 + Instagram ──
         # Copy file to repo
         dest = REPO / deploy_path
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -993,11 +1172,14 @@ def main():
         print("❌ No valid files to deploy")
         sys.exit(1)
 
-    # ── Update indexes by date ──
+    # ── Update indexes by date (zzal 제외 — 웹사이트 없음) ──
     if not instagram_only:
-        dates = sorted(set(i["date_formatted"] for i in items))
+        site_items = [i for i in items if i["type"] not in ZZAL_TYPES]
+        dates = sorted(set(i["date_formatted"] for i in site_items))
         for date_fmt in dates:
-            date_items = [i for i in items if i["date_formatted"] == date_fmt]
+            date_items = [i for i in site_items if i["date_formatted"] == date_fmt]
+            if not date_items:
+                continue
             yyyy = date_items[0]["yyyy"]
             mmdd = date_items[0]["mmdd"]
             has_briefing = any(i["type"] == "briefing" for i in date_items)
@@ -1008,15 +1190,18 @@ def main():
             for item in date_items:
                 update_archive_index(item)
 
-    # ── Git commit & push ──
+    # ── Git commit & push (zzal은 웹사이트 배포 없으므로 제외) ──
+    site_items = [i for i in items if i["type"] not in ZZAL_TYPES]
     if instagram_only:
         print("⏭️  Git push 스킵 (--instagram-only)")
+    elif not site_items:
+        print("⏭️  Git push 스킵 (zzal 전용 — 웹 변경 없음)")
     else:
         print("\n🚀 Committing...")
         subprocess.run(["git", "add", "-A"], check=True)
 
-        names = [LABELS.get(i["type"]) or i["keywords"][:30] for i in items]
-        mmdd = items[0]["mmdd"]
+        names = [LABELS.get(i["type"]) or i["keywords"][:30] for i in site_items]
+        mmdd = site_items[0]["mmdd"]
         msg = f"Add {' & '.join(names)} {mmdd}"
 
         result = subprocess.run(["git", "commit", "-m", msg])
@@ -1026,20 +1211,20 @@ def main():
         else:
             print(f"\n⚠️  변경사항 없음 (already committed) — Instagram 발행은 계속 진행")
 
-    # ── Instagram publish for cardnews ──
+    # ── Instagram publish (cardnews + zzal) ──
     if no_instagram:
         print("\n⏭️  Instagram 발행 스킵 (--no-instagram)")
     else:
-        cardnews_items = [i for i in items if i["type"] in CARDNEWS_TYPES and i.get("png_paths")]
-        cardnews_items.sort(key=lambda x: 0 if x["type"] == "card" else 1)
+        ig_items = [i for i in items if (i["type"] in CARDNEWS_TYPES or i["type"] in ZZAL_TYPES) and i.get("png_paths")]
+        ig_items.sort(key=lambda x: 0 if x["type"] == "card" else (2 if x["type"] in ZZAL_TYPES else 1))
 
-    if not no_instagram and cardnews_items:
+    if not no_instagram and ig_items:
         print(f"\n{'='*60}")
-        print(f"📱 Instagram 발행 ({len(cardnews_items)}건)")
+        print(f"📱 Instagram 발행 ({len(ig_items)}건)")
         print(f"{'='*60}")
 
         # 첫 번째는 즉시 게시
-        first = cardnews_items[0]
+        first = ig_items[0]
         print(f"\n  → {LABELS[first['type']]} {first['date_formatted']} (즉시)")
         publish_cardnews_to_instagram(
             first["png_paths"],
@@ -1050,10 +1235,11 @@ def main():
             keywords=first.get("keywords", ""),
             html=first.get("html", ""),
             target_override=target_override,
+            deploy_path=first.get("deploy_path", ""),
         )
 
         # 나머지는 1시간 간격으로 백그라운드 게시
-        remaining = cardnews_items[1:]
+        remaining = ig_items[1:]
         if remaining:
             import threading, time as _time
 
@@ -1072,6 +1258,7 @@ def main():
                         keywords=item.get("keywords", ""),
                         html=item.get("html", ""),
                         target_override=target_override,
+                        deploy_path=item.get("deploy_path", ""),
                     )
 
             t = threading.Thread(target=_delayed_publish, args=(remaining,), daemon=False)

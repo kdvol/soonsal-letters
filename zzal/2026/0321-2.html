@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="soonsal-ig-caption" content="환율 1500원, 17년 만에 처음 💸 전쟁 끝나도 안 내려올 수 있는 구조라는데... 여러분은 달러 헷지 어떻게 하고 있어요?">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e8e8e8;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 10px;
+    font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+    gap: 32px;
+  }
+
+  .card {
+    width: 540px;
+    height: 675px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ============================================================
+     1p — 커버
+     ============================================================ */
+  .cover-card {
+    background: #B2C7D9;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover-chat-header {
+    background: rgba(0,0,0,0.12);
+    padding: 14px 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cover-chat-left { display: flex; align-items: center; gap: 8px; }
+  .cover-chat-back { font-size: 20px; color: #3a3a3a; font-weight: 700; }
+  .cover-chat-name { font-size: 18px; font-weight: 700; color: #1a1a1a; }
+  .cover-chat-count { font-size: 15px; color: #555; }
+  .cover-badge-row { display: flex; align-items: center; gap: 8px; padding: 0 20px; }
+  .cover-badge {
+    background: #E55A00;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .cover-date {
+    font-size: 13px;
+    color: rgba(0,0,0,0.4);
+  }
+  .cover-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 24px;
+    gap: 12px;
+  }
+  .cover-bubble {
+    background: #fff;
+    padding: 16px 20px;
+    border-radius: 16px;
+    max-width: 92%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
+  .cover-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: #111;
+    line-height: 1.35;
+    word-break: keep-all;
+  }
+  .cover-title .em { color: #E55A00; }
+  .cover-subtitle {
+    font-size: 19px;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .cover-etf-tickers {
+    font-size: 13px;
+    color: #E55A00;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-top: 2px;
+  }
+  .cover-bottom {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cover-brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cover-brand img { width: 22px; height: 22px; object-fit: contain; }
+  .cover-brand-text { font-size: 15px; font-weight: 700; color: rgba(0,0,0,0.4); }
+  .cover-swipe { font-size: 13px; color: rgba(0,0,0,0.35); letter-spacing: 0.5px; }
+
+  /* ============================================================
+     채팅 카드
+     ============================================================ */
+  .chat-card {
+    background: #B2C7D9;
+    display: flex;
+    flex-direction: column;
+  }
+  .chat-header {
+    background: rgba(0,0,0,0.12);
+    padding: 14px 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .chat-header-left { display: flex; align-items: center; gap: 8px; }
+  .chat-header-back { font-size: 20px; color: #3a3a3a; font-weight: 700; }
+  .chat-room-name { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+  .chat-room-count { font-size: 14px; color: #555; }
+  .chat-page-num { font-size: 12px; color: #666; font-weight: 500; }
+
+  .chat-body {
+    flex: 1;
+    padding: 12px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .msg { display: flex; align-items: flex-start; gap: 8px; max-width: 88%; }
+  .avatar {
+    width: 36px; height: 36px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .avatar-soonsal { background: #E55A00; }
+  .avatar-jun     { background: #2980B9; }
+  .avatar-andrew  { background: #C0392B; }
+  .avatar-sean    { background: #27AE60; }
+
+  .msg-content { display: flex; flex-direction: column; gap: 3px; }
+  .msg-name { font-size: 14px; font-weight: 600; color: rgba(0,0,0,0.55); padding-left: 2px; }
+  .msg-row { display: flex; align-items: flex-end; gap: 5px; }
+  .bubble {
+    background: #fff;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #111;
+    max-width: 350px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .bubble strong { font-weight: 700; }
+  .bubble .num { color: #C0392B; font-weight: 700; }
+  .msg-time { font-size: 12px; color: rgba(0,0,0,0.35); white-space: nowrap; flex-shrink: 0; }
+
+  .bubble-img {
+    background: #1a1a1a;
+    padding: 6px 8px;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 310px;
+  }
+  .bubble-img img { display: block; width: 100%; border-radius: 12px; }
+
+  .date-divider { text-align: center; padding: 10px 0 6px; }
+  .date-divider span {
+    background: rgba(0,0,0,0.15);
+    color: #fff;
+    font-size: 11px; font-weight: 500;
+    padding: 4px 12px; border-radius: 12px;
+  }
+
+  .chat-input-bar {
+    background: rgba(0,0,0,0.08);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .chat-input-fake {
+    flex: 1;
+    background: #fff;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #999;
+  }
+  .chat-send-btn {
+    width: 32px; height: 32px;
+    background: #F7C948;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     클로징 카드
+     ============================================================ */
+  .closing-card {
+    background: #0d0d0d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+  }
+  .closing-logo {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+  }
+  .closing-name {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+  }
+  .closing-handle {
+    font-size: 20px;
+    color: #666;
+    margin-top: -12px;
+  }
+  .closing-cta {
+    font-size: 18px;
+    color: #E55A00;
+    font-weight: 700;
+    margin-top: 8px;
+  }
+  .closing-disclaimer {
+    font-size: 13px;
+    color: #888;
+    position: absolute;
+    bottom: 16px;
+    left: 20px; right: 20px;
+    text-align: center;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     1p — 커버
+     ================================================================ -->
+<div class="card cover-card">
+  <div class="cover-chat-header">
+    <div class="cover-chat-left">
+      <span class="cover-chat-back">‹</span>
+      <span class="cover-chat-name">순살 단톡방</span>
+      <span class="cover-chat-count">4</span>
+    </div>
+    <div class="cover-badge-row">
+      <span class="cover-badge">NEW</span>
+      <span class="cover-date">2026.03.21</span>
+    </div>
+  </div>
+  <div class="cover-body">
+    <div class="cover-bubble">
+      <div class="cover-title">
+        환율 1500원<br>
+        <span class="em">17년 만에 처음</span>
+      </div>
+      <div class="cover-subtitle">전쟁 끝나면 내려오는 거 맞아?</div>
+      <div class="cover-etf-tickers">UUP · USO · XLE · SPY · DBMF</div>
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-brand">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살">
+      <span class="cover-brand-text">순살짤</span>
+    </div>
+    <span class="cover-swipe">밀어서 엿보기 →</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     2p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">2/8</span>
+  </div>
+
+  <div class="date-divider">
+    <span>2026년 3월 21일 금요일</span>
+  </div>
+
+  <div class="chat-body">
+
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">야 환율 1500원 뚫렸어</div>
+          <span class="msg-time">오전 9:10</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">장중 1505원 찍고 1501원 마감. 금융위기 이후 17년 만이야</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">도랐네 진짜</div>
+          <span class="msg-time">오전 9:10</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">유가 좀 내렸으면 환율도 내려와야 되는 거 아님?</div>
+          <span class="msg-time">오전 9:11</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">유가 좀 빠졌다고 환율이 내려왔겠냐? ㅋ</div>
+          <span class="msg-time">오전 9:11</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     3p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">3/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">아 진짜 미친 거 아님?</div>
+          <span class="msg-time">오전 9:11</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">호재 다 쏟아부었는데 1원도 안 빠졌다고??</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble"><strong>웃긴 게 전쟁이 올린 건 맞는데, 전쟁 끝나도 안 내려올 수 있어 이 구조가</strong></div>
+          <span class="msg-time">오전 9:12</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">외국인이 3월에만 14조 빼갔어 ㅋ 그 돈이 다 달러로 나감</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">거기다 국민연금 해외투자가 770조. 달러 계속 사야됨 ㅋ</div>
+          <span class="msg-time">오전 9:13</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     4p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">4/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">마지막이 진짜 아픈데. 한국 성장률이 잠재성장률 밑이거든. 외국인이 원화 살 이유가 없어</div>
+          <span class="msg-time">오전 9:13</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">아 ㅅㅂ 그러면 뭘 해도 1400원대 안 온다는 거야?</div>
+          <span class="msg-time">오전 9:14</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">유일한 희망이 4월 WGBI 편입인데 그마저도 이란한테 달려있음 ㅋㅋ</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">이란한테 달려있는 환율이라니 ㅋㅋㅋ 진짜 웃기네</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">아 그냥 달러로 월급 받고 싶다</div>
+          <span class="msg-time">오전 9:14</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     5p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">5/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble-img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="300" height="160" viewBox="0 0 300 160">
+              <rect x="0" y="0" fill="#1a1a1a" width="300" height="160" rx="8"></rect>
+              <text x="150" y="28" text-anchor="middle" fill="#888" font-size="12" font-family="'Noto Sans KR',sans-serif">시장의 기대</text>
+              <text x="150" y="52" text-anchor="middle" fill="#27AE60" font-size="16" font-weight="700" font-family="'Noto Sans KR',sans-serif">전쟁 끝 → 유가↓ → 환율↓ 🎉</text>
+              <line x1="40" y1="68" x2="260" y2="68" stroke="#333" stroke-width="1"></line>
+              <text x="150" y="90" text-anchor="middle" fill="#888" font-size="12" font-family="'Noto Sans KR',sans-serif">실제 환율</text>
+              <text x="150" y="118" text-anchor="middle" fill="#C0392B" font-size="22" font-weight="700" font-family="'Noto Sans KR',sans-serif">₩1,501 📈</text>
+              <text x="150" y="145" text-anchor="middle" fill="#555" font-size="11" font-family="'Noto Sans KR',sans-serif">17년 만에 처음 · 2009년 금융위기 이후</text>
+            </svg>
+          </div>
+          <span class="msg-time">오전 9:14</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">ㅋㅋㅋㅋ 기대와 현실 미쳤다 진짜</div>
+          <span class="msg-time">오전 9:15</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble-img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150">
+              <rect fill="#1a1a1a" width="300" height="150" rx="8"></rect>
+              <text x="150" y="25" text-anchor="middle" fill="#E55A00" font-size="12" font-weight="700" font-family="'Noto Sans KR',sans-serif">환율 1500원이면</text>
+              <text x="30" y="52" fill="#888" font-size="12" font-family="'Noto Sans KR',sans-serif">🛒 해외직구</text>
+              <rect x="140" y="40" width="130" height="16" rx="4" fill="#333"></rect>
+              <rect x="140" y="40" width="112" height="16" rx="4" fill="#C0392B"></rect>
+              <text x="278" y="52" fill="#fff" font-size="11" font-family="'Noto Sans KR',sans-serif">+8%</text>
+              <text x="30" y="78" fill="#888" font-size="12" font-family="'Noto Sans KR',sans-serif">✈️ 여행경비</text>
+              <rect x="140" y="66" width="130" height="16" rx="4" fill="#333"></rect>
+              <rect x="140" y="66" width="118" height="16" rx="4" fill="#C0392B"></rect>
+              <text x="278" y="78" fill="#fff" font-size="11" font-family="'Noto Sans KR',sans-serif">+9%</text>
+              <text x="30" y="104" fill="#888" font-size="12" font-family="'Noto Sans KR',sans-serif">📱 아이폰</text>
+              <rect x="140" y="92" width="130" height="16" rx="4" fill="#333"></rect>
+              <rect x="140" y="92" width="100" height="16" rx="4" fill="#C0392B"></rect>
+              <text x="278" y="104" fill="#fff" font-size="11" font-family="'Noto Sans KR',sans-serif">+7%</text>
+              <text x="150" y="135" text-anchor="middle" fill="#555" font-size="11" font-family="'Noto Sans KR',sans-serif">작년 대비 체감 물가 상승분</text>
+            </svg>
+          </div>
+          <span class="msg-time">오전 9:15</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     6p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">6/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble"><strong>환율 1500원이면 작년 대비 해외직구 8%, 여행 9% 비싸진 거야. 미장 하는 사람은 환전만으로 -8% 시작임</strong></div>
+          <span class="msg-time">오전 9:16</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">아이폰 17 나오면 진짜 200만원 넘겠다 ㅋㅋ</div>
+          <span class="msg-time">오전 9:16</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">아 나 일본여행 예약해놨는데 엔화까지 올랐으면 진짜 ㅠ</div>
+          <span class="msg-time">오전 9:17</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">난 걍 UUP 들고있음. 달러 인덱스 ETF. 환율 오를수록 수익이니까</div>
+          <span class="msg-time">오전 9:17</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     7p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">7/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">나는 USO 아니면 XLE 고민 중. 유가 직접 추종이냐 정유사 묶음이냐 차인데</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">ㅋㅋ 나는 걍 SPY 환헷지 안 하고 들고있어. 달러 강세면 환차익까지 먹으니까. 아니면 DBMF 같은 매크로 ETF도 지금 괜찮을걸</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">그러게 다들 요즘 달러 헷지 어떻게 하고 있는지 궁금하네</div>
+          <span class="msg-time">오전 9:19</span>
+          <span class="msg-time">오전 9:18</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     8p — 클로징
+     ================================================================ -->
+<div class="card closing-card">
+  <img class="closing-logo" src="data:image/png;base64,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" alt="순살">
+  <div class="closing-name">순살짤</div>
+  <div class="closing-handle">@soonsal.zzal</div>
+  <div class="closing-cta">팔로우하면 매일 단톡방 엿볼 수 있음</div>
+  <div class="closing-disclaimer">창작 콘텐츠이며 매수·매도 추천이 아닙니다<br>모든 투자 판단과 책임은 본인에게 있습니다</div>
+</div>
+
+</body>
+</html>
+

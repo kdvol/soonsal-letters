@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>16조 훔친 놈이 사면받을 수 있는 나라 — 순살크립토 카드뉴스 2026.03.23</title>
+<meta name="soonsal-keywords" content="SBF 사면 트럼프 FTX Anthropic 투자 한국 크립토 규제">
+<meta name="soonsal-ig-caption" content="고객 돈 16조 횡령한 사기범이 감옥에서 트럼프 찬양 중... 근데 그 도둑질한 돈으로 투자한 게 56조가 됐다는 반전 🤯 한국은 실명인증에 거래세에 인가제인데, 미국은 이런 논의가 가능한 나라 여러분은 어떻게 생각해요? 👇">
+<!-- soonsal_template_css_cardnews.html — 순살카드뉴스 / 순살크립토카드뉴스 공통 CSS -->
+<!-- 버전: 2026.03.17 v21 -->
+<!-- 사용법: 이 파일의 <style> 블록을 카드뉴스 HTML <head> 안에 그대로 삽입 -->
+<!-- 브리핑/크립토 공통 사용. 테두리 색상(#F07040)만 공유, 내용 카드 색상은 인라인으로 덮어씀 -->
+<!-- v21 변경: word-break:keep-all(.top-text, .bottom-text), object-fit:contain(.logo-icon) -->
+<!-- ⚠️ HTML <head>에 반드시 포함: <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e8e8e8;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 40px 20px; gap: 32px;
+    font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  }
+  .series-title { font-size: 13px; color: #888; letter-spacing: 1px; }
+
+  /* ── 카드 기본 ── */
+  .card {
+    width: 540px; height: 540px; background: #fff;
+    box-shadow: inset 0 0 0 5px #F07040;   /* 테두리 — border 대신 inset shadow (Playwright 캡처 시 잘림 방지) */
+    border-radius: 6px;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 14px; position: relative; overflow: hidden;
+  }
+
+  /* ── 상단 제목 (top-text) ── */
+  /* v21: word-break:keep-all 추가 — 한글 단어 중간 줄바꿈 방지 */
+  .top-text { text-align: center; font-size: 44px; font-weight: 900; line-height: 1.4; color: #111; width: 100%; word-break: keep-all; }
+  .top-text.large { font-size: 52px; }   /* 강조 제목 */
+  .top-text.small { font-size: 32px; }   /* 보조 제목 / 긴 텍스트 */
+
+  /* ── 일러스트 영역 (illust) ── */
+  .illust { flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; overflow: hidden; }
+
+  /* ── 하단 설명 (bottom-text) ── */
+  /* ⚠️ 인라인 font-size 지정 금지 — 클래스로만 제어 (rule_cardnews.md 14-24) */
+  /* v21: word-break:keep-all 추가 — 한글 단어 중간 줄바꿈 방지 */
+  .bottom-text { text-align: center; font-size: 28px; font-weight: 700; line-height: 1.4; color: #111; width: 100%; padding-top: 6px; word-break: keep-all; }
+  .bottom-text.small { font-size: 23px; }
+
+  /* ── 로고 행 (logo-row) ── */
+  .logo-row { display: flex; align-items: center; justify-content: center; gap: 6px; padding-top: 8px; border-top: 1px solid #f0f0f0; }
+  /* v21: object-fit:contain 추가 — 로고 비율 깨짐 방지 */
+  .logo-icon { width: 22px; height: 22px; object-fit: contain; }
+  .logo-text { font-size: 15px; font-weight: 900; color: #555; letter-spacing: -0.5px; }
+
+  /* ── 색상 유틸리티 ── */
+  .red    { color: #e53935; }
+  .orange { color: #F07040; }
+  .blue   { color: #1565C0; }
+  .green  { color: #2e7d32; }
+  .sub    { font-size: 0.75em; color: #888; }
+
+  /* ── 모바일 반응형 ──
+     breakpoint 539px: Playwright viewport=560px 캡처 시 미발동 → 데스크톱 CSS 그대로 적용
+     실제 모바일(375~430px) 브라우저에서만 발동                                              */
+  @media (max-width: 539px) {
+    body { padding: 16px 8px; gap: 20px; }
+    .card {
+      width: 100%; max-width: 540px;
+      height: auto; aspect-ratio: 1 / 1;
+      padding: 20px 22px 16px; gap: 8px;
+    }
+    .top-text        { font-size: 28px !important; line-height: 1.35; }
+    .top-text.large  { font-size: 34px !important; }
+    .top-text.cover-title { font-size: clamp(44px, 9.6vw, 52px) !important; line-height: 1.15; }
+    .bottom-text     { font-size: 21px !important; line-height: 1.35; }
+    .illust svg      { max-width: 100%; max-height: 100%; }
+    .logo-row        { padding-top: 6px; }
+    .logo-text       { font-size: 13px; }
+    .logo-row img    { height: 18px !important; }
+    .series-title    { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<!-- BACK TO LETTERS -->
+<div style="max-width:680px;margin:0 auto;padding:10px 16px 0;" id="back-to-letters">
+  <a href="https://soonsal.com" style="display:inline-flex;align-items:center;gap:6px;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:14px;font-weight:700;color:#E55A00;text-decoration:none;padding:6px 0;" onmouseover="this.style.color='#CC4E00'" onmouseout="this.style.color='#E55A00'">← 순살 홈</a>
+</div>
+<script>if(window.self!==window.top)document.getElementById('back-to-letters').style.display='none'</script>
+<!-- /BACK TO LETTERS -->
+
+
+<div class="series-title">순살크립토 카드뉴스 · 2026.03.23</div>
+
+<!-- ═══════ CARD 1: COVER ═══════ -->
+<div class="card" style="background:#111; box-shadow:inset 0 0 0 5px #F07040;">
+  <div style="flex:0 0 auto; width:100%; display:flex; justify-content:flex-start; padding-top:4px;">
+    <div class="logo-row" style="border-top:none; padding-top:0;">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" class="logo-icon" alt="Soonsal"/>
+      <span class="logo-text" style="color:#aaa;">Soonsal</span>
+    </div>
+  </div>
+  <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; padding:0 8px;">
+    <div style="font-size:42px; font-weight:900; color:#fff; text-align:center; line-height:1.25; word-break:keep-all;">16조 훔친 <span style="filter:blur(5px); -webkit-filter:blur(5px);">놈</span>이<br>사면받을 수 있는 나라</div>
+  </div>
+  <div style="flex:0 0 auto; width:calc(100% - 16px); margin:0 auto 8px; display:flex; align-items:center; justify-content:center;">
+    <svg viewBox="0 0 440 180" xmlns="http://www.w3.org/2000/svg">
+      <!-- Prison bars with money flying out -->
+      <rect x="120" y="10" width="8" height="160" fill="#555" rx="2"/>
+      <rect x="160" y="10" width="8" height="160" fill="#555" rx="2"/>
+      <rect x="200" y="10" width="8" height="160" fill="#555" rx="2"/>
+      <rect x="240" y="10" width="8" height="160" fill="#555" rx="2"/>
+      <rect x="280" y="10" width="8" height="160" fill="#555" rx="2"/>
+      <rect x="320" y="10" width="8" height="160" fill="#555" rx="2"/>
+      <!-- Money bills flying out -->
+      <rect x="60" y="40" width="50" height="28" fill="#27ae60" rx="4" transform="rotate(-15 85 54)"/>
+      <text x="85" y="58" font-size="14" fill="#fff" text-anchor="middle" font-weight="700" transform="rotate(-15 85 54)">$</text>
+      <rect x="340" y="30" width="50" height="28" fill="#27ae60" rx="4" transform="rotate(12 365 44)"/>
+      <text x="365" y="48" font-size="14" fill="#fff" text-anchor="middle" font-weight="700" transform="rotate(12 365 44)">$</text>
+      <rect x="350" y="100" width="50" height="28" fill="#27ae60" rx="4" transform="rotate(-8 375 114)"/>
+      <text x="375" y="118" font-size="14" fill="#fff" text-anchor="middle" font-weight="700" transform="rotate(-8 375 114)">$</text>
+      <rect x="50" y="110" width="50" height="28" fill="#27ae60" rx="4" transform="rotate(10 75 124)"/>
+      <text x="75" y="128" font-size="14" fill="#fff" text-anchor="middle" font-weight="700" transform="rotate(10 75 124)">$</text>
+      <!-- SBF silhouette in center -->
+      <circle cx="220" cy="70" r="25" fill="#F07040" opacity="0.9"/>
+      <text x="220" y="77" font-size="16" fill="#fff" text-anchor="middle" font-weight="900">SBF</text>
+      <text x="220" y="140" font-size="13" fill="#888" text-anchor="middle">$120억 횡령 → 25년 형</text>
+      <text x="220" y="158" font-size="13" fill="#F07040" text-anchor="middle" font-weight="700">그런데 사면?</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ═══════ CARD 2: 팩트밤 — 이미 풀어준 명단 ═══════ -->
+<div class="card">
+  <div class="top-text" style="font-size:34px;">트럼프가 이미 풀어준<br>크립토 범죄자들</div>
+  <div class="illust">
+    <svg viewBox="0 0 440 260" xmlns="http://www.w3.org/2000/svg">
+      <!-- CZ -->
+      <rect x="12" y="10" width="132" height="230" fill="#FFF3E0" rx="8" stroke="#F07040" stroke-width="1.5"/>
+      <circle cx="78" cy="55" r="28" fill="#F07040" opacity="0.15"/>
+      <text x="78" y="63" font-size="26" text-anchor="middle">🟡</text>
+      <text x="78" y="100" font-size="18" fill="#111" text-anchor="middle" font-weight="900">CZ</text>
+      <text x="78" y="122" font-size="14" fill="#888" text-anchor="middle">바이낸스 창업자</text>
+      <text x="78" y="148" font-size="14" fill="#e53935" text-anchor="middle" font-weight="700">자금세탁 유죄</text>
+      <text x="78" y="178" font-size="17" fill="#27ae60" text-anchor="middle" font-weight="900">✅ 사면</text>
+      <text x="78" y="200" font-size="13" fill="#888" text-anchor="middle">2025년</text>
+      <!-- Ulbricht -->
+      <rect x="154" y="10" width="132" height="230" fill="#FFF3E0" rx="8" stroke="#F07040" stroke-width="1.5"/>
+      <circle cx="220" cy="55" r="28" fill="#F07040" opacity="0.15"/>
+      <text x="220" y="63" font-size="26" text-anchor="middle">⛓️</text>
+      <text x="220" y="100" font-size="18" fill="#111" text-anchor="middle" font-weight="900">울브리히트</text>
+      <text x="220" y="122" font-size="14" fill="#888" text-anchor="middle">실크로드 창업자</text>
+      <text x="220" y="148" font-size="14" fill="#e53935" text-anchor="middle" font-weight="700">종신형 선고</text>
+      <text x="220" y="178" font-size="17" fill="#27ae60" text-anchor="middle" font-weight="900">✅ 사면</text>
+      <text x="220" y="200" font-size="13" fill="#888" text-anchor="middle">2025년</text>
+      <!-- BitMEX -->
+      <rect x="296" y="10" width="132" height="230" fill="#FFF3E0" rx="8" stroke="#F07040" stroke-width="1.5"/>
+      <circle cx="362" cy="55" r="28" fill="#F07040" opacity="0.15"/>
+      <text x="362" y="63" font-size="26" text-anchor="middle">💰</text>
+      <text x="362" y="100" font-size="18" fill="#111" text-anchor="middle" font-weight="900">BitMEX</text>
+      <text x="362" y="122" font-size="14" fill="#888" text-anchor="middle">공동창업자들</text>
+      <text x="362" y="148" font-size="14" fill="#e53935" text-anchor="middle" font-weight="700">은행비밀법 위반</text>
+      <text x="362" y="178" font-size="17" fill="#27ae60" text-anchor="middle" font-weight="900">✅ 사면</text>
+      <text x="362" y="200" font-size="13" fill="#888" text-anchor="middle">2025년</text>
+      <!-- Bottom label -->
+      <text x="220" y="256" font-size="16" fill="#F07040" text-anchor="middle" font-weight="700">전부 트럼프 2기에서 사면</text>
+    </svg>
+  </div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" class="logo-icon" alt="Soonsal"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- ═══════ CARD 3: SBF가 감옥에서 하는 짓 ═══════ -->
+<div class="card">
+  <div class="top-text" style="font-size:34px;">그래서 SBF도<br>감옥에서 작업 중</div>
+  <div class="illust">
+    <svg viewBox="0 0 440 290" xmlns="http://www.w3.org/2000/svg">
+      <!-- Twitter/X posts -->
+      <rect x="10" y="0" width="420" height="88" fill="#f8f8f8" rx="12" stroke="#ddd" stroke-width="1"/>
+      <text x="40" y="30" font-size="20" fill="#111" font-weight="700">@SBF_FTX</text>
+      <text x="40" y="62" font-size="19" fill="#555">"트럼프의 이란 공습을 지지한다" 🇺🇸</text>
+      <text x="40" y="80" font-size="11" fill="#aaa">Mar 21, 2026</text>
+      <circle cx="406" cy="30" r="16" fill="#1DA1F2" opacity="0.15"/>
+      <text x="406" y="37" font-size="18" text-anchor="middle">𝕏</text>
+
+      <rect x="10" y="98" width="420" height="88" fill="#f8f8f8" rx="12" stroke="#ddd" stroke-width="1"/>
+      <text x="40" y="128" font-size="20" fill="#111" font-weight="700">@SBF_FTX</text>
+      <text x="40" y="160" font-size="19" fill="#555">"나는 원래 공화당. 바이든이 망침"</text>
+      <text x="40" y="178" font-size="11" fill="#aaa">Mar 18, 2026</text>
+      <circle cx="406" cy="128" r="16" fill="#1DA1F2" opacity="0.15"/>
+      <text x="406" y="135" font-size="18" text-anchor="middle">𝕏</text>
+
+      <rect x="10" y="196" width="420" height="88" fill="#f8f8f8" rx="12" stroke="#ddd" stroke-width="1"/>
+      <text x="40" y="226" font-size="20" fill="#111" font-weight="700">@SBF_FTX</text>
+      <text x="40" y="258" font-size="19" fill="#555">"트럼프 가스 가격 정책 최고" ⛽️</text>
+      <text x="40" y="276" font-size="11" fill="#aaa">Mar 15, 2026</text>
+      <circle cx="406" cy="226" r="16" fill="#1DA1F2" opacity="0.15"/>
+      <text x="406" y="233" font-size="18" text-anchor="middle">𝕏</text>
+    </svg>
+    <div style="font-size:11px; color:#aaa; text-align:center; margin-top:2px; word-break:keep-all; white-space:nowrap;">* 교도소 승인 경로로 대리인이 게시</div>
+  </div>
+  <div class="bottom-text small">25년 형 복역 중인데<br>매일 트럼프 찬양 포스팅</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" class="logo-icon" alt="Soonsal"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- ═══════ CARD 4: Why Hook — 왜 0%가 아닌가 ═══════ -->
+<div class="card">
+  <div class="top-text" style="font-size:32px;">왜 사면 가능성이<br>0%가 아닌 거야?</div>
+  <div class="illust">
+    <svg viewBox="0 0 440 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="15" y="8" width="410" height="58" fill="#111" rx="10"/>
+      <text x="220" y="44" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">트럼프의 크립토 사면 패턴</text>
+
+      <rect x="15" y="80" width="200" height="82" fill="#E8F5E9" rx="10"/>
+      <text x="115" y="107" font-size="16" fill="#2e7d32" text-anchor="middle" font-weight="700">✅ 이미 한 것</text>
+      <text x="115" y="130" font-size="15" fill="#333" text-anchor="middle">CZ·울브리히트·BitMEX</text>
+      <text x="115" y="150" font-size="15" fill="#333" text-anchor="middle">전부 사면 완료</text>
+
+      <rect x="225" y="80" width="200" height="82" fill="#FFF3E0" rx="10"/>
+      <text x="325" y="107" font-size="16" fill="#F07040" text-anchor="middle" font-weight="700">🔥 지금 하는 것</text>
+      <text x="325" y="130" font-size="15" fill="#333" text-anchor="middle">비트코인 국가 비축</text>
+      <text x="325" y="150" font-size="15" fill="#333" text-anchor="middle">GENIUS Act 서명</text>
+
+      <rect x="55" y="178" width="330" height="72" fill="#FFEBEE" rx="10" stroke="#e53935" stroke-width="1.5"/>
+      <text x="220" y="205" font-size="16" fill="#e53935" text-anchor="middle" font-weight="700">⚠️ 예측시장 사면 확률</text>
+      <text x="220" y="236" font-size="28" fill="#e53935" text-anchor="middle" font-weight="900">17~21%</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">"크립토 대통령"이 크립토 범죄자를<br>풀어주는 게 패턴이 된 상황</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" class="logo-icon" alt="Soonsal"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- ═══════ CARD 5: 피해 규모 ═══════ -->
+<div class="card">
+  <div class="top-text" style="font-size:34px;">피해 규모부터 보자</div>
+  <div class="illust">
+    <svg viewBox="0 0 440 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="10" width="400" height="110" fill="#FFEBEE" rx="12"/>
+      <text x="220" y="42" font-size="17" fill="#e53935" text-anchor="middle" font-weight="700">FTX 고객 피해액</text>
+      <text x="220" y="85" font-size="40" fill="#e53935" text-anchor="middle" font-weight="900">$120억 (16조원)</text>
+      <text x="220" y="110" font-size="14" fill="#888" text-anchor="middle">2022년 11월 파산</text>
+
+      <text x="220" y="145" font-size="22" text-anchor="middle">↓</text>
+
+      <rect x="20" y="155" width="400" height="95" fill="#FFF3E0" rx="12"/>
+      <text x="220" y="185" font-size="17" fill="#F07040" text-anchor="middle" font-weight="700">채권자 돌려받는 금액</text>
+      <text x="220" y="214" font-size="16" fill="#333" text-anchor="middle">2022년 당시 가격 기준으로 분배 중</text>
+      <text x="220" y="240" font-size="16" fill="#e53935" text-anchor="middle" font-weight="700">→ BTC 상승분은 전부 증발</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">BTC $16K → $70K 됐는데<br>$16K 기준으로 돌려받는 중</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" class="logo-icon" alt="Soonsal"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- ═══════ CARD 6: 반전 — 투자는 역대급 ═══════ -->
+<div class="card">
+  <div class="top-text" style="font-size:30px;">근데 반전이 있음.<br>투자는 역대급이었음</div>
+  <div class="illust">
+    <svg viewBox="0 0 440 260" xmlns="http://www.w3.org/2000/svg">
+      <!-- Header -->
+      <text x="220" y="20" font-size="14" fill="#888" text-anchor="middle">FTX가 고객 돈으로 투자한 포트폴리오</text>
+      <!-- Anthropic — 1st ($300억, longest) -->
+      <text x="100" y="50" font-size="15" fill="#111" text-anchor="end" font-weight="700">Anthropic</text>
+      <rect x="108" y="34" width="320" height="24" fill="#27ae60" rx="4"/>
+      <text x="425" y="51" font-size="13" fill="#333" text-anchor="end" font-weight="700">$5억 → $300억</text>
+      <!-- Robinhood — 2nd ($57억) -->
+      <text x="100" y="82" font-size="15" fill="#111" text-anchor="end" font-weight="700">Robinhood</text>
+      <rect x="108" y="66" width="190" height="24" fill="#27ae60" rx="4"/>
+      <text x="425" y="83" font-size="13" fill="#333" text-anchor="end" font-weight="700">$6.5억 → $57억</text>
+      <!-- SOL — 3rd ($51억) -->
+      <text x="100" y="114" font-size="15" fill="#111" text-anchor="end" font-weight="700">Solana</text>
+      <rect x="108" y="98" width="175" height="24" fill="#27ae60" rx="4"/>
+      <text x="425" y="115" font-size="13" fill="#333" text-anchor="end" font-weight="700">$10억 → $51억</text>
+      <!-- SUI — 4th ($12억) -->
+      <text x="100" y="146" font-size="15" fill="#111" text-anchor="end" font-weight="700">Sui</text>
+      <rect x="108" y="130" width="80" height="24" fill="#27ae60" rx="4"/>
+      <text x="425" y="147" font-size="13" fill="#333" text-anchor="end" font-weight="700">$1억 → $12억</text>
+
+      <!-- Total box -->
+      <rect x="25" y="165" width="390" height="90" fill="#111" rx="12"/>
+      <text x="220" y="194" font-size="16" fill="#888" text-anchor="middle">안 팔았으면 지금 가치</text>
+      <text x="220" y="226" font-size="36" fill="#F07040" text-anchor="middle" font-weight="900">$420억+ (56조원)</text>
+      <text x="220" y="248" font-size="15" fill="#aaa" text-anchor="middle">채권자 빚 $120억의 3.5배</text>
+    </svg>
+  </div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" class="logo-icon" alt="Soonsal"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- ═══════ CARD 7: 아이러니 ═══════ -->
+<div class="card">
+  <div class="top-text" style="font-size:30px;">도둑질한 돈으로 산 게<br>전부 대박이 났음</div>
+  <div class="illust">
+    <svg viewBox="0 0 440 260" xmlns="http://www.w3.org/2000/svg">
+      <rect x="15" y="5" width="410" height="115" fill="#f8f8f8" rx="12"/>
+      <text x="220" y="35" font-size="20" fill="#111" text-anchor="middle" font-weight="700">SBF 측 주장</text>
+      <text x="220" y="66" font-size="19" fill="#555" text-anchor="middle">"강제매각만 안 했으면</text>
+      <text x="220" y="92" font-size="19" fill="#555" text-anchor="middle">채권자 돈 3.5배로 갚고도 남았다"</text>
+      <text x="220" y="114" font-size="13" fill="#888" text-anchor="middle">— SBF 본인 X 포스팅, 2026.02</text>
+
+      <text x="220" y="143" font-size="24" text-anchor="middle">⚡</text>
+
+      <rect x="15" y="155" width="410" height="100" fill="#FFEBEE" rx="12"/>
+      <text x="220" y="186" font-size="20" fill="#e53935" text-anchor="middle" font-weight="700">현실</text>
+      <text x="220" y="218" font-size="19" fill="#333" text-anchor="middle">그 투자금은 고객 예치금</text>
+      <text x="220" y="246" font-size="19" fill="#333" text-anchor="middle">고객 동의 없이 빼돌린 것 = 횡령</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">"사기꾼이 아니라 시간만 있었으면 천재"<br>이 논리가 사면론의 근거가 되는 중</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" class="logo-icon" alt="Soonsal"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- ═══════ CARD 8: 한국 앵글 ═══════ -->
+<div class="card">
+  <div class="top-text" style="font-size:30px;">같은 크립토인데<br>한국은 뭔가 다름</div>
+  <div class="illust">
+    <svg viewBox="0 0 440 260" xmlns="http://www.w3.org/2000/svg">
+      <!-- Korea side -->
+      <rect x="10" y="5" width="208" height="250" fill="#E3F2FD" rx="12"/>
+      <text x="114" y="34" font-size="26" text-anchor="middle">🇰🇷</text>
+      <text x="114" y="58" font-size="17" fill="#1565C0" text-anchor="middle" font-weight="900">한국</text>
+      <rect x="24" y="72" width="180" height="32" fill="#fff" rx="6"/>
+      <text x="114" y="94" font-size="15" fill="#333" text-anchor="middle">실명인증 의무화</text>
+      <rect x="24" y="112" width="180" height="32" fill="#fff" rx="6"/>
+      <text x="114" y="134" font-size="15" fill="#333" text-anchor="middle">거래소 인가제</text>
+      <rect x="24" y="152" width="180" height="32" fill="#fff" rx="6"/>
+      <text x="114" y="174" font-size="15" fill="#333" text-anchor="middle">가상자산 과세 예정</text>
+      <rect x="24" y="192" width="180" height="32" fill="#fff" rx="6"/>
+      <text x="114" y="214" font-size="15" fill="#333" text-anchor="middle">해외 거래소 차단</text>
+      <text x="114" y="246" font-size="14" fill="#1565C0" text-anchor="middle" font-weight="700">세계 최고 수준 규제</text>
+
+      <!-- US side -->
+      <rect x="222" y="5" width="208" height="250" fill="#FFEBEE" rx="12"/>
+      <text x="326" y="34" font-size="26" text-anchor="middle">🇺🇸</text>
+      <text x="326" y="58" font-size="17" fill="#e53935" text-anchor="middle" font-weight="900">미국</text>
+      <rect x="236" y="72" width="180" height="32" fill="#fff" rx="6"/>
+      <text x="326" y="94" font-size="15" fill="#333" text-anchor="middle">16조 횡령 → 사면 논의</text>
+      <rect x="236" y="112" width="180" height="32" fill="#fff" rx="6"/>
+      <text x="326" y="134" font-size="15" fill="#333" text-anchor="middle">대통령이 코인 발행</text>
+      <rect x="236" y="152" width="180" height="32" fill="#fff" rx="6"/>
+      <text x="326" y="174" font-size="15" fill="#333" text-anchor="middle">CZ·울브리히트 사면</text>
+      <rect x="236" y="192" width="180" height="32" fill="#fff" rx="6"/>
+      <text x="326" y="214" font-size="15" fill="#333" text-anchor="middle">비트코인 국가 비축</text>
+      <text x="326" y="246" font-size="14" fill="#e53935" text-anchor="middle" font-weight="700">"크립토 대통령" 자처</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">규제의 방향이 완전히 반대</div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" class="logo-icon" alt="Soonsal"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- ═══════ CARD 9: 요약 ═══════ -->
+<div class="card">
+  <div class="top-text" style="font-size:28px;">정리하면 이런 상황</div>
+  <div class="illust">
+    <svg viewBox="0 0 440 260" xmlns="http://www.w3.org/2000/svg">
+      <!-- Flow -->
+      <rect x="95" y="2" width="250" height="38" fill="#111" rx="8"/>
+      <text x="220" y="27" font-size="16" fill="#fff" text-anchor="middle" font-weight="700">고객 돈 $120억 횡령</text>
+
+      <text x="220" y="53" font-size="16" text-anchor="middle" fill="#888">↓</text>
+
+      <rect x="40" y="60" width="170" height="38" fill="#FFF3E0" rx="8"/>
+      <text x="125" y="84" font-size="15" fill="#333" text-anchor="middle" font-weight="700">투자: Anthropic 등</text>
+      <rect x="230" y="60" width="170" height="38" fill="#FFEBEE" rx="8"/>
+      <text x="315" y="84" font-size="15" fill="#e53935" text-anchor="middle" font-weight="700">25년 형 선고</text>
+
+      <text x="125" y="112" font-size="16" text-anchor="middle" fill="#888">↓</text>
+      <text x="315" y="112" font-size="16" text-anchor="middle" fill="#888">↓</text>
+
+      <rect x="40" y="119" width="170" height="38" fill="#E8F5E9" rx="8"/>
+      <text x="125" y="143" font-size="15" fill="#2e7d32" text-anchor="middle" font-weight="700">강제매각 → $13억</text>
+      <rect x="230" y="119" width="170" height="38" fill="#FFF3E0" rx="8"/>
+      <text x="315" y="143" font-size="15" fill="#F07040" text-anchor="middle" font-weight="700">감옥서 트럼프 찬양</text>
+
+      <text x="125" y="171" font-size="16" text-anchor="middle" fill="#888">↓</text>
+      <text x="315" y="171" font-size="16" text-anchor="middle" fill="#888">↓</text>
+
+      <rect x="40" y="178" width="170" height="38" fill="#E8F5E9" rx="8"/>
+      <text x="125" y="202" font-size="15" fill="#2e7d32" text-anchor="middle" font-weight="700">안 팔았으면 $420억+</text>
+      <rect x="230" y="178" width="170" height="38" fill="#FFEBEE" rx="8"/>
+      <text x="315" y="202" font-size="15" fill="#e53935" text-anchor="middle" font-weight="700">사면 확률 17~21%</text>
+
+      <rect x="40" y="226" width="360" height="30" fill="#111" rx="6"/>
+      <text x="220" y="246" font-size="15" fill="#F07040" text-anchor="middle" font-weight="700">도둑질한 돈이 56조가 됐다는 아이러니</text>
+    </svg>
+  </div>
+  <div class="logo-row">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" class="logo-icon" alt="Soonsal"/>
+    <span class="logo-text">Soonsal</span>
+  </div>
+</div>
+
+<!-- ═══════ CARD 10: CLOSING ═══════ -->
+<div class="card" style="background:#111; box-shadow:inset 0 0 0 5px #F07040;">
+  <div style="flex:1;"></div>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:16px; padding:0 20px;">
+    <div style="font-size:32px; font-weight:900; color:#fff; text-align:center; line-height:1.35;">투자를 잘 했으니까<br>괜찮은 거 아닐까요?</div>
+    <div style="font-size:18px; color:#F07040; text-align:center; line-height:1.5; margin-top:12px;">— 당신 돈이었는데요</div>
+    <div style="font-size:14px; color:#666; text-align:center; line-height:1.5; margin-top:16px;">"Great returns don't<br>make great ethics."</div>
+  </div>
+  <div style="flex:1;"></div>
+  <div style="font-size:12px; color:#555; text-align:center; margin-bottom:4px;">본 콘텐츠는 특정 자산의 매수매도 추천이 아닙니다</div>
+  <div class="logo-row" style="border-top:1px solid #333;">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" class="logo-icon" alt="Soonsal"/>
+    <span class="logo-text" style="color:#aaa;">Soonsal</span>
+  </div>
+</div>
+
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "d6a07341c2bf438d8ef7f9209a0e9a81"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

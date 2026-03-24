@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="soonsal-ig-caption" content="트럼프-시진핑 정상회담 전격 연기 💥 부산에서 악수한 지 5개월 만인데... 관세 휴전도 불투명, 오늘 코스피 사이드카 발동에 환율 1,510 돌파. 싸우는 건 쟤들인데 피 흘리는 건 우리 ㅠ 여러분 계좌는 괜찮아요? 👇">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e8e8e8;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 10px;
+    font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+    gap: 32px;
+  }
+
+  .card {
+    width: 540px;
+    height: 675px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .cover-chat-card {
+    background: #B2C7D9;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover-chat-header {
+    background: rgba(0,0,0,0.12);
+    padding: 14px 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cover-chat-left { display: flex; align-items: center; gap: 8px; }
+  .cover-chat-back { font-size: 20px; color: #3a3a3a; font-weight: 700; }
+  .cover-chat-name { font-size: 18px; font-weight: 700; color: #1a1a1a; }
+  .cover-chat-count { font-size: 15px; color: #555; }
+  .cover-badge-row { display: flex; align-items: center; gap: 8px; padding: 0 20px; }
+  .cover-badge {
+    background: #E55A00;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .cover-date {
+    font-size: 13px;
+    color: rgba(0,0,0,0.4);
+  }
+  .cover-title-area {
+    padding: 20px 20px 12px;
+  }
+  .cover-bubble {
+    background: #fff;
+    padding: 24px 28px;
+    border-radius: 16px;
+    max-width: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
+  .cover-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: #111;
+    line-height: 1.3;
+    word-break: keep-all;
+  }
+  .cover-title .em { color: #E55A00; }
+  .cover-subtitle {
+    font-size: 19px;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .cover-etf-tickers {
+    font-size: 13px;
+    color: #E55A00;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-top: 2px;
+  }
+
+  .chat-card {
+    background: #B2C7D9;
+    display: flex;
+    flex-direction: column;
+  }
+  .chat-header {
+    background: rgba(0,0,0,0.12);
+    padding: 14px 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .chat-header-left { display: flex; align-items: center; gap: 8px; }
+  .chat-header-back { font-size: 20px; color: #3a3a3a; font-weight: 700; }
+  .chat-room-name { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+  .chat-room-count { font-size: 14px; color: #555; }
+  .chat-page-num { font-size: 12px; color: #666; font-weight: 500; }
+
+  .chat-body {
+    flex: 1;
+    padding: 12px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow: hidden;
+  }
+
+  .msg { display: flex; align-items: flex-start; gap: 8px; max-width: 88%; }
+  .avatar {
+    width: 36px; height: 36px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .avatar-soonsal { background: #E55A00; }
+  .avatar-jun     { background: #2980B9; }
+  .avatar-andrew  { background: #C0392B; }
+  .avatar-sean    { background: #27AE60; }
+
+  .msg-content { display: flex; flex-direction: column; gap: 3px; }
+  .msg-name { font-size: 14px; font-weight: 600; color: rgba(0,0,0,0.55); padding-left: 2px; }
+  .msg-row { display: flex; align-items: flex-end; gap: 5px; }
+  .bubble {
+    background: #fff;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #111;
+    max-width: 350px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .bubble strong { font-weight: 700; }
+  .bubble .num { color: #C0392B; font-weight: 700; }
+  .msg-time { font-size: 12px; color: rgba(0,0,0,0.35); white-space: nowrap; flex-shrink: 0; }
+
+  .bubble-img {
+    background: #1a1a1a;
+    padding: 6px 8px;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 310px;
+  }
+  .bubble-img img, .bubble-img svg { display: block; width: 100%; border-radius: 12px; }
+
+  .date-divider { text-align: center; padding: 10px 0 6px; }
+  .date-divider span {
+    background: rgba(0,0,0,0.15);
+    color: #fff;
+    font-size: 11px; font-weight: 500;
+    padding: 4px 12px; border-radius: 12px;
+  }
+
+  .chat-input-bar {
+    background: rgba(0,0,0,0.08);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .chat-input-fake {
+    flex: 1;
+    background: #fff;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #999;
+  }
+  .chat-send-btn {
+    width: 32px; height: 32px;
+    background: #F7C948;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  .inline-closing {
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 24px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .inline-closing-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .inline-closing-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .inline-closing-name {
+    font-size: 14px;
+    font-weight: 900;
+    color: rgba(0,0,0,0.5);
+  }
+  .inline-closing-handle {
+    font-size: 11px;
+    color: rgba(0,0,0,0.3);
+  }
+  .inline-closing-cta {
+    font-size: 11px;
+    color: #E55A00;
+    font-weight: 700;
+  }
+  .inline-closing-disclaimer {
+    font-size: 9px;
+    color: rgba(0,0,0,0.25);
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     1p — 커버+첫채팅 통합
+     ================================================================ -->
+<div class="card cover-chat-card">
+  <div class="cover-chat-header">
+    <div class="cover-chat-left">
+      <span class="cover-chat-back">‹</span>
+      <span class="cover-chat-name">순살 단톡방</span>
+      <span class="cover-chat-count">4</span>
+    </div>
+    <div class="cover-badge-row">
+      <span class="cover-badge">NEW</span>
+      <span class="cover-date">2026.03.23</span>
+    </div>
+  </div>
+
+  <div class="cover-title-area">
+    <div class="cover-bubble">
+      <div class="cover-title">
+        🤝 미중이 기싸움하는데<br>
+        <span class="em">맞는 건 한국</span>
+      </div>
+      <div class="cover-subtitle">트럼프-시진핑 정상회담 전격 연기</div>
+      <div class="cover-etf-tickers">FXI · EWY · SMH · KWEB</div>
+    </div>
+  </div>
+
+  <div class="chat-body" style="padding-top: 0;">
+    <div class="date-divider"><span>2026년 3월 23일 월요일</span></div>
+
+    <!-- ①뉴스투하 -->
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">트럼프가 시진핑한테 정상회담 연기 요청함. 1/8 방중이었는데</div>
+          <span class="msg-time">오전 9:12</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <div class="msg-row">
+          <div class="bubble">부산에서 악수한 지 5개월 만</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ②가벼운반응 -->
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">이란전쟁 때문이라며? 금방 만나겠지</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+
+<!-- ================================================================
+     2p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">2/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble"><strong>진짜 이유는 따로 있음. 둘 다 안 만나는 게 유리한 게임</strong></div>
+          <span class="msg-time">오전 9:14</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">?? 뭔 소리야 둘 다 원해서 잡은 회담 아니었음?</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">트럼프 입장. 빈손으로 베이징 가면 끝남. 중간선거 전에 보잉 500대 주문, 농산물 대량 구매 같은 딜 확보 못 하면 정치적 자살</div>
+          <span class="msg-time">오전 9:15</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <div class="msg-row">
+          <div class="bubble">근데 준비가 안 됐어. 1월부터 실무 그룹 동력을 잃었고 USTR이 '관리무역' 밀어붙이다가 품목 선정에서 막혔음</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     3p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">3/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <div class="msg-row">
+          <div class="bubble">시진핑 입장. 원래부터 4월 말 이후를 원했음. 미국이 3월 말을 밀어붙인 거. 연기해줘서 오히려 감사한 상황</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">ㅋㅋ 그러면 이란전쟁 핑계는 뭔데</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <div class="msg-row">
+          <div class="bubble"><strong>"전쟁 때문에 연기"는 둘 다 편한 명분. 진짜 문제는 부산 합의 이후 아무것도 실행 안 됐다는 것</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">블룸버그도 같은 분석. "양측 모두에게 안도감이 될 수 있다"고</div>
+          <span class="msg-time">오전 9:17</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+  <div class="avatar avatar-sean">션</div>
+  <div class="msg-content">
+    <span class="msg-name">션 (스타트업)</span>
+    <div class="msg-row">
+      <div class="bubble">ㅎㄷㄷ</div>
+    </div>
+  </div>
+</div>
+    <div class="msg">
+  <div class="avatar avatar-andrew">앤</div>
+  <div class="msg-content">
+    <span class="msg-name">앤드류 (운용역)</span>
+    <div class="msg-row">
+      <div class="bubble">아 맞아 그거</div>
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     4p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">4/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <div class="msg-row">
+          <div class="bubble">거기에 트럼프가 호르무즈 봉쇄를 협상 카드로 깔았음. "중국이 원유의 50%를 걸프에서 가져가니까 군함이라도 보내라"</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">회담 연기 + 파병 압박 + 관세 유지. 트럼프식 3종 세트…</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <div class="msg-row">
+          <div class="bubble">중국은? "군함 안 보냄. 즉각 군사 행동 중단하라" 맞불. 딜메이커 vs 시간끌기 장인의 기싸움</div>
+          <span class="msg-time">오전 9:19</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+  <div class="avatar avatar-sean">션</div>
+  <div class="msg-content">
+    <span class="msg-name">션 (스타트업)</span>
+    <div class="msg-row">
+      <div class="bubble">ㅎㄷㄷ</div>
+    </div>
+  </div>
+</div>
+    <div class="msg">
+  <div class="avatar avatar-andrew">앤</div>
+  <div class="msg-content">
+    <span class="msg-name">앤드류 (운용역)</span>
+    <div class="msg-row">
+      <div class="bubble">아 미쳤다 진짜</div>
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     5p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">5/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble-img">
+            <svg width="300" height="195" viewBox="0 0 300 195" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="195" rx="8" fill="#1a1a1a"></rect>
+              <text x="150" y="22" text-anchor="middle" fill="#666" font-size="12" font-weight="700" font-family="Noto Sans KR">🤝 부산 회담 그 후</text>
+              <rect x="10" y="34" width="135" height="70" rx="8" fill="#1E3A2F"></rect>
+              <text x="77" y="53" text-anchor="middle" fill="#4ADE80" font-size="11" font-weight="700" font-family="Noto Sans KR">📋 PLAN</text>
+              <text x="77" y="72" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="Noto Sans KR">악수 → 관세 인하</text>
+              <text x="77" y="92" text-anchor="middle" fill="#ccc" font-size="12" font-family="Noto Sans KR">→ 무역 회복 🎉</text>
+              <rect x="155" y="34" width="135" height="70" rx="8" fill="#3A1E1E"></rect>
+              <text x="222" y="53" text-anchor="middle" fill="#F87171" font-size="11" font-weight="700" font-family="Noto Sans KR">💀 REALITY</text>
+              <text x="222" y="72" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="Noto Sans KR">악수 → 5개월 침묵</text>
+              <text x="222" y="92" text-anchor="middle" fill="#ccc" font-size="12" font-family="Noto Sans KR">→ 전쟁 핑계 연기</text>
+              <line x1="20" y1="120" x2="280" y2="120" stroke="#333" stroke-width="1"></line>
+              <text x="150" y="140" text-anchor="middle" fill="#666" font-size="12" font-weight="700" font-family="Noto Sans KR">그리고 한국은?</text>
+              <rect x="40" y="150" width="220" height="34" rx="8" fill="#3A2A1E"></rect>
+              <text x="150" y="172" text-anchor="middle" fill="#F59E0B" font-size="14" font-weight="900" font-family="Noto Sans KR">🇰🇷 장소 빌려줬는데 관세 그대로</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">ㅋㅋㅋㅋ 부산 장소 빌려줬는데 돌아온 건 관세</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <div class="msg-row">
+          <div class="bubble">잠깐 근데 쟤들 기싸움이 왜 우리한테 옴? 오늘 계좌 열었다가 닫았음</div>
+          <span class="msg-time">오전 9:21</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+  <div class="avatar avatar-andrew">앤</div>
+  <div class="msg-content">
+    <span class="msg-name">앤드류 (운용역)</span>
+    <div class="msg-row">
+      <div class="bubble">에이 설마</div>
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     6p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">6/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble"><strong>미중 관세 휴전 연장 불투명 = 한국 수출 직격. 오늘 코스피 사이드카 발동, 삼성전자 <span class="num">18만원대</span>, 환율 <span class="num">1,510</span> 돌파</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">관세 연장 안 되면 반도체·희토류 공급망도 흔들림. EWY −4% 빠진 거 봤을 거</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">하이닉스 95만원도 깨졌고 외인이 2.6조 빠져나감</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <div class="msg-row">
+          <div class="bubble">싸우는 건 미국이랑 중국인데 피 흘리는 건 내 계좌 ㅠ</div>
+          <span class="msg-time">오전 9:23</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     7p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">7/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">설상가상으로 트럼프가 어제 이란한테 "48시간 내 호르무즈 안 열면 발전소 초토화" 최후통첩 날림</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <div class="msg-row">
+          <div class="bubble">미중 기싸움에 중동 확전까지. 한국이 제일 먼저 맞는 구조…</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">그러게 요즘 미국이랑 중국 사이에서 제일 안전한 자산이 뭔지 진지하게 고민되네</div>
+          <span class="msg-time">오전 9:25</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+  <div class="avatar avatar-sean">션</div>
+  <div class="msg-content">
+    <span class="msg-name">션 (스타트업)</span>
+    <div class="msg-row">
+      <div class="bubble">아 이건 좀</div>
+    </div>
+  </div>
+</div>
+    <div class="msg">
+  <div class="avatar avatar-andrew">앤</div>
+  <div class="msg-content">
+    <span class="msg-name">앤드류 (운용역)</span>
+    <div class="msg-row">
+      <div class="bubble">아 진짜 ㅋㅋㅋ</div>
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     8p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">8/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">현금이요 현금. 원화 말고 달러로 ㅋ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="inline-closing">
+      <img class="inline-closing-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살">
+      <div class="inline-closing-text">
+        <div class="inline-closing-name">순살짤 <span class="inline-closing-handle">@soonsal.zzal</span></div>
+        <div class="inline-closing-cta">팔로우하면 매일 단톡방 엿볼 수 있음</div>
+        <div class="inline-closing-disclaimer">창작 콘텐츠이며 매수·매도 추천이 아닙니다 | 모든 투자 판단과 책임은 본인에게 있습니다</div>
+      </div>
+    </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+
+</body>
+</html>

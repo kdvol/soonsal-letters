@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="soonsal-ig-caption" content="KOSPI -6.49% 찍고 마감했는데, 트럼프 유예는 한국장 끝나고 나옴 💀 미국은 +1.15% 파티... 여러분은 어제 뭐 했어요? 👇">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e8e8e8;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 10px;
+    font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+    gap: 32px;
+  }
+
+  .card {
+    width: 540px;
+    height: 675px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .cover-chat-card {
+    background: #B2C7D9;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover-chat-header {
+    background: rgba(0,0,0,0.12);
+    padding: 14px 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cover-chat-left { display: flex; align-items: center; gap: 8px; }
+  .cover-chat-back { font-size: 20px; color: #3a3a3a; font-weight: 700; }
+  .cover-chat-name { font-size: 18px; font-weight: 700; color: #1a1a1a; }
+  .cover-chat-count { font-size: 15px; color: #555; }
+  .cover-badge-row { display: flex; align-items: center; gap: 8px; padding: 0 20px; }
+  .cover-badge {
+    background: #E55A00;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .cover-date {
+    font-size: 13px;
+    color: rgba(0,0,0,0.4);
+  }
+  .cover-title-area {
+    padding: 20px 20px 12px;
+  }
+  .cover-bubble {
+    background: #fff;
+    padding: 24px 28px;
+    border-radius: 16px;
+    max-width: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
+  .cover-title {
+    font-size: 52px;
+    font-weight: 900;
+    color: #111;
+    line-height: 1.3;
+    word-break: keep-all;
+  }
+  .cover-title .em { color: #E55A00; }
+  .cover-etf-tickers {
+    font-size: 13px;
+    color: #E55A00;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-top: 6px;
+  }
+
+  .chat-card {
+    background: #B2C7D9;
+    display: flex;
+    flex-direction: column;
+  }
+  .chat-header {
+    background: rgba(0,0,0,0.12);
+    padding: 14px 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .chat-header-left { display: flex; align-items: center; gap: 8px; }
+  .chat-header-back { font-size: 20px; color: #3a3a3a; font-weight: 700; }
+  .chat-room-name { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+  .chat-room-count { font-size: 14px; color: #555; }
+  .chat-page-num { font-size: 12px; color: #666; font-weight: 500; }
+
+  .chat-body {
+    flex: 1;
+    padding: 12px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .msg { display: flex; align-items: flex-start; gap: 8px; max-width: 88%; }
+  .avatar {
+    width: 36px; height: 36px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .avatar-soonsal { background: #E55A00; }
+  .avatar-jun     { background: #2980B9; }
+  .avatar-andrew  { background: #C0392B; }
+  .avatar-sean    { background: #27AE60; }
+
+  .msg-content { display: flex; flex-direction: column; gap: 3px; }
+  .msg-name { font-size: 14px; font-weight: 600; color: rgba(0,0,0,0.55); padding-left: 2px; }
+  .msg-row { display: flex; align-items: flex-end; gap: 5px; }
+  .bubble {
+    background: #fff;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #111;
+    max-width: 350px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .bubble strong { font-weight: 700; }
+  .bubble .num { color: #C0392B; font-weight: 700; }
+  .bubble .num-green { color: #27AE60; font-weight: 700; }
+  .msg-time { font-size: 12px; color: rgba(0,0,0,0.35); white-space: nowrap; flex-shrink: 0; }
+
+  .bubble-img {
+    background: #1a1a1a;
+    padding: 6px 8px;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 310px;
+  }
+
+  .date-divider { text-align: center; padding: 10px 0 6px; }
+  .date-divider span {
+    background: rgba(0,0,0,0.15);
+    color: #fff;
+    font-size: 11px; font-weight: 500;
+    padding: 4px 12px; border-radius: 12px;
+  }
+
+  .chat-input-bar {
+    background: rgba(0,0,0,0.08);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .chat-input-fake {
+    flex: 1;
+    background: #fff;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #999;
+  }
+  .chat-send-btn {
+    width: 32px; height: 32px;
+    background: #F7C948;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  .inline-closing {
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 24px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .inline-closing-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .inline-closing-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .inline-closing-name {
+    font-size: 14px;
+    font-weight: 900;
+    color: rgba(0,0,0,0.5);
+  }
+  .inline-closing-handle {
+    font-size: 11px;
+    color: rgba(0,0,0,0.3);
+  }
+  .inline-closing-cta {
+    font-size: 11px;
+    color: #E55A00;
+    font-weight: 700;
+  }
+  .inline-closing-disclaimer {
+    font-size: 9px;
+    color: rgba(0,0,0,0.25);
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     1p — 커버+첫채팅 통합 (cover-chat-card)
+     ================================================================ -->
+<div class="card cover-chat-card">
+  <div class="cover-chat-header">
+    <div class="cover-chat-left">
+      <span class="cover-chat-back">‹</span>
+      <span class="cover-chat-name">순살 단톡방</span>
+      <span class="cover-chat-count">4</span>
+    </div>
+    <div class="cover-badge-row">
+      <span class="cover-badge">NEW</span>
+      <span class="cover-date">2026.03.24</span>
+    </div>
+  </div>
+
+  <div class="cover-title-area">
+    <div class="cover-bubble">
+      <div class="cover-title">
+        한국만 <span class="em">뚝배기</span><br>맞은 날
+      </div>
+      <div class="cover-etf-tickers">오늘의 ETF 🛢️ USO · XLE · UUP · SPY · OIH</div>
+    </div>
+  </div>
+
+  <div class="chat-body" style="padding-top: 0;">
+    <div class="date-divider"><span>2026년 3월 24일 화요일</span></div>
+
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">어제 KOSPI <span class="num">-6.49%</span> 찍었는데 미장은 <span class="num-green">+1.15%</span>로 마감함</div>
+          <span class="msg-time">오전 9:12</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">아 진짜 미친 거 아님? 같은 뉴스인데 왜 우리만 맞음??</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     2p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">2/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">토요일에 트럼프가 48시간 최후통첩 날림. 호르무즈 안 열면 이란 발전소 때리겠다고</div>
+          <span class="msg-time">오전 9:13</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">????</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">근데 월요일 아침에 Truth Social에 "5일 유예" 올림. 근데 그게 한국장 마감하고 나온 거야</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">그러니까 한국은 "전쟁 난다" 상태에서 장 마감하고, 미국은 "유예됐네~" 보고 장 시작한 거잖아</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     3p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">3/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">ㅇㅇ 시차 공격 당한 셈. 삼성 <span class="num">-6.42%</span>, 하이닉스 <span class="num">-7.75%</span>. 미국 S&amp;P는 파티 중</div>
+          <span class="msg-time">오전 9:15</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">도랐네 진짜... 같은 뉴스 같은 지구인데 시차 하나로 이렇게 차이남?</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble"><strong>시차만의 문제가 아니야. 한국은 에너지 수입 의존도 92%, 호르무즈 경유 비중 70%+. 같은 전쟁 뉴스에도 미국보다 몇 배 더 흔들리는 구조</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">환율은? 어제 1,500 뚫렸잖아</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     4p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">4/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">원/달러 <span class="num">1,508원</span>. 2009년 이후 17년 만에 최저. 외국인 매도 + LNG 수급 불안 + 전쟁 공포 트리플 콤보</div>
+          <span class="msg-time">오전 9:17</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">아 직구비 ㅋㅋㅋ 1,500원이면 아이폰 240만원 시대임</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble-img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="260" height="140" viewBox="0 0 260 140">
+              <rect fill="#1a1a1a" width="260" height="140" rx="8"></rect>
+              <text x="80" y="36" text-anchor="middle" fill="#C0392B" font-size="28" font-weight="900" font-family="'Noto Sans KR', sans-serif">-6.49%</text>
+              <text x="180" y="36" text-anchor="middle" fill="#27AE60" font-size="28" font-weight="900" font-family="'Noto Sans KR', sans-serif">+1.15%</text>
+              <text x="80" y="58" text-anchor="middle" fill="#888" font-size="11" font-family="'Noto Sans KR', sans-serif">KOSPI</text>
+              <text x="180" y="58" text-anchor="middle" fill="#888" font-size="11" font-family="'Noto Sans KR', sans-serif">S&amp;P 500</text>
+              <line x1="40" y1="72" x2="220" y2="72" stroke="#333"></line>
+              <text x="130" y="98" text-anchor="middle" fill="#fff" font-size="15" font-weight="700" font-family="'Noto Sans KR', sans-serif">같은 뉴스, 다른 세계 🌏</text>
+              <text x="130" y="122" text-anchor="middle" fill="#555" font-size="11" font-family="'Noto Sans KR', sans-serif">시차 하나 차이로 롤코 vs 파티</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">ㅋㅋㅋㅋ 리얼</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     5p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">5/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">더 웃긴 건 유가도 마찬가지야. Brent가 장중 $114 찍었다가 유예 뜨고 $96까지 급락. 72시간 만에 18불 스윙</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">그러면 미장은 유가 급락 호재로 파티하고, 우리는 유가 급등 악재로 맞고 마감한 거잖아</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble"><strong>정확함. 한국 시장은 "전쟁 프리미엄"을 풀로 먹고, 미국 시장은 "유예 디스카운트"를 먹은 거야. 같은 뉴스의 양면</strong></div>
+          <span class="msg-time">오전 9:20</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+  <div class="avatar avatar-sean">션</div>
+  <div class="msg-content">
+    <span class="msg-name">션 (스타트업)</span>
+    <div class="msg-row">
+      <div class="bubble">ㄹㅇㅋㅋ</div>
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     6p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">6/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-jun">준</div>
+      <div class="msg-content">
+        <span class="msg-name">준 (리서치)</span>
+        <div class="msg-row">
+          <div class="bubble">골드만이 Brent 3~4월 평균 $110 전망 올렸는데, 정상화 10주 넘으면 2008년 $147도 깨질 수 있다고 봄</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">$147이면 기름값 3천원 시대 오는 거 아님???</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">그래서 지금 USO나 XLE 탄 사람들은 롤코 타는 중이야. OIH도 마찬가지고. 유가가 SNS 포스트 하나에 좌우되는 시장</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">환율 헷지는? UUP 들고 있으면 이 구간에서 좀 버티는 거 아닌가</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     7p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">7/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">달러 강세 구간이니까 UUP 가는 논리는 있는데, 1,500원이면 이미 많이 올라와 있는 거라 진입 타이밍이 애매함</div>
+          <span class="msg-time">오전 9:23</span>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">나 걍 SPY 물타기 해야 되나... 아니면 현금 들고 기다려야 되나...</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-andrew">앤</div>
+      <div class="msg-content">
+        <span class="msg-name">앤드류 (운용역)</span>
+        <div class="msg-row">
+          <div class="bubble">물타기 할 때 환율 1,500인 거 잊지 마 ㅋㅋ 미장 올라도 환차손으로 까일 수 있음</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+  <div class="avatar avatar-sean">션</div>
+  <div class="msg-content">
+    <span class="msg-name">션 (스타트업)</span>
+    <div class="msg-row">
+      <div class="bubble">ㅋㅋ 웃기네</div>
+    </div>
+  </div>
+</div>
+    <div class="msg">
+  <div class="avatar avatar-andrew">앤</div>
+  <div class="msg-content">
+    <span class="msg-name">앤드류 (운용역)</span>
+    <div class="msg-row">
+      <div class="bubble">ㄹㅇ?</div>
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+<!-- ================================================================
+     8p
+     ================================================================ -->
+<div class="card chat-card">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="chat-header-back">‹</span>
+      <span class="chat-room-name">순살 단톡방</span>
+      <span class="chat-room-count">4</span>
+    </div>
+    <span class="chat-page-num">8/8</span>
+  </div>
+
+  <div class="chat-body" style="padding-top:16px;">
+
+    <div class="msg">
+      <div class="avatar avatar-soonsal">순</div>
+      <div class="msg-content">
+        <span class="msg-name">순살 (홍콩IB)</span>
+        <div class="msg-row">
+          <div class="bubble">그러게 다들 어제 장 보면서 뭐 했는지 궁금하네. 손절했는지, 물탔는지, 아니면 그냥 안 봤는지</div>
+        </div>
+      </div>
+    </div>
+    <div class="msg">
+      <div class="avatar avatar-sean">션</div>
+      <div class="msg-content">
+        <span class="msg-name">션 (스타트업)</span>
+        <div class="msg-row">
+          <div class="bubble">안 봤다가 정답이었을듯 ㅋㅋㅋㅋ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="inline-closing">
+      <img class="inline-closing-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살">
+      <div class="inline-closing-text">
+        <div class="inline-closing-name">순살짤 <span class="inline-closing-handle">@soonsal.zzal</span></div>
+        <div class="inline-closing-cta">팔로우하면 매일 단톡방 엿볼 수 있음</div>
+        <div class="inline-closing-disclaimer">창작 콘텐츠이며 매수·매도 추천이 아닙니다 | 모든 투자 판단과 책임은 본인에게 있습니다</div>
+      </div>
+    </div>
+
+  <div class="chat-input-bar">
+    <div class="chat-input-fake">메시지 입력</div>
+    <div class="chat-send-btn">▶</div>
+  </div>
+</div>
+
+
+</body>
+</html>

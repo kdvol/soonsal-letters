@@ -18,7 +18,7 @@
   --white: #fff;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--bg); color:var(--text); font-family:'Noto Sans KR',sans-serif; line-height:1.7; }
+body { background:var(--bg); color:var(--text); font-family:'Noto Sans KR',sans-serif; line-height:1.7; word-break:keep-all; overflow-wrap:break-word; }
 .page {
   max-width:1000px; margin:0 auto;
   min-height:100vh; padding:80px 60px;
@@ -79,7 +79,7 @@ h3 { font-size:20px; font-weight:700; margin-bottom:16px; color:var(--white); }
 .pricing-card.featured::before { content:'RECOMMENDED'; position:absolute; top:-12px; left:24px;
   background:var(--accent); color:#000; font-size:11px; font-weight:700; padding:4px 12px; border-radius:10px; }
 .pricing-card .tier-name { font-size:18px; font-weight:700; margin-bottom:4px; }
-.pricing-card .tier-price { font-family:'Space Grotesk',monospace; font-size:36px; font-weight:700; color:var(--accent); margin:12px 0; }
+.pricing-card .tier-price { font-family:'Noto Sans KR','Space Grotesk',monospace; font-size:28px; font-weight:700; color:var(--accent); margin:12px 0; }
 .pricing-card .tier-price .unit { font-size:14px; color:var(--text-dim); font-weight:400; }
 .pricing-card .tier-detail { font-size:13px; color:var(--text-dim); margin-bottom:16px; }
 .pricing-card ul { list-style:none; }
@@ -264,7 +264,7 @@ p { margin-bottom:16px; font-size:15px; }
   </div>
   <div class="meta">
     <strong>순살 (Soonsal)</strong> · 2026<br>
-    문의: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dfabbabeb29facb0b0b1acbeb3f1bcb0b2">[email&#160;protected]</a>
+    문의: kd@soonsal.com
   </div>
   <div class="page-num">01</div>
 </div>
@@ -272,7 +272,11 @@ p { margin-bottom:16px; font-size:15px; }
 <!-- PAGE 2: WHO WE ARE -->
 <div class="page">
   <h2><span class="num">01</span>채널 소개</h2>
-  <p>순살은 복잡한 글로벌 금융을 <strong>"순살만 쏙쏙 발라"</strong> 알기 쉽게 전달하는 한국의 프리미엄 금융 미디어입니다. 모건스탠리 홍콩 출신 에디터가 직접 큐레이션하며, 구매력 있는 액티브 투자자가 집중력 있게 소비하는 채널입니다.</p>
+  <ul style="list-style:none; padding:0; margin:0 0 16px;">
+    <li style="padding:6px 0; font-size:15px;">→ 복잡한 글로벌 금융을 <strong>"순살만 쏙쏙 발라"</strong> 알기 쉽게 전달하는 프리미엄 금융 미디어</li>
+    <li style="padding:6px 0; font-size:15px;">→ 모건스탠리 홍콩 출신 에디터가 직접 큐레이션</li>
+    <li style="padding:6px 0; font-size:15px;">→ 구매력 있는 액티브 투자자가 집중력 있게 소비하는 채널</li>
+  </ul>
 
   <div class="stat-grid">
     <div class="stat-card">
@@ -330,7 +334,7 @@ p { margin-bottom:16px; font-size:15px; }
 <!-- PAGE 3: AD PRODUCTS -->
 <div class="page">
   <h2><span class="num">02</span>광고 상품 구성</h2>
-  <p>광고가 아닌 <strong>콘텐츠</strong>로 소비되도록, 순살 에디토리얼 팀이 직접 기획·제작합니다.</p>
+  <p>→ 광고가 아닌 <strong>콘텐츠</strong>로 소비되도록, 순살 에디토리얼 팀이 직접 기획·제작</p>
 
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table class="product-table">
     <thead>
@@ -376,9 +380,11 @@ p { margin-bottom:16px; font-size:15px; }
 
   <div class="col-box" style="margin-top:20px; border-color:var(--accent); border-style:dashed;">
     <h4>📈 도달은 올라가는 중, 단가는 지금이 가장 쌉니다</h4>
-    <p class="mb-0" style="font-size:14px;">현재 오픈율 ~25% — 재개 1개월 만에 빠르게 기존 수치에 근접 중 → <strong>35%+ 조기 도달 전망</strong><br>
-    현 구독자 기준으로도 오픈율 35% 달성 시 회당 <strong>25K+ opens</strong> — 구독자 풀 자체가 지속 확대 중이라 실질 도달은 이 이상으로 성장 예정<br>
-    <span style="color:var(--accent);">현재 단가 기준 연간 계약 → price lock-in 효과</span></p>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li style="padding:4px 0; font-size:14px;">→ 현재 오픈율 ~25% — 재개 1개월 만에 빠르게 기존 수치에 근접 중</li>
+      <li style="padding:4px 0; font-size:14px;">→ 오픈율 35% 달성 시 회당 <strong>25K+ opens</strong> — 구독자 풀 자체가 지속 확대 중</li>
+      <li style="padding:4px 0; font-size:14px; color:var(--accent);">→ 현재 단가 기준 연간 계약 = price lock-in 효과</li>
+    </ul>
   </div>
 
   <p class="dim small" style="margin-top:16px;">* 연간 패키지 계약 시 카드뉴스 <span style="text-decoration:line-through;color:var(--text-dim);">₩7,000,000</span> → <strong style="color:var(--accent);">₩5,000,000</strong>/건 할인 적용 · 모든 단가는 VAT 별도</p>
@@ -488,8 +494,8 @@ p { margin-bottom:16px; font-size:15px; }
   <div class="pricing-grid">
     <div class="pricing-card">
       <div class="tier-name">Standard Partner</div>
-      <div class="tier-price">₩180M <span class="unit">/ 연간</span></div>
-      <div class="tier-detail"><span style="text-decoration:line-through;color:var(--text-dim);">개별 합산 ₩184M</span> → <strong style="color:var(--accent);">2% 절감</strong></div>
+      <div class="tier-price">180백만원 <span class="unit">/ 연간</span></div>
+      <div class="tier-detail"><span style="text-decoration:line-through;color:var(--text-dim);">개별 합산 184백만원</span> → <strong style="color:var(--accent);">2% 절감</strong></div>
       <ul>
         <li>상단 배너 × 48회/년 (매주)</li>
         <li>브랜디드 스토리 × 12회/년 (월 1회)</li>
@@ -500,8 +506,8 @@ p { margin-bottom:16px; font-size:15px; }
     </div>
     <div class="pricing-card featured">
       <div class="tier-name">Premium Partner</div>
-      <div class="tier-price">₩230M <span class="unit">/ 연간</span></div>
-      <div class="tier-detail"><span style="text-decoration:line-through;color:var(--text-dim);">개별 합산 ₩324M</span> → <strong style="color:var(--accent);">29% 절감</strong></div>
+      <div class="tier-price">230백만원 <span class="unit">/ 연간</span></div>
+      <div class="tier-detail"><span style="text-decoration:line-through;color:var(--text-dim);">개별 합산 324백만원</span> → <strong style="color:var(--accent);">29% 절감</strong></div>
       <ul>
         <li>상단 배너 × 48회/년 (매주)</li>
         <li>브랜디드 스토리 × 24회/년 (격주) <span style="color:var(--accent);">▲2배</span></li>
@@ -516,8 +522,11 @@ p { margin-bottom:16px; font-size:15px; }
 
   <div class="col-box mt-32">
     <h4>카테고리 독점 정책</h4>
-    <p class="mb-0" style="font-size:14px;">구독자 경험 보호를 위해 동일 업종 내 <strong>최대 3개사</strong>까지만 파트너십을 체결합니다.<br>
-    Premium 파트너에게 우선 노출권이 부여되며, 슬롯 소진 시 조기 마감될 수 있습니다.</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li style="padding:4px 0; font-size:14px;">→ 구독자 경험 보호를 위해 동일 업종 내 <strong>최대 3개사</strong>까지만 파트너십 체결</li>
+      <li style="padding:4px 0; font-size:14px;">→ Premium 파트너에게 우선 노출권 부여</li>
+      <li style="padding:4px 0; font-size:14px;">→ 슬롯 소진 시 조기 마감 가능</li>
+    </ul>
   </div>
 
   <p class="dim small mt-32">* 모든 단가는 VAT 별도 · 결제 조건: 분기별 선불</p>
@@ -527,34 +536,51 @@ p { margin-bottom:16px; font-size:15px; }
 <!-- PAGE 5: FIT -->
 <div class="page">
   <h2><span class="num">04</span>파트너 적합 카테고리</h2>
-  <p>순살 구독자의 관심사와 소비 패턴에 기반해, 아래 카테고리의 기업과 가장 높은 시너지를 기대합니다.</p>
+  <p>→ 순살 구독자의 관심사와 소비 패턴에 기반한 최적 파트너 카테고리</p>
 
   <div class="two-col">
     <div class="col-box">
       <h4>🏦 증권사 · 자산운용사</h4>
-      <p style="font-size:14px; margin-bottom:0;">해외주식 직접투자, ETF, 파생상품 등 글로벌 투자에 관심이 높은 구독자 특성상 <strong>증권사·운용사와의 fit이 가장 강합니다.</strong> 기존 대형 금융사와의 파트너십 실적이 있으며, 현재 복수의 금융사와 협의가 진행 중입니다.</p>
+      <ul style="list-style:none; padding:0; margin:0; font-size:14px;">
+        <li style="padding:3px 0;">→ 해외주식·ETF·파생상품 등 글로벌 투자 관심 높은 구독자</li>
+        <li style="padding:3px 0;">→ <strong>증권사·운용사와의 fit이 가장 강함</strong></li>
+        <li style="padding:3px 0;">→ 대형 금융사 파트너십 실적 보유</li>
+      </ul>
     </div>
     <div class="col-box">
       <h4>💳 핀테크 · 금융 플랫폼</h4>
-      <p style="font-size:14px; margin-bottom:0;">모바일 중심의 투자·결제 플랫폼과 구독자층이 정확히 겹칩니다. 신규 서비스 런칭, 이벤트 프로모션 등에 효과적인 채널입니다.</p>
+      <ul style="list-style:none; padding:0; margin:0; font-size:14px;">
+        <li style="padding:3px 0;">→ 모바일 투자·결제 플랫폼과 구독자층이 정확히 일치</li>
+        <li style="padding:3px 0;">→ 신규 서비스 런칭·이벤트 프로모션에 효과적</li>
+      </ul>
     </div>
     <div class="col-box">
       <h4>🥃 프리미엄 주류 · 시계</h4>
-      <p style="font-size:14px; margin-bottom:0;">고소득 전문직 비중이 높은 구독자 특성에 맞는 프리미엄 라이프스타일 카테고리. 글로벌 주류·워치 브랜드의 한국 디지털 마케팅 채널로서 높은 가치를 제공합니다.</p>
+      <ul style="list-style:none; padding:0; margin:0; font-size:14px;">
+        <li style="padding:3px 0;">→ 고소득 전문직 비중 높은 구독자에 최적</li>
+        <li style="padding:3px 0;">→ 글로벌 주류·워치 브랜드의 한국 디지털 마케팅 채널</li>
+      </ul>
     </div>
     <div class="col-box">
       <h4>🚗 프리미엄 모빌리티 · 카드</h4>
-      <p style="font-size:14px; margin-bottom:0;">프리미엄 자동차, PLCC/프리미엄 카드 등 고관여·고단가 의사결정에 영향을 주는 콘텐츠 환경. 브랜드 인지도와 리드 확보 모두에 효과적입니다.</p>
+      <ul style="list-style:none; padding:0; margin:0; font-size:14px;">
+        <li style="padding:3px 0;">→ 프리미엄 자동차, PLCC/프리미엄 카드 등 고관여 카테고리</li>
+        <li style="padding:3px 0;">→ 브랜드 인지도 + 리드 확보 모두에 효과적</li>
+      </ul>
     </div>
     <div class="col-box" style="grid-column: 1 / -1;">
       <h4>🤖 빅테크 · AI · B2B SaaS</h4>
-      <p style="font-size:14px; margin-bottom:0;">금융·테크 업계 의사결정자 비중이 높은 구독자 특성상, 기업용 AI·클라우드·SaaS 플랫폼의 한국 시장 브랜딩 채널로 적합합니다. 전환(CTA)보다 인지도·고려도(consideration) 확보에 강점이 있는 채널 특성과 맞닿아 있습니다.</p>
+      <ul style="list-style:none; padding:0; margin:0; font-size:14px;">
+        <li style="padding:3px 0;">→ 금융·테크 업계 의사결정자 비중 높은 구독자</li>
+        <li style="padding:3px 0;">→ 기업용 AI·클라우드·SaaS의 한국 시장 브랜딩 채널로 적합</li>
+        <li style="padding:3px 0;">→ 인지도·고려도(consideration) 확보에 강점</li>
+      </ul>
     </div>
   </div>
 
   <div class="quote-block mt-32">
     "기존 대형 금융사 파트너십을 통해 브랜디드 콘텐츠 제작·운영 역량이 검증되었으며, 현재 복수의 카테고리에서 파트너십을 확대하고 있습니다."<br><br>
-    <span style="font-size:14px; color:var(--text-dim);">기존 파트너사: <strong style="color:var(--text);">미래에셋자산운용, 한국투자증권, NH증권, 신한카드, BC카드, 네이버, 두나무</strong></span>
+    <span style="font-size:14px; color:var(--text-dim);">기존 파트너사: <strong style="color:var(--text);">미래에셋자산운용, 한국투자증권, NH증권, 신한카드, BC카드, 네이버, 두나무</strong> 등</span>
   </div>
   <div class="page-num">05</div>
 </div>
@@ -592,7 +618,7 @@ p { margin-bottom:16px; font-size:15px; }
   <div style="margin-top:48px; padding:32px; background:var(--accent); border-radius:16px; color:#000; text-align:center;">
     <h3 style="color:#000; margin-bottom:12px;">파트너십 문의</h3>
     <p style="font-size:16px; margin-bottom:4px; color:#000;"><strong>KD</strong> · Founder & Editor</p>
-    <p style="font-size:15px; margin-bottom:0; color:#000;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="304455515d70435f5f5e43515c1e535f5d">[email&#160;protected]</a> · 010-9919-1712</p>
+    <p style="font-size:15px; margin-bottom:0; color:#000;">kd@soonsal.com · 010-9919-1712</p>
   </div>
   <div class="page-num">06</div>
 </div>
@@ -605,7 +631,7 @@ p { margin-bottom:16px; font-size:15px; }
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ============================================
 // 설정: 아래 값들을 변경하세요
 // ============================================

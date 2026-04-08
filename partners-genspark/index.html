@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soonsal × Genspark — Partnership Proposal (Confidential)</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Yeseva+One&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface2: #1c1c1c;
+  --border: #2a2a2a;
+  --text: #e8e8e8;
+  --text-dim: #888;
+  --accent: #F38C61;
+  --accent2: #F5A882;
+  --white: #fff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.7; word-break:break-word; overflow-wrap:break-word; }
+.page {
+  max-width:1000px; margin:0 auto;
+  min-height:100vh; padding:80px 60px;
+  page-break-after: always;
+  position: relative;
+}
+.page-num {
+  position:absolute; bottom:40px; right:60px;
+  font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--text-dim);
+}
+
+/* Cover */
+.cover { display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
+.cover h1 { font-family:'Instrument Serif',serif; font-size:56px; font-weight:400; line-height:1.15; margin-bottom:24px; letter-spacing:-1px; }
+.cover h1 span { color:var(--accent); }
+.cover .subtitle { font-size:20px; color:var(--text-dim); font-weight:300; margin-bottom:48px; }
+.cover .meta { font-size:14px; color:var(--text-dim); border-top:1px solid var(--border); padding-top:20px; }
+.cover .meta strong { color:var(--text); }
+.tag { display:inline-block; background:var(--accent); color:#000; font-size:12px; font-weight:700;
+  padding:4px 12px; border-radius:20px; margin-right:8px; margin-bottom:8px; }
+.tag.outline { background:transparent; border:1px solid var(--accent); color:var(--accent); }
+
+/* Section headers */
+h2 { font-family:'Instrument Serif',serif; font-size:32px; font-weight:400; margin-bottom:32px; letter-spacing:-0.5px; }
+h2 .num { color:var(--accent); font-family:'JetBrains Mono',monospace; font-weight:600; margin-right:12px; font-size:22px; }
+h3 { font-size:20px; font-weight:700; margin-bottom:16px; color:var(--white); }
+
+/* Stat grid */
+.stat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin:32px 0; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px; text-align:center; }
+.stat-card .number { font-family:'JetBrains Mono',monospace; font-size:48px; font-weight:700; color:var(--accent); }
+.stat-card .label { font-size:14px; color:var(--text-dim); margin-top:8px; }
+.stat-card .detail { font-size:12px; color:var(--text-dim); margin-top:4px; opacity:0.7; }
+
+/* Two col */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin:24px 0; }
+.col-box { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:28px; }
+.col-box h4 { font-size:16px; font-weight:700; margin-bottom:12px; color:var(--accent); }
+.col-box ul { list-style:none; }
+.col-box li { padding:6px 0; font-size:15px; color:var(--text); border-bottom:1px solid var(--border); }
+.col-box li:last-child { border-bottom:none; }
+.col-box li::before { content:'→ '; color:var(--accent); font-weight:700; }
+
+/* Product table */
+.product-table { width:100%; border-collapse:collapse; margin:24px 0; }
+.product-table th { text-align:left; padding:14px 16px; font-size:13px; font-weight:700;
+  color:var(--accent); text-transform:uppercase; letter-spacing:1px;
+  border-bottom:2px solid var(--accent); }
+.product-table td { padding:14px 16px; font-size:14px; border-bottom:1px solid var(--border); }
+.product-table tr:hover td { background:var(--surface); }
+.product-table .highlight { color:var(--accent); font-weight:700; font-family:'JetBrains Mono',monospace; }
+
+/* Pricing */
+.pricing-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin:32px 0; }
+.pricing-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px; position:relative; }
+.pricing-card.featured { border-color:var(--accent); }
+.pricing-card.featured::before { content:'RECOMMENDED'; position:absolute; top:-12px; left:24px;
+  background:var(--accent); color:#000; font-size:11px; font-weight:700; padding:4px 12px; border-radius:10px; }
+.pricing-card .tier-name { font-size:18px; font-weight:700; margin-bottom:4px; }
+.pricing-card .tier-price { font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; color:var(--accent); margin:12px 0; }
+.pricing-card .tier-price .unit { font-size:14px; color:var(--text-dim); font-weight:400; }
+.pricing-card .tier-detail { font-size:13px; color:var(--text-dim); margin-bottom:16px; }
+.pricing-card ul { list-style:none; }
+.pricing-card li { padding:6px 0; font-size:14px; }
+.pricing-card li::before { content:'✓ '; color:var(--accent); }
+
+/* Quote */
+.quote-block { border-left:4px solid var(--accent); padding:24px 32px; margin:32px 0;
+  background:var(--surface); border-radius:0 16px 16px 0; font-size:18px; font-style:italic; font-weight:300; }
+
+/* Flow */
+.flow-row { display:flex; align-items:center; gap:12px; margin:16px 0; flex-wrap:wrap; }
+.flow-step { background:var(--surface); border:1px solid var(--border); border-radius:12px;
+  padding:16px 20px; font-size:14px; flex:1; min-width:140px; text-align:center; }
+.flow-step .step-num { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent); font-weight:700; }
+.flow-arrow { color:var(--accent); font-size:20px; flex-shrink:0; }
+
+/* Footer bar */
+.footer-bar { background:var(--surface); border-top:1px solid var(--border);
+  padding:24px 60px; text-align:center; font-size:13px; color:var(--text-dim); }
+
+p { margin-bottom:16px; font-size:15px; }
+.dim { color:var(--text-dim); }
+.small { font-size:13px; }
+.mb-0 { margin-bottom:0; }
+.mt-32 { margin-top:32px; }
+.accent { color:var(--accent); }
+
+@media screen and (max-width: 768px) {
+  .page { padding: 32px 20px; min-height: auto; }
+  .page-num { position: static; text-align: right; margin-top: 24px; }
+  .cover h1 { font-size: 32px; }
+  .cover .subtitle { font-size: 16px; }
+  h2 { font-size: 22px; margin-bottom: 20px; }
+  h3 { font-size: 17px; }
+  .stat-grid { grid-template-columns: 1fr; gap: 16px; }
+  .stat-card { padding: 20px; }
+  .stat-card .number { font-size: 32px; }
+  .two-col { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .col-box { padding: 20px; }
+  .product-table { font-size: 12px; }
+  .product-table th, .product-table td { padding: 10px 8px; font-size: 12px; }
+  .pricing-grid { grid-template-columns: 1fr; gap: 20px; }
+  .pricing-card { padding: 24px; }
+  .pricing-card .tier-price { font-size: 28px; }
+  .flow-row { flex-direction: column; gap: 8px; }
+  .flow-step { min-width: auto; width: 100%; }
+  .flow-arrow { transform: rotate(90deg); text-align: center; }
+  p { font-size: 14px; }
+  .small { font-size: 12px; }
+  .footer-bar { padding: 20px; }
+  .quote-block { padding: 16px 20px; font-size: 15px; }
+}
+@media screen and (max-width: 480px) {
+  .page { padding: 24px 16px; }
+  .cover h1 { font-size: 26px; }
+  h2 { font-size: 20px; }
+  .stat-card .number { font-size: 28px; }
+  .pricing-card .tier-price { font-size: 24px; }
+  p { font-size: 13px; }
+}
+@media print {
+  .page { padding:40px; min-height:auto; }
+}
+/* Gate overlay */
+.gate-overlay {
+  position:fixed; inset:0; z-index:9999;
+  background:var(--bg);
+  display:flex; align-items:center; justify-content:center;
+  transition: opacity 0.4s ease;
+}
+.gate-overlay.hidden { opacity:0; pointer-events:none; }
+.gate-box {
+  background:var(--surface); border:1px solid var(--border); border-radius:20px;
+  padding:48px 36px; max-width:400px; width:90%; text-align:center;
+}
+.gate-box p { font-size:14px; color:var(--text-dim); margin-bottom:20px; }
+.gate-logo { width:80px; height:80px; object-fit:contain; border-radius:16px; display:block; margin:0 auto 16px; }
+.gate-input {
+  display:block; width:100%; padding:12px 16px; margin-bottom:12px;
+  background:var(--surface2); border:1px solid var(--border); border-radius:10px;
+  color:var(--text); font-size:14px; font-family:'DM Sans',sans-serif;
+  outline:none;
+}
+.gate-input:focus { border-color:var(--accent); }
+.gate-btn {
+  display:block; width:100%; padding:14px; margin-top:8px;
+  background:var(--accent); color:#000; border:none; border-radius:10px;
+  font-size:15px; font-weight:700; cursor:pointer; font-family:'DM Sans',sans-serif;
+  transition: background 0.2s;
+}
+.gate-btn:hover { background:var(--accent2); }
+.gate-error {
+  display:none; color:#e74c3c; font-size:13px; margin-top:12px;
+}
+.gate-note { font-size:11px; color:var(--text-dim); margin-top:16px; opacity:0.7; }
+
+/* Deck content — hidden until authenticated */
+.deck-content { display:none; }
+.deck-content.visible { display:block; }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div class="gate-overlay" id="gate">
+  <div class="gate-box">
+    <div style="margin-bottom:20px;">
+      <span style="font-family:'Yeseva One',serif; font-size:42px; font-weight:400; color:var(--white); letter-spacing:-1px;">Soonsal</span>
+    </div>
+    <p style="font-size:15px; color:var(--text); margin-bottom:6px; font-weight:500;">Partnership Proposal</p>
+    <p style="font-size:13px; color:var(--text-dim); margin-bottom:24px;">Enter your email and access code to view this document.</p>
+    <input type="email" class="gate-input" id="gate-email" placeholder="Business email" required>
+    <input type="password" class="gate-input" id="gate-password" placeholder="Access code">
+    <button class="gate-btn" onclick="checkAccess()">View Proposal</button>
+    <div class="gate-error" id="gate-error">Invalid access code.</div>
+    <p class="gate-note">Your email is used solely for partnership communication purposes.</p>
+  </div>
+</div>
+
+<!-- DECK CONTENT (hidden until authenticated) -->
+<div class="deck-content" id="deck">
+
+<!-- PAGE 1: COVER -->
+<div class="page cover">
+  <div style="margin-bottom:24px;">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--accent); letter-spacing:2px;">SOONSAL × GENSPARK</span>
+  </div>
+  <h1>Korea's Premier<br>Finance Newsletter<br>Meets <span>AI</span></h1>
+  <p class="subtitle">Reach <strong>160K+</strong> affluent Korean professionals<br>through the most trusted finance media brand in Korea</p>
+  <div style="margin-bottom:32px;">
+    <span class="tag">Newsletter 73K+</span>
+    <span class="tag">Instagram 87K+</span>
+    <span class="tag outline">Annual Partnership</span>
+  </div>
+  <div class="meta">
+    <strong>Soonsal (순살)</strong> · Partnership Proposal · 2026<br>
+    Confidential — Prepared for Genspark
+  </div>
+  <div class="page-num">01</div>
+</div>
+
+<!-- PAGE 2: THE CHANNEL -->
+<div class="page">
+  <h2><span class="num">01</span>The Channel</h2>
+  <p>Soonsal ("boneless" in Korean — we strip the complexity out of global finance) is Korea's most trusted premium finance newsletter among young professionals, curated by a former <a href="https://www.linkedin.com/in/kidong-shin/" target="_blank" style="color:#F07040; text-decoration:underline;">Morgan Stanley Hong Kong</a> investment banker.</p>
+  <p>Every morning, <strong>73,000+ subscribers</strong> receive Soonsal Briefing to make sense of global markets — in a voice that's sharp, witty, and refreshingly honest.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="number">73K+</div>
+      <div class="label">Email Subscribers</div>
+      <div class="detail">25%+ open rate · 3× industry avg</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">87K+</div>
+      <div class="label">Instagram Followers</div>
+      <div class="detail">30K–220K reach per post</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">2M+</div>
+      <div class="label">Monthly Impressions</div>
+      <div class="detail">Instagram alone · organic only</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-box">
+      <h4>Channels</h4>
+      <ul>
+        <li><a href="https://letters.soonsal.com" target="_blank" style="color:#F07040;">Daily Newsletter</a> — 73K subs, ~25% open rate</li>
+        <li><a href="https://instagram.com/soonsal.brief" target="_blank" style="color:#F07040;">Instagram Card News</a> — 87K followers, 30–220K reach/post</li>
+        <li style="color:#666;"><a href="https://letters.soonsal.com" target="_blank" style="color:#666;">Crypto Newsletter</a> — dedicated crypto vertical</li>
+        <li style="color:#666;"><a href="https://youtube.com/@soonsal" target="_blank" style="color:#666;">YouTube</a> — 20K+ subscribers</li>
+        <li style="color:#666;"><a href="https://threads.net/@soonsal.brief" target="_blank" style="color:#666;">Threads</a> — 17K+ followers</li>
+        <li style="color:#666;">Short-form Video (Reels/Shorts)</li>
+      </ul>
+    </div>
+    <div class="col-box">
+      <h4>Why Soonsal Stands Out</h4>
+      <ul>
+        <li>Written by a former Morgan Stanley investment banker (not copywriters)</li>
+        <li>Readers actively invest in global stocks, crypto, and alternatives</li>
+        <li>Audience treats content as market intelligence, not entertainment</li>
+        <li>Full editorial production in-house: copy, design, distribution</li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-num">02</div>
+</div>
+
+<!-- PAGE 3: THE AUDIENCE -->
+<div class="page">
+  <h2><span class="num">02</span>The Audience — Who Reads Soonsal</h2>
+  <p>Soonsal subscribers are <strong>Korea's most valuable digital-native professionals</strong> — young, educated, high-income, and actively managing their own portfolios.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="number">90%</div>
+      <div class="label">Aged 25–44</div>
+      <div class="detail">55% in prime earning years (25–35)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">22%+</div>
+      <div class="label">Finance + Tech Professionals</div>
+      <div class="detail">vs. 10–15% industry norm</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">17.6%</div>
+      <div class="label">Corporate Email Users</div>
+      <div class="detail">vs. 5–8% industry norm</div>
+    </div>
+  </div>
+
+  <div class="col-box">
+    <h4>Corporate Email Domains — A Sample</h4>
+    <p style="font-size:13px; margin-bottom:12px; line-height:1.9;">
+      <strong style="color:var(--accent);">Enterprise & Conglomerate:</strong>
+      <strong>Samsung</strong> (559),
+      <strong>SK Group</strong> (211),
+      <strong>Hyundai</strong> (169),
+      <strong>CJ Group</strong> (147),
+      <strong>LG Electronics</strong> (75),
+      <strong>Lotte</strong> (76),
+      <strong>Hanwha</strong> (68),
+      <strong>POSCO</strong>, <strong>Doosan</strong>, <strong>Kolon</strong>, <strong>Korean Air</strong>, and more
+    </p>
+    <p style="font-size:13px; margin-bottom:12px; line-height:1.9;">
+      <strong style="color:var(--accent);">Consulting & Professional Services (120+):</strong>
+      PwC, EY, Deloitte, KPMG, McKinsey
+    </p>
+    <p style="font-size:13px; margin-bottom:12px; line-height:1.9;">
+      <strong style="color:var(--accent);">Finance & Investment (170+):</strong>
+      Mirae Asset, Korea Investment, KB Financial, Meritz, Toss, KDB, IBK
+    </p>
+    <p style="font-size:13px; margin-bottom:0; line-height:1.9;">
+      <strong style="color:var(--accent);">Tech & Platform (170+):</strong>
+      Google, Naver, Kakao, LINE, Coupang, Woowahan, NCSoft, Amazon<br>
+      <span style="color:var(--text-dim);">Top universities: Seoul National (184), Yonsei (103), Korea Univ. (89), KAIST (71), Ewha (59)</span>
+    </p>
+    <p style="font-size:12px; margin-top:16px; margin-bottom:0; padding:12px 16px; background:rgba(240,112,64,0.08); border-radius:8px; line-height:1.7; color:var(--text-dim);">
+      <strong style="color:var(--accent);">Note:</strong> These counts are based only on the <strong>17.6% of subscribers who use corporate email addresses</strong>. The majority of professionals subscribe with personal email (Gmail, Naver, etc.). The actual number of finance, consulting, and tech professionals in our audience is estimated to be <strong>5× larger or more</strong> than what corporate domain data alone suggests.
+    </p>
+  </div>
+
+  <div class="col-box mt-32">
+    <h4>Why This Matters for Genspark</h4>
+    <ul>
+      <li>These are exactly the <strong>knowledge workers</strong> Genspark is built for — analysts, strategists, consultants, bankers</li>
+      <li>They are <strong>early adopters</strong> of AI tools in their daily workflows</li>
+      <li>Korea is one of the world's most AI-ready markets — highest smartphone penetration, 5G coverage, and digital-native workforce</li>
+      <li>Reaching this audience through traditional ads is expensive and inefficient — Soonsal gives you a <strong>trusted editorial voice</strong></li>
+    </ul>
+  </div>
+
+  <div class="quote-block mt-32">
+    "Soonsal subscribers don't just read news — they make investment decisions based on it. They are precisely the high-value knowledge workers that AI productivity tools need to reach."
+  </div>
+  <div class="page-num">03</div>
+</div>
+
+<!-- PAGE 4: WHAT WE BUILD -->
+<div class="page">
+  <h2><span class="num">03</span>What We Build for Partners</h2>
+  <p>Every piece of sponsored content is <strong>written, designed, and produced entirely by Soonsal's editorial team</strong> — in the same voice and quality as our regular content. Your brand shows up as a trusted recommendation, not an interruption.</p>
+
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table class="product-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Format</th>
+        <th>Frequency</th>
+        <th>Reach</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Newsletter Banner</strong></td>
+        <td>Logo + one-liner or banner image, top of newsletter</td>
+        <td>Weekly</td>
+        <td class="highlight">18K+ opens/issue</td>
+      </tr>
+      <tr>
+        <td><strong>Branded Story</strong></td>
+        <td>Native editorial content (4–5 paragraphs), indistinguishable from regular stories</td>
+        <td>Monthly</td>
+        <td class="highlight">18K+ opens/issue</td>
+      </tr>
+      <tr>
+        <td><strong>Instagram Card News</strong></td>
+        <td>10-card carousel, fully produced (concept → copy → design → publish)</td>
+        <td>Monthly</td>
+        <td class="highlight">30–220K reach/post</td>
+      </tr>
+      <tr>
+        <td><strong>Deep-Dive Report</strong></td>
+        <td>Standalone sponsored newsletter (full editorial treatment)</td>
+        <td>Quarterly</td>
+        <td class="highlight">73K sends</td>
+      </tr>
+    </tbody>
+  </table></div>
+
+  <div class="col-box mt-32" style="border-color:var(--accent); border-style:dashed;">
+    <h4>What's Included in Every Engagement</h4>
+    <ul>
+      <li>Full editorial production: copywriting, design, editing — all in-house</li>
+      <li>Partner review before publication — no surprises</li>
+      <li>Performance reporting: opens, CTR, reach, saves, shares</li>
+      <li>Content resonates because it's written by the same team that writes the newsletter readers love</li>
+    </ul>
+  </div>
+  <div class="page-num">04</div>
+</div>
+
+<!-- PAGE 4-1: AD PLACEMENT EXAMPLES -->
+<div class="page">
+  <h2><span class="num">03-1</span>Ad Placement — Where Your Brand Appears</h2>
+  <p>Here's exactly where partner content appears within our editorial flow. Every placement is designed to feel native — not interruptive.</p>
+
+  <div class="two-col">
+    <div class="col-box" style="flex:1.2;">
+      <h4>📧 Newsletter — Soonsal Briefing</h4>
+      <div style="background:#1a1a1a; border-radius:12px; padding:20px; margin:12px 0; font-size:13px; line-height:1.7; color:#ccc;">
+        <div style="text-align:center; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #333;">
+          <span style="font-size:10px; letter-spacing:2px; color:#888;">SOONSAL BRIEFING</span>
+        </div>
+        <div style="background:rgba(240,112,64,0.15); border:1px dashed var(--accent); border-radius:8px; padding:12px; margin-bottom:16px;">
+          <span style="color:var(--accent); font-size:11px; font-weight:700;">① TOP BANNER — PARTNER LOGO + COPY</span>
+          <div style="font-size:12px; color:#999; margin-top:4px;">First thing subscribers see when they open the email. Logo + one-line message or banner image.</div>
+        </div>
+        <div style="font-size:11px; color:#666; margin-bottom:8px;">── Market Data Table ──</div>
+        <div style="font-size:11px; color:#666; margin-bottom:8px;">── 순모닝 (Morning Briefing) ──</div>
+        <div style="font-size:11px; color:#666; margin-bottom:8px;">── Story 1 ──</div>
+        <div style="background:rgba(240,112,64,0.15); border:1px dashed var(--accent); border-radius:8px; padding:12px; margin-bottom:8px;">
+          <span style="color:var(--accent); font-size:11px; font-weight:700;">② BRANDED STORY</span>
+          <div style="font-size:12px; color:#999; margin-top:4px;">Native editorial content (4–5 paragraphs) placed naturally among regular stories. Indistinguishable from editorial content.</div>
+        </div>
+        <div style="font-size:11px; color:#666; margin-bottom:8px;">── Story 3 ──</div>
+        <div style="font-size:11px; color:#666; margin-bottom:8px;">── Deal / Headline Roundup ──</div>
+      </div>
+    </div>
+    <div class="col-box" style="flex:1;">
+      <h4>📱 Instagram — @soonsal.brief</h4>
+      <div style="background:#1a1a1a; border-radius:12px; padding:20px; margin:12px 0; font-size:13px; line-height:1.7; color:#ccc;">
+        <div style="text-align:center; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #333;">
+          <span style="font-size:10px; letter-spacing:2px; color:#888;">10-CARD CAROUSEL</span>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
+          <div style="width:80px; height:80px; background:#2a2a2a; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:10px; color:#888;">Cover</div>
+          <div style="width:80px; height:80px; background:#2a2a2a; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:10px; color:#888;">Card 2</div>
+          <div style="width:80px; height:80px; background:#2a2a2a; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:10px; color:#888;">Card 3</div>
+          <div style="width:80px; height:80px; background:#2a2a2a; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:10px; color:#888;">...</div>
+          <div style="width:80px; height:80px; background:rgba(240,112,64,0.15); border:1px dashed var(--accent); border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:9px; color:var(--accent); text-align:center; padding:4px; font-weight:700;">Partner Card</div>
+          <div style="width:80px; height:80px; background:#2a2a2a; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:10px; color:#888;">Card 10</div>
+        </div>
+        <div style="margin-top:16px; font-size:12px; color:#999;">
+          <strong style="color:var(--accent);">Reach per post:</strong> 30K–220K<br>
+          High save & share rates — Instagram's algorithm frequently surfaces Card 2 independently, amplifying organic reach
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-box mt-32" style="border-color:#666; border-style:dashed;">
+    <h4>Key Principle</h4>
+    <p style="font-size:14px; margin:0; line-height:1.7;">
+      All sponsored content is <strong>produced entirely by Soonsal's editorial team</strong> in the same voice and quality as our regular content. This is editorial-grade native advertising — your brand appears as a <strong>trusted recommendation</strong>, not a banner ad.
+    </p>
+  </div>
+  <div class="page-num">04-1</div>
+</div>
+
+<!-- PAGE 5: WHY KOREA -->
+<div class="page">
+  <h2><span class="num">04</span>Why Korea Matters for Genspark</h2>
+  <p>Korea isn't just another market — it's a <strong>proving ground for global AI products</strong>.</p>
+
+  <div class="two-col">
+    <div class="col-box">
+      <h4>🚀 AI-Ready Market</h4>
+      <ul>
+        <li>World's highest smartphone penetration (97%+)</li>
+        <li>5G coverage across 95%+ of urban areas</li>
+        <li>Government AI investment roadmap through 2030</li>
+        <li>Korean workers among the most digitally fluent globally</li>
+      </ul>
+    </div>
+    <div class="col-box">
+      <h4>🎯 Early Adopter Culture</h4>
+      <ul>
+        <li>Korean professionals adopted ChatGPT faster than any non-English market</li>
+        <li>Enterprise SaaS adoption rates among the highest in APAC</li>
+        <li>Soonsal readers are at the intersection of finance + tech — ideal early adopters for AI productivity tools</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-box mt-32">
+    <h4>The Challenge: Reaching Korean Professionals</h4>
+    <ul>
+      <li>Korean digital advertising is dominated by local platforms (Naver, Kakao) — unfamiliar territory for global companies</li>
+      <li>Direct-to-consumer brand building requires <strong>Korean-language native content</strong> that resonates culturally</li>
+      <li>Traditional digital ads suffer from banner blindness and low trust among sophisticated professionals</li>
+    </ul>
+  </div>
+
+  <div class="quote-block mt-32">
+    <strong>This is where Soonsal comes in.</strong><br><br>
+    We are the bridge. We produce native Korean-language financial content that this audience already trusts and consumes daily. A Genspark story in Soonsal doesn't feel like an ad — it feels like a recommendation from a friend who happens to be an ex-investment banker.
+  </div>
+
+  <div class="col-box mt-32">
+    <h4>What Genspark Gets</h4>
+    <ul>
+      <li><strong>Brand awareness</strong> among Korea's most influential young professionals</li>
+      <li><strong>Consideration & trial</strong> — native content drives curiosity, not just impressions</li>
+      <li><strong>Creative production</strong> — no need to hire Korean copywriters or agencies; we handle everything</li>
+      <li><strong>Market intelligence</strong> — quarterly reports on how Korean professionals respond to your brand</li>
+    </ul>
+  </div>
+  <div class="page-num">05</div>
+</div>
+
+<!-- PAGE 6: PRICING -->
+<div class="page">
+  <h2><span class="num">05</span>Pricing — USD</h2>
+  <p>Designed for a <strong>long-term partnership</strong>, not one-off campaigns. Annual commitment unlocks the best value and price lock-in as our audience grows.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="tier-name">Growth</div>
+      <div class="tier-price">$180K <span class="unit">/ year</span></div>
+      <div class="tier-detail">~$15K/month · 17% savings vs. monthly</div>
+      <ul>
+        <li>Newsletter Banner × 48/yr (weekly)</li>
+        <li>Branded Story × 6/yr (bi-monthly)</li>
+        <li>IG Card News × 4/yr (quarterly)</li>
+        <li>Deep-Dive Report × 1/yr</li>
+        <li>Quarterly performance report</li>
+      </ul>
+    </div>
+    <div class="pricing-card featured">
+      <div class="tier-name">Premium</div>
+      <div class="tier-price">$250K <span class="unit">/ year</span></div>
+      <div class="tier-detail">~$21K/month · 17% savings vs. monthly</div>
+      <ul>
+        <li>Newsletter Banner × 48/yr (weekly)</li>
+        <li>Branded Story × 12/yr (monthly)</li>
+        <li>IG Card News × 6/yr (bi-monthly) <span style="color:var(--accent);">▲</span></li>
+        <li>Deep-Dive Report × 2/yr <span style="color:var(--accent);">▲</span></li>
+        <li>Category exclusivity</li>
+        <li>Monthly performance report</li>
+        <li>Priority access to new channels (Shorts, Crypto, Threads)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-box mt-32">
+    <h4>Why This Pricing Makes Sense</h4>
+    <ul>
+      <li><strong>CPM comparison:</strong> Premium finance newsletters in the US charge $75–$200 CPM. Soonsal's effective CPM is competitive while including full creative production</li>
+      <li><strong>Creative production included:</strong> Hiring a Korean-native finance copywriter + designer + editorial review would cost $5K–$8K per piece externally. Every Soonsal package includes this at no additional cost</li>
+      <li><strong>Audience quality premium:</strong> 17.6% corporate email users, 22%+ finance/tech professionals — 3–5× higher quality than typical newsletter audiences</li>
+      <li><strong>English communication & reporting:</strong> All partner communication, briefs, and performance reports delivered in English</li>
+    </ul>
+  </div>
+
+  <div class="col-box mt-32" style="border-color:var(--accent);">
+    <h4>Flexible Entry Points</h4>
+    <div style="overflow-x:auto;"><table class="product-table" style="margin:0;">
+      <thead><tr><th>Commitment</th><th>Growth</th><th>Premium</th></tr></thead>
+      <tbody>
+        <tr><td>Monthly</td><td class="highlight">$18K/mo</td><td class="highlight">$25K/mo</td></tr>
+        <tr><td>Quarterly</td><td class="highlight">$48K/qtr</td><td class="highlight">$68K/qtr</td></tr>
+        <tr><td>Annual</td><td class="highlight">$180K/yr ✦</td><td class="highlight">$250K/yr ✦</td></tr>
+      </tbody>
+    </table></div>
+    <p class="dim small" style="margin-top:12px; margin-bottom:0;">✦ Annual lock-in protects against future price increases as audience grows<br>💡 <strong style="color:var(--accent);">Recommended start:</strong> Begin with a quarterly pilot ($48K–$68K) → evaluate performance → expand to annual</p>
+  </div>
+  <div class="page-num">06</div>
+</div>
+
+<!-- PAGE 7: CTA -->
+<div class="page">
+  <h2><span class="num">06</span>Let's Run a Pilot</h2>
+
+  <div class="flow-row">
+    <div class="flow-step"><div class="step-num">STEP 1</div>Kickoff Call<br><span class="dim small">Align on goals & KPIs</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">STEP 2</div>Content Calendar<br><span class="dim small">Editorial plan & schedule</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">STEP 3</div>Editorial Production<br><span class="dim small">Written in Soonsal's voice</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">STEP 4</div>Publish & Report<br><span class="dim small">Opens / CTR / Reach analytics</span></div>
+  </div>
+
+  <div class="col-box mt-32">
+    <h4>Our Commitment</h4>
+    <ul>
+      <li><strong>Content, not ads:</strong> Readers should think "this is great Soonsal content" — not "this is an ad"</li>
+      <li><strong>Editorial integrity:</strong> We don't publish claims we can't verify or endorsements we don't believe in</li>
+      <li><strong>Full transparency:</strong> Open rates, CTR, reach, saves, shares — all reported</li>
+      <li><strong>Category protection:</strong> Limited partners per category to protect brand value</li>
+    </ul>
+  </div>
+
+  <div class="col-box mt-32" style="border-color:var(--accent);">
+    <h4>Why Now?</h4>
+    <ul>
+      <li><strong>Start with a quarterly pilot</strong> — $48K (Growth) or $68K (Premium) gets you a full quarter of newsletters + branded stories + IG content, with performance data to evaluate ROI before committing annually</li>
+      <li>Soonsal's audience is growing — locking in today's pricing gives you the best unit economics</li>
+      <li>AI/SaaS category slots are limited — first mover advantage matters</li>
+      <li>Korea's AI adoption is accelerating — early brand presence compounds over time</li>
+      <li>Genspark's LG Technology Ventures connection creates a natural Korea narrative</li>
+    </ul>
+  </div>
+
+  <div style="margin-top:48px; padding:32px; background:var(--accent); border-radius:16px; color:#000; text-align:center;">
+    <h3 style="color:#000; margin-bottom:12px;">Ready to Talk?</h3>
+    <p style="font-size:16px; margin-bottom:4px; color:#000;"><strong>KD</strong> · Founder & Editor-in-Chief</p>
+    <p style="font-size:15px; margin-bottom:4px; color:#000;"><a href="/cdn-cgi/l/email-protection#324657535f72415d5d5c41535e1c515d5f" style="color:#000; text-decoration:underline;"><span class="__cf_email__" data-cfemail="9ce8f9fdf1dceff3f3f2effdf0b2fff3f1">[email&#160;protected]</span></a></p>
+    <p style="font-size:13px; margin-bottom:0; color:rgba(0,0,0,0.6);">Former <a href="https://www.linkedin.com/in/kidong-shin/" target="_blank" style="color:rgba(0,0,0,0.6); text-decoration:underline;">Morgan Stanley Hong Kong</a> Investment Banker</p>
+  </div>
+  <div class="page-num">07</div>
+</div>
+
+<div class="footer-bar">
+  Soonsal (순살) · Confidential · 2026 · Prepared for Genspark
+</div>
+
+</div><!-- end .deck-content -->
+
+<script>
+// ============================================
+// Configuration
+// ============================================
+const ACCESS_CODE = 'genspark2026';  // Access code (changeable)
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzMKC_Zhe9AoimhBDJNpmp2_BeUHp7CeXS2CuLqaVq4_ZmFBjexEfbLHRPogYDhQmRu/exec';
+
+function checkAccess() {
+  const email = document.getElementById('gate-email').value.trim();
+  const password = document.getElementById('gate-password').value.trim();
+  const errorEl = document.getElementById('gate-error');
+
+  if (!email || !email.includes('@')) {
+    errorEl.textContent = 'Please enter a valid email address.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  if (password !== ACCESS_CODE) {
+    errorEl.textContent = 'Invalid access code.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  // Log the view
+  logView(email);
+
+  // Reveal content
+  document.getElementById('gate').classList.add('hidden');
+  document.getElementById('deck').classList.add('visible');
+  setTimeout(() => {
+    document.getElementById('gate').style.display = 'none';
+  }, 500);
+}
+
+// Enter key support
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && document.getElementById('gate').style.display !== 'none') {
+    checkAccess();
+  }
+});
+
+function logView(email) {
+  if (!GOOGLE_SHEET_URL) return;
+
+  const data = {
+    email: email,
+    timestamp: new Date().toISOString(),
+    page: 'partnership-en-genspark'
+  };
+
+  fetch(GOOGLE_SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(function(err) {
+    console.log('Log error:', err);
+  });
+}
+</script>
+
+</body>
+</html>

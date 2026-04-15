@@ -1,0 +1,354 @@
+<!--
+  ============================================================
+  순살 금융영어 카드뉴스 마스터 템플릿
+  ============================================================
+  버전: 2026.04.10 v1
+  
+  사용법:
+  1. 이 파일을 복사해서 날짜별 파일명으로 저장
+     예: 순살금융영어_20260412.html
+  2. {{플레이스홀더}}를 실제 콘텐츠로 교체
+  3. CARD 10은 수정하지 않음 (항상 동일)
+  
+  플레이스홀더 목록:
+  ─────────────────────────────────────────────────
+  공통:
+    2026.04.14          2026.04.10
+    20260414         20260410
+  
+  CARD 1 (커버):
+    월가의 필승 전략이<br>전쟁 한 방에 박살났다       "$130억 펀드를 무너뜨린 영어 한 문장" 같은 임팩트 타이틀 (HTML <br> 사용)
+    The <span style="color:#F07040;">dispersion trade</span> posted its worst month since 2011 as war-driven macro shocks sent cross-asset <span style="color:#F07040;">correlations</span> toward one.    오늘의 영어 원문. 핵심 단어는 <span style="color:#F07040;">로 감싸기
+  
+  CARD 2 (오늘 배울 내용):
+    Dispersion Trade ~ Harder and Slower   영어 표현 5개
+  
+  CARD 3~7 (EXPRESSION 01~05):
+    {{EXP_N_TITLE}}       영어 표현 (예: "Closed Shorts")
+    {{EXP_N_MEANING}}     한국어 뜻 (예: 숏 포지션을 청산했다)
+    {{EXP_N_EXPLAIN}}     해설 텍스트 (HTML <br> 사용)
+    {{EXP_N_CONTEXT}}     container 안 맥락 해설 (HTML <br> 사용)
+    * N = 1~5
+    * CARD 3,5,7 = 다크(#111) / CARD 4,6 = 화이트(#fff)
+    * 다크 카드: 해설 color:#ccc, container bg:rgba(255,255,255,0.07)
+    * 화이트 카드: 해설 color:#555, container bg:#f8f8f8
+  
+  CARD 8 (인물/회사 서사):
+    <svg width="460" height="280" viewBox="0 0 460 280">
+      <rect x="0" y="0" width="460" height="280" rx="12" fill="#f8f8f8"/>
+      <text x="230" y="30" text-anchor="middle" font-size="28" font-weight="900" fill="#111">🏦</text>
+      <text x="230" y="60" text-anchor="middle" font-size="20" font-weight="900" fill="#111">Goldman Sachs</text>
+      <text x="230" y="82" text-anchor="middle" font-size="14" fill="#888">Q1 2026 실적 발표 · 2026.04.13</text>
+      <rect x="30" y="100" width="400" height="55" rx="8" fill="#111"/>
+      <text x="230" y="123" text-anchor="middle" font-size="15" font-weight="700" fill="#F07040">주식 거래 매출 53억불 — 역대 최고</text>
+      <text x="230" y="143" text-anchor="middle" font-size="13" fill="#ccc">Prime Brokerage 수요 폭발이 핵심 동력</text>
+      <rect x="30" y="165" width="195" height="50" rx="8" fill="#fff" stroke="#eee"/>
+      <text x="128" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#111">EPS $17.55</text>
+      <text x="128" y="205" text-anchor="middle" font-size="11" fill="#888">예상치 $16.49 상회</text>
+      <rect x="235" y="165" width="195" height="50" rx="8" fill="#fff" stroke="#eee"/>
+      <text x="333" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#111">순이익 56억불</text>
+      <text x="333" y="205" text-anchor="middle" font-size="11" fill="#888">+19% YoY</text>
+      <rect x="30" y="225" width="400" height="42" rx="8" fill="#F07040"/>
+      <text x="230" y="250" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Dispersion이 터질 때, PB로 번 은행</text>
+    </svg>   SVG 전체 블록 (인물/회사에 따라 구조가 달라지므로 SVG째 교체)
+  
+  CARD 9 (복습):
+    The <span style="color:#F07040;">dispersion trade</span> posted its worst month since 2011 as war-driven macro shocks sent cross-asset <span style="color:#F07040;">correlations</span> toward one.   원문 전체. 핵심 단어는 <span style="color:#F07040;">로 감싸기
+    <span style="color:#F07040;">분산매매</span>가 2011년 이후 최악의 달을 기록 — 전쟁발 매크로 충격으로 자산 간 <span style="color:#F07040;">상관관계</span>가 1로 수렴     한국어 해석. 핵심 부분은 <span style="color:#F07040;">로 감싸기
+  
+  CARD 10:
+    수정하지 않음. 항상 동일.
+  ─────────────────────────────────────────────────
+  
+  규칙:
+  - EXPRESSION 카드: 직역 단계 생략 → 바로 정확한 의미 번역
+  - 맥락 해설: 반드시 container(배경색+패딩+border-radius)로 시각 구분
+  - container 내부 텍스트: 최소 16px, 핵심 문장 18px+
+  - SVG 텍스트: 제목/라벨 16px+, 본문 15px+, 보조 14px+
+  - SVG 이모지: 28px+
+  - container rect: 높이 최소 40px, 너비 380px (viewBox 460 기준)
+  - 텍스트가 container 밖으로 넘치거나 화살표 깨짐 금지
+  ============================================================
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>순살 금융영어 · 2026.04.14</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e8e8e8;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 40px 20px; gap: 32px;
+    font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+    word-break: keep-all;
+  }
+  .series-title { font-size: 13px; color: #888; letter-spacing: 1px; }
+  .card {
+    width: 540px; height: 540px; background: #fff;
+    box-shadow: inset 0 0 0 5px #F07040;
+    border-radius: 6px;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 14px; position: relative; overflow: hidden;
+  }
+  .top-text { text-align: center; font-size: 44px; font-weight: 900; line-height: 1.4; color: #111; width: 100%; word-break: keep-all; }
+  .top-text.large { font-size: 52px; }
+  .top-text.small { font-size: 32px; }
+  .illust { flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; overflow: hidden; }
+  .bottom-text { text-align: center; font-size: 28px; font-weight: 700; line-height: 1.4; color: #111; width: 100%; padding-top: 6px; word-break: keep-all; }
+  .bottom-text.small { font-size: 23px; }
+  .logo-row { display: flex; align-items: center; justify-content: center; gap: 6px; padding-top: 8px; border-top: 1px solid #f0f0f0; }
+  .logo-icon { width: 22px; height: 22px; object-fit: contain; }
+  .logo-text { font-size: 15px; font-weight: 900; color: #555; letter-spacing: -0.5px; }
+  .red    { color: #e53935; }
+  .orange { color: #F07040; }
+  .blue   { color: #1565C0; }
+  .green  { color: #2e7d32; }
+  .sub    { font-size: 0.75em; color: #888; }
+  @media (max-width: 539px) {
+    body { padding: 16px 8px; gap: 20px; }
+    .card {
+      width: 100%; max-width: 540px;
+      height: auto; aspect-ratio: 1 / 1;
+      padding: 20px 22px 16px; gap: 8px;
+    }
+    .top-text        { font-size: 28px !important; line-height: 1.35; }
+    .top-text.large  { font-size: 34px !important; }
+    .top-text.cover-title { font-size: clamp(38px, 9vw, 46px) !important; line-height: 1.2; }
+    .bottom-text     { font-size: 21px !important; line-height: 1.35; }
+    .illust svg      { max-width: 100%; max-height: 100%; }
+    .logo-row        { padding-top: 6px; }
+    .logo-text       { font-size: 13px; }
+    .logo-row img    { height: 18px !important; }
+    .series-title    { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="series-title">순살 금융영어 · 2026.04.14</div>
+
+<!-- ===== CARD 1 (커버) ===== -->
+<div class="card" style="background:#111; box-shadow:inset 0 0 0 5px #F07040;">
+  <div style="flex:0 0 auto; padding-top:20px;">
+    <div style="font-size:15px; color:#F07040; font-weight:700; letter-spacing:2px;">순살 금융영어</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:0 22px;">
+    <div class="top-text cover-title" style="color:#fff; font-size:40px; line-height:1.25;">월가의 필승 전략이<br>전쟁 한 방에 박살났다</div>
+    <div style="width:50px; height:2px; background:#F07040;"></div>
+    <div style="font-size:16px; color:#ccc; font-weight:700; line-height:1.55; text-align:center; letter-spacing:-0.3px;">
+      The <span style="color:#F07040;">dispersion trade</span> posted its worst month since 2011 as war-driven macro shocks sent cross-asset <span style="color:#F07040;">correlations</span> toward one.
+    </div>
+  </div>
+  <div class="logo-row" style="border-top:1px solid rgba(255,255,255,0.15); flex:0 0 auto; width:100%;"><img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" alt="순살"/><span class="logo-text" style="color:#ccc;">Soonsal</span></div>
+</div>
+
+<!-- ===== CARD 2 (오늘 배울 내용) ===== -->
+<div class="card">
+  <div class="top-text" style="font-size:34px;">오늘 월가에서<br>쓰인 영어 5개</div>
+  <div class="illust">
+    <svg width="460" height="270" viewBox="0 0 460 270">
+      <rect x="30" y="10" width="400" height="44" rx="8" fill="#111"/>
+      <text x="50" y="38" font-size="17" font-weight="900" fill="#F07040">01</text>
+      <text x="90" y="38" font-size="17" font-weight="900" fill="#fff">Dispersion Trade</text>
+      <text x="380" y="38" text-anchor="end" font-size="15" fill="#555">→</text>
+
+      <rect x="30" y="62" width="400" height="44" rx="8" fill="#111"/>
+      <text x="50" y="90" font-size="17" font-weight="900" fill="#F07040">02</text>
+      <text x="90" y="90" font-size="17" font-weight="900" fill="#fff">Prime Brokerage</text>
+      <text x="380" y="90" text-anchor="end" font-size="15" fill="#555">→</text>
+
+      <rect x="30" y="114" width="400" height="44" rx="8" fill="#111"/>
+      <text x="50" y="142" font-size="17" font-weight="900" fill="#F07040">03</text>
+      <text x="90" y="142" font-size="17" font-weight="900" fill="#fff">Guidance Withdrawal</text>
+      <text x="380" y="142" text-anchor="end" font-size="15" fill="#555">→</text>
+
+      <rect x="30" y="166" width="400" height="44" rx="8" fill="#111"/>
+      <text x="50" y="194" font-size="17" font-weight="900" fill="#F07040">04</text>
+      <text x="90" y="194" font-size="17" font-weight="900" fill="#fff">Short of Tokens</text>
+      <text x="380" y="194" text-anchor="end" font-size="15" fill="#555">→</text>
+
+      <rect x="30" y="218" width="400" height="44" rx="8" fill="#111"/>
+      <text x="50" y="246" font-size="17" font-weight="900" fill="#F07040">05</text>
+      <text x="90" y="246" font-size="17" font-weight="900" fill="#fff">Harder and Slower</text>
+      <text x="380" y="246" text-anchor="end" font-size="15" fill="#555">→</text>
+    </svg>
+  </div>
+  <div class="bottom-text small">다 알면 월가 뉴스가 그냥 읽힘</div>
+  <div class="logo-row"><img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/><span class="logo-text">Soonsal</span></div>
+</div>
+
+<!-- ===== CARD 3 (EXPRESSION 01 — 다크) ===== -->
+<div class="card" style="background:#111; box-shadow:inset 0 0 0 5px #F07040;">
+  <div style="flex:0 0 auto; padding-top:12px;">
+    <div style="font-size:13px; color:#888; font-weight:700; letter-spacing:1px;">EXPRESSION 01</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:0 22px;">
+    <div style="font-size:46px; font-weight:900; color:#F07040; letter-spacing:-1px; text-align:center;">"Dispersion<br>Trade"</div>
+    <div style="font-size:24px; font-weight:700; color:#fff; text-align:center; line-height:1.4;">분산매매 — 종목 간 격차에 거는 베팅</div>
+    <div style="width:50px; height:2px; background:rgba(255,255,255,0.2);"></div>
+    <div style="font-size:18px; color:#ccc; text-align:center; line-height:1.6;">
+      개별 종목 옵션을 사고, 인덱스 옵션을 파는 전략.<br>종목별 움직임이 다를 때 수익이 남
+    </div>
+    <div style="background:rgba(255,255,255,0.07); border-radius:10px; padding:14px 18px; width:100%;">
+      <div style="font-size:17px; color:#F07040; font-weight:700; text-align:center; line-height:1.5;">
+        3월 -4.9% — 2011년 이후 최악의 달.<br>전쟁으로 모든 종목이 같이 움직이면서<br>구조 자체가 무력화
+      </div>
+    </div>
+  </div>
+  <div class="logo-row" style="border-top:1px solid rgba(255,255,255,0.15); flex:0 0 auto; width:100%;"><img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" alt="순살"/><span class="logo-text" style="color:#ccc;">Soonsal</span></div>
+</div>
+
+<!-- ===== CARD 4 (EXPRESSION 02 — 화이트) ===== -->
+<div class="card">
+  <div style="flex:0 0 auto; padding-top:4px;">
+    <div style="font-size:13px; color:#888; font-weight:700; letter-spacing:1px; text-align:center;">EXPRESSION 02</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:0 22px;">
+    <div style="font-size:44px; font-weight:900; color:#F07040; letter-spacing:-1px; text-align:center;">"Prime<br>Brokerage"</div>
+    <div style="font-size:22px; font-weight:700; color:#111; text-align:center; line-height:1.4;">프라임 브로커리지 — 헤지펀드 전용 종합 서비스</div>
+    <div style="width:50px; height:2px; background:#eee;"></div>
+    <div style="font-size:18px; color:#555; text-align:center; line-height:1.6;">
+      주식 대여, 마진 거래, 결제 대행을<br>투자은행이 헤지펀드에 제공하는 서비스
+    </div>
+    <div style="background:#f8f8f8; border-radius:10px; padding:14px 18px; width:100%;">
+      <div style="font-size:17px; color:#F07040; font-weight:700; text-align:center; line-height:1.5;">
+        전쟁 변동성에 헤지펀드가 거래를 쏟아내면서<br>골드만 PB 수수료가 폭발 →<br>Q1 주식 거래 매출 53억불, 역대 최고
+      </div>
+    </div>
+  </div>
+  <div class="logo-row"><img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/><span class="logo-text">Soonsal</span></div>
+</div>
+
+<!-- ===== CARD 5 (EXPRESSION 03 — 다크) ===== -->
+<div class="card" style="background:#111; box-shadow:inset 0 0 0 5px #F07040;">
+  <div style="flex:0 0 auto; padding-top:12px;">
+    <div style="font-size:13px; color:#888; font-weight:700; letter-spacing:1px;">EXPRESSION 03</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:0 22px;">
+    <div style="font-size:40px; font-weight:900; color:#F07040; letter-spacing:-1px; text-align:center; line-height:1.2;">"Guidance<br>Withdrawal"</div>
+    <div style="font-size:22px; font-weight:700; color:#fff; text-align:center;">가이던스 철회 — 전망 자체를 포기하는 것</div>
+    <div style="width:50px; height:2px; background:rgba(255,255,255,0.2);"></div>
+    <div style="font-size:18px; color:#ccc; text-align:center; line-height:1.6;">
+      기업이 실적 전망치를 공식 철회하는 것.<br>불확실성이 너무 커서 예측 자체가 불가능하다는 신호
+    </div>
+    <div style="background:rgba(255,255,255,0.07); border-radius:10px; padding:16px 18px; width:100%;">
+      <div style="font-size:17px; color:#ccc; text-align:center; line-height:1.6;">
+        델타항공 CEO: "경제가 계속 힘을 잃을 것"<br>제트유 가격 +50%에 연간 전망 통째로 철회.<br>이번 실적시즌 트렌드가 될 수 있음
+      </div>
+    </div>
+  </div>
+  <div class="logo-row" style="border-top:1px solid rgba(255,255,255,0.15); flex:0 0 auto; width:100%;"><img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" alt="순살"/><span class="logo-text" style="color:#ccc;">Soonsal</span></div>
+</div>
+
+<!-- ===== CARD 6 (EXPRESSION 04 — 화이트) ===== -->
+<div class="card">
+  <div style="flex:0 0 auto; padding-top:4px;">
+    <div style="font-size:13px; color:#888; font-weight:700; letter-spacing:1px; text-align:center;">EXPRESSION 04</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:0 22px;">
+    <div style="font-size:42px; font-weight:900; color:#F07040; letter-spacing:-1px; text-align:center;">"Short of<br>Tokens"</div>
+    <div style="font-size:22px; font-weight:700; color:#111; text-align:center; line-height:1.4;">토큰 부족 — AI 시대의 진짜 병목</div>
+    <div style="width:50px; height:2px; background:#eee;"></div>
+    <div style="font-size:18px; color:#555; text-align:center; line-height:1.6;">
+      석유가 아니라 AI 컴퓨팅 자원(토큰)이<br>세상에서 진짜 부족한 것이라는 표현
+    </div>
+    <div style="background:#f8f8f8; border-radius:10px; padding:14px 18px; width:100%;">
+      <div style="font-size:17px; color:#F07040; font-weight:700; text-align:center; line-height:1.5;">
+        "Everyone's talking about oil, but what<br>the world is mainly short of is tokens."<br>— Ben Pouladian (엔지니어·테크 투자자)
+      </div>
+    </div>
+  </div>
+  <div class="logo-row"><img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/><span class="logo-text">Soonsal</span></div>
+</div>
+
+<!-- ===== CARD 7 (EXPRESSION 05 — 다크) ===== -->
+<div class="card" style="background:#111; box-shadow:inset 0 0 0 5px #F07040;">
+  <div style="flex:0 0 auto; padding-top:12px;">
+    <div style="font-size:13px; color:#888; font-weight:700; letter-spacing:1px;">EXPRESSION 05</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:0 22px;">
+    <div style="font-size:44px; font-weight:900; color:#F07040; letter-spacing:-1px; text-align:center;">"Harder and<br>Slower"</div>
+    <div style="font-size:24px; font-weight:700; color:#fff; text-align:center;">예상보다 더 어렵고 느리다 — AI 도입 속도 경고</div>
+    <div style="width:50px; height:2px; background:rgba(255,255,255,0.2);"></div>
+    <div style="font-size:18px; color:#ccc; text-align:center; line-height:1.6;">
+      골드만 CEO 솔로몬이 Q1 실적 콜에서<br>대기업 AI 통합이 기대보다 어려울 것이라 경고
+    </div>
+    <div style="background:rgba(255,255,255,0.07); border-radius:10px; padding:16px 18px; width:100%;">
+      <div style="font-size:17px; color:#ccc; text-align:center; line-height:1.55;">
+        아이러니: 이 경고 직후 소프트웨어 주가가<br>연중 최대 상승 — "셀오프가 과했다"는<br>반증으로 시장이 읽은 것
+      </div>
+    </div>
+  </div>
+  <div class="logo-row" style="border-top:1px solid rgba(255,255,255,0.15); flex:0 0 auto; width:100%;"><img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" alt="순살"/><span class="logo-text" style="color:#ccc;">Soonsal</span></div>
+</div>
+
+<!-- ===== CARD 8 (인물/회사 서사) ===== -->
+<div class="card">
+  <div class="top-text" style="font-size:28px;">이 표현들 뒤에<br>역대급 분기가 있음</div>
+  <div class="illust">
+    <svg width="460" height="300" viewBox="0 0 460 300">
+      <rect x="0" y="0" width="460" height="300" rx="12" fill="#f8f8f8"/>
+      <text x="230" y="35" text-anchor="middle" font-size="32" font-weight="900" fill="#111">🏦</text>
+      <text x="230" y="70" text-anchor="middle" font-size="24" font-weight="900" fill="#111">Goldman Sachs</text>
+      <text x="230" y="95" text-anchor="middle" font-size="16" fill="#888">Q1 2026 실적 발표 · 2026.04.13</text>
+      <rect x="25" y="115" width="410" height="60" rx="10" fill="#111"/>
+      <text x="230" y="142" text-anchor="middle" font-size="18" font-weight="700" fill="#F07040">주식 거래 매출 53억불 — 역대 최고</text>
+      <text x="230" y="165" text-anchor="middle" font-size="15" fill="#ccc">Prime Brokerage 수요 폭발이 핵심 동력</text>
+      <rect x="25" y="188" width="200" height="55" rx="8" fill="#fff" stroke="#eee"/>
+      <text x="125" y="213" text-anchor="middle" font-size="16" font-weight="700" fill="#111">EPS $17.55</text>
+      <text x="125" y="233" text-anchor="middle" font-size="13" fill="#888">예상치 $16.49 상회</text>
+      <rect x="235" y="188" width="200" height="55" rx="8" fill="#fff" stroke="#eee"/>
+      <text x="335" y="213" text-anchor="middle" font-size="16" font-weight="700" fill="#111">순이익 56억불</text>
+      <text x="335" y="233" text-anchor="middle" font-size="13" fill="#888">+19% YoY</text>
+      <rect x="25" y="255" width="410" height="35" rx="8" fill="#F07040"/>
+      <text x="230" y="278" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">Dispersion이 터질 때, PB로 번 은행</text>
+    </svg>
+  </div>
+  <div class="logo-row"><img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACiElEQVR42o2VMWgUQRSGvze3e5c7Q4QkBDSYUxQlokQDEpPCNAoBK8EitiIWNjZCBLW20fQqKoiVUdTGKGk0YKOCgkUwIEQEI0YSOfEwl915Fjd7TtbbxAfDzC4z//vfm/e/gfUtBxjveydwHpgGvgE1YBl4AJQAcSPTxIEmdhiYACqAZowBj0wmy8SGgacpgAiIAevmGPgOdK7FOAHtAe56YLEDtCknNTefzmJrvFyeABZSgOmwLbDi1jccyzANGnjrK97hlYxcJuErcK1JxKtS0QHc83Jo12EZAZ+At8Bz4BJQ9gFDYAyY9w40Y+n/fw0MuvLqA84Az4CvwNUkAw8zDqcZKvATuADkM6qp1zl9QkboUcpJBNxx4khqPHCXHQAFxx4311jjghT4AdwCDnisio5x2KS0SsB4AhynQv8NPAKOOybrWQnodzKfSapGHLDfCyJgFvjgesEisAT8Aqwx5A1mY6x2syrbgV1OTInZJFdp4KZmpF6aVjVrS+SJzAYZm/yLxIg0ANtLBTYUQpaqy1RrkVhV8S6xqeJWETQiOJLEVjlY7uLiSD/7uzvJ5wz5MGD09hSTM5/JGSG2yv8A1xm6vUd39zBx8gjFfIDGFikVePxqlumP8/Vo7L/pCbyQBUBEUFVGerfQWswzt1Dh5ughiq0tRNVlvlSqXJ98w+Wpd1hVhIb/xBop9BuODYxRQM8O79HK+CkdKHfpvu4OPda3TYd3bNK2lrBR57K2ShnzRSGuTba1hHF3W6lZI9KcEZW/TT5KaUGBcwn9IeC+q9dVIEZEjYjmTH2IZKp00T1dg/67FjsHW91TNCTCXkHKVrXdSVi8HNYciTngPfASeOHaKEDuD94WLV8YC7DaAAAAAElFTkSuQmCC" alt="순살"/><span class="logo-text">Soonsal</span></div>
+</div>
+
+<!-- ===== CARD 9 (복습) ===== -->
+<div class="card" style="background:#111; box-shadow:inset 0 0 0 5px #F07040;">
+  <div style="flex:0 0 auto; padding-top:14px;">
+    <div style="font-size:15px; color:#888; font-weight:700;">아까 그 문장, 다시 보면</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:0 20px;">
+    <div style="background:rgba(255,255,255,0.06); border-left:4px solid #F07040; padding:16px 20px; border-radius:0 8px 8px 0; width:100%;">
+      <div style="font-size:18px; color:#fff; font-weight:700; line-height:1.6; font-style:italic;">
+        The <span style="color:#F07040;">dispersion trade</span> posted its worst month since 2011 as war-driven macro shocks sent cross-asset <span style="color:#F07040;">correlations</span> toward one.
+      </div>
+    </div>
+    <div style="width:50px; height:2px; background:rgba(255,255,255,0.2);"></div>
+    <div style="font-size:18px; color:#ccc; font-weight:700; text-align:center; line-height:1.6;">
+      <span style="color:#F07040;">분산매매</span>가 2011년 이후 최악의 달을 기록 — 전쟁발 매크로 충격으로 자산 간 <span style="color:#F07040;">상관관계</span>가 1로 수렴
+    </div>
+    <div style="margin-top:4px; font-size:15px; color:#555; text-align:center;">한 문장이 읽히면, 시장이 읽힌다</div>
+  </div>
+  <div class="logo-row" style="border-top:1px solid rgba(255,255,255,0.15); flex:0 0 auto; width:100%;"><img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" alt="순살"/><span class="logo-text" style="color:#ccc;">Soonsal</span></div>
+</div>
+
+<!-- ===== CARD 10 (클로징 — 수정 금지, 항상 동일) ===== -->
+<div class="card" style="background:#111; box-shadow:inset 0 0 0 5px #F07040;">
+  <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+    <div style="text-align:center; padding:0 28px;">
+      <div style="font-size:34px; font-weight:900; color:#fff; line-height:1.3;">
+        매일 아침,<br>
+        월가를 움직인<br>
+        문장 하나씩
+      </div>
+      <div style="width:60px; height:3px; background:#F07040; margin:20px auto;"></div>
+      <div style="font-size:17px; color:#888; line-height:1.5;">
+        순살브리핑 · 금융영어
+      </div>
+    </div>
+  </div>
+  <div class="logo-row" style="border-top:1px solid rgba(255,255,255,0.15); flex:0 0 auto; width:100%;"><img class="logo-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACjklEQVR42p2VvYsdVRiHnzMz9172Ggl+QCDFJhCIWoSAIJIlkiZ1wGAjWFtYWAkKkv9ABUtRLERS+MFamaQJKqZKEUkKUVTcRk3UrGTdZHPvnPNY7JnkZLyzEV+4zJm5c57zez8H7mNqrVbF/UH1NfUr9Zo6U2+rn6pTNahhJ2BQ6+L+uPqxesNhe7oTM6iyWB9Tz/YArRrVlK9R/UN9dFBxB1WX1Q8LWMzA1Dtklq8vLlSrVl0s1efV33vAviV1ntfvZqWjPrQp1m8Um+cDsezcV31nQbJD+eAR9aMihuk+Klt1Tb2kfqGeUveVwJH6qvprsWGRlc8vqkdyeR1WX1LPqb+pb6oN6urA5r5C1Q31dXU8UE1P5EM/Z8D1tndIq36gHixqvMkJb9SJOs3/TdUZOyRI9S/1ffWpQtWSOs4hrHuKp+pbHTj2XN9SP1OfUyf/oeWn6pO5zb/tqiaoEaiKd1vge+A74BpwHVgHNoFEjGNgN3XYC9UB4DFgudifABaB/6+1mVMBqRl4KQHmH6QI1XY4080NmG3B0i6q0SRQVSHD7mENgStMHRaqmvTLj7Rfr5KurkGKOL/N+NmXqQ8cBhOEe51uBh0LFeTGjD98w3z1bZjPoG7w1t/Uh56hXn4c9F/QDty5HHKaIQTiT5dha5Pw0B7mZ97DmxuEpV3wwG6aoycZrZyAELjr1t1CAQyqRfBrUgxUNe3Fc8zPn2bywiloRrh+lTB9kLBnP2GytLDygHgnCnlO9CdXG29txnjjz7R4tkWLId/2ekH1lQ6+on6iri8EpbQNS3GHJvV6/nQd6eq4DiHEfMB+4BiwAhwipX1U1cPA+E4Otl2e5ab5GbgCXAC+DCGsdTP5H8vD6az7cBL2AAAAAElFTkSuQmCC" alt="순살"/><span class="logo-text" style="color:#ccc;">Soonsal</span></div>
+</div>
+
+</body>
+</html>
